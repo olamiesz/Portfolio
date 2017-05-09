@@ -1,0 +1,2615 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dawcio gra w warcaby!!!</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <style>
+		body {
+            background-image: url("images.jpg");
+            background-size: cover;
+            font-family: calibri;
+            color: white;
+            text-shadow: 0px 0px 2px black;
+            user-select: none;
+            cursor: pointer;
+		}
+        
+        @keyframes fade-in{
+            from    {opacity: 0;}
+            to      {opacity: 1;}
+        }
+        
+		#komunikaty{
+			text-align: center;
+		}
+		.all {
+			position: absolute;
+            width: 1020px;
+            height: 750px;
+            overflow: hidden;
+            margin: auto;
+            top: 0px; left: 0px; bottom: 0px; right: 0px;
+		}
+		.pktbialych{
+			width:200px;
+			position:relative;
+			float:left;
+			height:450px;
+			margin-top: 4%;
+			margin-left: 4%;
+            background: url('back.jpg');
+            background-size: cover;
+            box-shadow: inset 0px 0px 5px white,
+                              0px 10px 10px rgba(0,0,0,0.7);
+		}
+		.pktbialych h1{
+			color: white;
+				font-size:22px;
+				height:1em;
+				line-height:2em;
+				text-align: center;
+		}
+		.pktczarnych{
+			width:200px;
+			position:relative;
+			float:left;
+			height:450px;
+			margin-top: 4%;
+            background: url('back.jpg');
+            background-size: cover;
+            box-shadow: inset 0px 0px 5px white,
+                              0px 10px 10px rgba(0,0,0,0.7);
+		}
+		.pktczarnych h1{
+			color: white;
+				font-size:22px;
+				height:1em;
+				line-height:2em;
+				text-align: center;
+		}
+		.pkt1{
+			position: absolute;
+			width:200px;
+			height:400px;
+		}
+		.pkt2{
+			position: absolute;
+			width:200px;
+			height:400px;
+		}
+		.pkt{
+			width: 40px;
+            height: 50px;
+			margin: 13px;
+            position: relative;
+			float:left;
+		}
+		.cz {
+			width: 30px;
+            height: 30px;
+            margin: 10px auto;
+            position: relative;
+            background: linear-gradient(to bottom,  #494949 31%,#262626 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94c4fe', endColorstr='#d3f6fe',GradientType=0 );             border-radius: 50%;
+            color: #000; 
+            -webkit-box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, .2);    
+            box-shadow:  0px 1px 2px 0px rgba(0, 0, 0, .2);
+		}
+		.czD {
+            width: 30px;
+            height: 30px;
+            margin: 10px auto;
+            position: relative;
+            background: linear-gradient(to bottom,  #494949 31%,#262626 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94c4fe', endColorstr='#d3f6fe',GradientType=0 );             border-radius: 50%;
+            color: #000; 
+            -webkit-box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, .2);    
+            box-shadow:  0px 1px 2px 0px rgba(0, 0, 0, .2);
+            position: relative;
+        }
+		.czD:before {
+            content: "";
+            width: 53%;
+            height: 20%;
+            display: block;
+            position: absolute;
+            left: 23%;
+            top: 7%
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom,  rgba(255,255,255,0.7) 0%,
+                                          rgba(255,255,255,0.5) 4%,
+                                          rgba(255,255,255,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+        }
+        .czD:after {
+            content:"";
+            display: block;
+            position: absolute;
+            border-radius: 100%;
+            width:20%;
+            height: 20%;
+            top: 40%;
+            left: 40%;
+            background-color: red;
+        }
+		.bia{
+			width: 30px;
+            height: 30px;
+            margin: 10px auto;
+            position: relative;
+            background: linear-gradient(to bottom,  #efefef 31%,#dddddd 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94c4fe', endColorstr='#d3f6fe',GradientType=0 );             border-radius: 50%;
+            color: #000; 
+            -webkit-box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, .2);    
+            box-shadow:  0px 1px 2px 0px rgba(0, 0, 0, .2);
+		}
+		.biaD {
+            width: 30px;
+            height: 30px;
+            margin: 10px auto;
+            position: relative;
+            background: linear-gradient(to bottom,  #efefef 31%,#dddddd 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94c4fe', endColorstr='#d3f6fe',GradientType=0 );             border-radius: 50%;
+            color: red; 
+            -webkit-box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, .2);    
+            box-shadow:  0px 1px 2px 0px rgba(0, 0, 0, .2);
+        }
+		
+        .biaD:before {
+            content: "";
+            width: 53%;
+            height: 20%;
+            display: block;
+            position: absolute;
+            left: 23%;
+            top: 7%
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom,  rgba(255,255,255,0.7) 0%,
+                                          rgba(255,255,255,0.5) 4%,
+                                          rgba(255,255,255,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+        }
+        .biaD:after {
+            content:"";
+            display: block;
+            position: absolute;
+            border-radius: 100%;
+            width:20%;
+            height: 20%;
+            top: 40%;
+            left: 40%;
+            background-color: red;
+        }
+		#kom {
+			width:450px;
+            height: 150px;
+			margin-top:500px;
+            background: url('back.jpg');
+            background-size: cover;
+            box-shadow: inset 0px 0px 5px white,
+                              0px 10px 10px rgba(0,0,0,0.7);
+		}
+        .container {
+            width:450px;
+			position:relative;
+			float: left;
+            height: 800px;
+            padding: 4%;
+        }
+        .plansza {
+            position: absolute;
+            width: 450px;
+            background: url('back.jpg');
+            background-size: cover;
+            height: 450px;
+            box-shadow: inset 0px 0px 5px white,
+                              0px 10px 10px rgba(0,0,0,0.7);
+        }
+        .brzegpoziom {
+            width: 50px;
+            height: 25px;
+            position: relative;
+            float: left;
+            text-align: center;
+            padding-top: 5px;
+        }
+        .brzegpion {
+            width: 25px;
+            height: 50px;
+            position: relative;
+            float: left;
+            text-align: center;
+        }
+        .white {
+            /*background-image: url(jasnedrewno.png);*/
+            width: 50px;
+            height: 50px;
+            position: relative;
+            float: left;
+        }
+        .black {
+            background-image: url(ciemnedrewno.png);
+            width: 50px;
+            height: 50px;
+            position: relative;
+            float: left;
+            filter: brightness(140%);
+        }
+        .bialy {
+            width: 30px;
+            height: 30px;
+            margin: 10px auto;
+            position: relative;
+            background: linear-gradient(to bottom,  #efefef 31%,#dddddd 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94c4fe', endColorstr='#d3f6fe',GradientType=0 );             border-radius: 50%;
+            color: #000; 
+            -webkit-box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, .2);    
+            box-shadow:  0px 1px 2px 0px rgba(0, 0, 0, .2);
+            position: relative;
+        }
+        .bialy:before {
+            content: "";
+            width: 53%;
+            height: 20%;
+            display: block;
+            position: absolute;
+            left: 23%;
+            top: 7%
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom,  rgba(255,255,255,0.7) 0%,
+                                          rgba(255,255,255,0.5) 4%,
+                                          rgba(255,255,255,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+        }
+        .bialydama {
+            width: 30px;
+            height: 30px;
+            margin: 10px auto;
+            position: relative;
+            background: linear-gradient(to bottom,  #efefef 31%,#dddddd 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94c4fe', endColorstr='#d3f6fe',GradientType=0 );             border-radius: 50%;
+            color: red; 
+            -webkit-box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, .2);    
+            box-shadow:  0px 1px 2px 0px rgba(0, 0, 0, .2);
+            position: relative;
+        }
+        .bialydama:before {
+            content: "";
+            width: 53%;
+            height: 20%;
+            display: block;
+            position: absolute;
+            left: 23%;
+            top: 7%
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom,  rgba(255,255,255,0.7) 0%,
+                                          rgba(255,255,255,0.5) 4%,
+                                          rgba(255,255,255,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+        }
+        .bialydama:after {
+            content:"";
+            display: block;
+            position: absolute;
+            border-radius: 100%;
+            width:20%;
+            height: 20%;
+            top: 40%;
+            left: 40%;
+            background-color: red;
+        }
+        .bialydamaD {
+            width: 40px;
+            height: 40px;
+            margin: 5px auto;
+            position: relative;
+            background: linear-gradient(to bottom,  #efefef 31%,#dddddd 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94c4fe', endColorstr='#d3f6fe',GradientType=0 );             
+			border-radius: 50%;
+            color: #000; 
+            -webkit-box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, .2);    
+            box-shadow:  0px 1px 2px 0px rgba(0, 0, 0, .2);
+            position: relative;
+        }
+        .bialydamaD:before {
+            content: "";
+            width: 53%;
+            height: 20%;
+            display: block;
+            position: absolute;
+            left: 23%;
+            top: 7%
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom,  rgba(255,255,255,0.7) 0%,
+                                          rgba(255,255,255,0.5) 4%,
+                                          rgba(255,255,255,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+        }
+        .bialydamaD:after {
+            content:"";
+            display: block;
+            position: absolute;
+            border-radius: 100%;
+            width:20%;
+            height: 20%;
+            top: 40%;
+            left: 40%;
+            background-color: red;
+        }        
+        .bialyD {
+            width: 40px;
+            height: 40px;
+            margin: 5px auto;
+            position: relative;
+            background: linear-gradient(to bottom,  #efefef 31%,#dddddd 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94c4fe', endColorstr='#d3f6fe',GradientType=0 );             border-radius: 50%;
+            color: #000; 
+            -webkit-box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, .2);    
+            box-shadow:  0px 1px 2px 0px rgba(0, 0, 0, .2);
+            position: relative;
+        }
+        .bialyD:before {
+            content: "";
+            width: 53%;
+            height: 20%;
+            display: block;
+            position: absolute;
+            left: 23%;
+            top: 7%
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom,  rgba(255,255,255,0.7) 0%,
+                                          rgba(255,255,255,0.5) 4%,
+                                          rgba(255,255,255,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+        }
+        .czarnyD {
+            width: 40px;
+            height: 40px;
+            margin: 5px auto;
+            position: relative;
+             background: linear-gradient(to bottom,  #494949 31%,#262626 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94c4fe', endColorstr='#d3f6fe',GradientType=0 );             border-radius: 50%;
+            color: #000; 
+            -webkit-box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, .2);    
+            box-shadow:  0px 1px 2px 0px rgba(0, 0, 0, .2);
+            position: relative;
+        }
+        .czarnyD:before {
+            content: "";
+            width: 53%;
+            height: 20%;
+            display: block;
+            position: absolute;
+            left: 23%;
+            top: 7%
+
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom,  rgba(255,255,255,0.7) 0%,
+                                          rgba(255,255,255,0.5) 4%,
+                                          rgba(255,255,255,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+        }
+        .czarny {
+            width: 30px;
+            height: 30px;
+            margin: 10px auto;
+            position: relative;
+            background: linear-gradient(to bottom,  #494949 31%,#262626 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94c4fe', endColorstr='#d3f6fe',GradientType=0 );             border-radius: 50%;
+            color: #000; 
+            -webkit-box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, .2);    
+            box-shadow:  0px 1px 2px 0px rgba(0, 0, 0, .2);
+            position: relative;
+        }
+        .czarny:before {
+            content: "";
+            width: 53%;
+            height: 20%;
+            display: block;
+            position: absolute;
+            left: 23%;
+            top: 7%
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom,  rgba(255,255,255,0.7) 0%,
+                                          rgba(255,255,255,0.5) 4%,
+                                          rgba(255,255,255,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+        }
+        .czarnydama {
+            width: 30px;
+            height: 30px;
+            margin: 10px auto;
+            position: relative;
+            background: linear-gradient(to bottom,  #494949 31%,#262626 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94c4fe', endColorstr='#d3f6fe',GradientType=0 );             border-radius: 50%;
+            color: #000; 
+            -webkit-box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, .2);    
+            box-shadow:  0px 1px 2px 0px rgba(0, 0, 0, .2);
+            position: relative;
+        }
+        .czarnydama:before {
+            content: "";
+            width: 53%;
+            height: 20%;
+            display: block;
+            position: absolute;
+            left: 23%;
+            top: 7%
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom,  rgba(255,255,255,0.7) 0%,
+                                          rgba(255,255,255,0.5) 4%,
+                                          rgba(255,255,255,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+        }
+        .czarnydama:after {
+            content:"";
+            display: block;
+            position: absolute;
+            border-radius: 100%;
+            width:20%;
+            height: 20%;
+            top: 40%;
+            left: 40%;
+            background-color: red;
+/*            margin:19px auto;*/
+        }
+        .czarnydamaD {
+            width: 40px;
+            height: 40px;
+            margin: 5px auto;
+            position: relative;
+            background: linear-gradient(to bottom,  #494949 31%,#262626 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94c4fe', endColorstr='#d3f6fe',GradientType=0 );             border-radius: 50%;
+            color: #000; 
+            -webkit-box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, .2);    
+            box-shadow:  0px 1px 2px 0px rgba(0, 0, 0, .2);
+            position: relative;
+        }
+        .czarnydamaD:before {
+            content: "";
+            width: 53%;
+            height: 20%;
+            display: block;
+            position: absolute;
+            left: 23%;
+            top: 7%
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom,  rgba(255,255,255,0.7) 0%,
+                                          rgba(255,255,255,0.5) 4%,
+                                          rgba(255,255,255,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+        }
+        .czarnydamaD:after {
+            content:"";
+            display: block;
+            position: absolute;
+            border-radius: 100%;
+            width:20%;
+            height: 20%;
+            top: 40%;
+            left: 40%;
+            background-color: red;
+/*            margin:19px auto;*/
+        }
+
+    </style>
+  </head>
+  <body>
+  <div class="all">
+	<div class="pktbialych">
+		<h1> Gracz 1 </h1>
+		<div id="pkt1">
+		</div>
+	</div>
+    <div class="container">
+        <div class="plansza">
+            <div class="pola">
+                <div class="rzad" >
+                    <div class="brzegpoziom" style="width: 25px;"></div>
+                    <div class="brzegpoziom">a</div>
+                    <div class="brzegpoziom">b</div>
+                    <div class="brzegpoziom">c</div>
+                    <div class="brzegpoziom">d</div>
+                    <div class="brzegpoziom">e</div>
+                    <div class="brzegpoziom">f</div>
+                    <div class="brzegpoziom">g</div>
+                    <div class="brzegpoziom">h</div>
+                    <div class="brzegpoziom" style="width: 25px;"></div>
+                </div>
+                <div class="rzad" id="1">
+                    <div class="brzegpion"><p>1</p></div>
+                    <div class="black" id="a1">
+                        <div class="bialy"></div>        
+                    </div>
+                    <div class="white" id="b1">
+                    </div>
+                    <div class="black" id="c1">
+                        <div class="bialy"></div>        
+                    </div>
+                    <div class="white" id="d1">
+                    </div>
+                    <div class="black" id="e1">
+                        <div class="bialy"></div>        
+                    </div>
+                    <div class="white" id="f1">
+                    </div>
+                    <div class="black" id="g1">
+                        <div class="bialy"></div>        
+                    </div>
+                    <div class="white" id="h1">
+                    </div>
+                    <div class="brzegpion"></div>
+                </div>
+                <div class="rzad" id="2">
+                    <div class="brzegpion"><p>2</p></div>
+                    <div class="white" id="a2">
+                    </div>
+                    <div class="black" id="b2">
+                        <div class="bialy"></div>        
+                    </div>
+                    <div class="white" id="c2">
+                    </div>
+                    <div class="black" id="d2">
+                        <div class="bialy"></div>        
+                    </div>
+                    <div class="white" id="e2">
+                    </div>
+                    <div class="black" id="f2">
+                        <div class="bialy"></div>        
+                    </div>
+                    <div class="white" id="g2">
+                    </div>
+                    <div class="black" id="h2">
+                        <div class="bialy"></div>        
+                    </div>
+                    <div class="brzegpion"></div>
+                </div>
+                <div class="rzad" id="3">
+                    <div class="brzegpion"><p>3</p></div>
+                    <div class="black" id="a3">
+                        <div class="bialy"></div>        
+                    </div>
+                    <div class="white" id="b3">
+                    </div>
+                    <div class="black" id="c3">
+                        <div class="bialy"></div>        
+                    </div>
+                    <div class="white" id="d3">
+                    </div>
+                    <div class="black" id="e3">
+                        <div class="bialy"></div>        
+                    </div>
+                    <div class="white" id="f3">
+                    </div>
+                    <div class="black" id="g3">
+                        <div class="bialy"></div>        
+                    </div>
+                    <div class="white" id="h3">
+                    </div>
+                    <div class="brzegpion"></div>
+                </div>
+                <div class="rzad" id="4">
+                    <div class="brzegpion"><p>4</p></div>
+                    <div class="white" id="a4">
+                        <div class="pusty"></div>        
+                    </div>
+                    <div class="black" id="b4">
+                        <div class="pusty"></div>        
+                    </div>
+                    <div class="white" id="c4">
+                        <div class="pusty"></div>        
+                    </div>
+                    <div class="black" id="d4">
+                        <div class="pusty"></div>        
+                    </div>
+                    <div class="white" id="e4">
+                        <div class="pusty"></div>        
+                    </div>
+                    <div class="black" id="f4">
+                        <div class="pusty"></div>        
+                    </div>
+                    <div class="white" id="g4">
+                        <div class="pusty"></div>        
+                    </div>
+                    <div class="black" id="h4">
+                        <div class="pusty"></div>        
+                    </div>
+                    <div class="brzegpion"></div>
+                </div>
+                <div class="rzad" id="5">
+                    <div class="brzegpion"><p>5</p></div>
+                    <div class="black" id="a5">
+                        <div class="pusty"></div>        
+                    </div>
+                    <div class="white" id="b5">
+                        <div class="pusty"></div>        
+                    </div>
+                    <div class="black" id="c5">
+                        <div class="pusty"></div>        
+                    </div>
+                    <div class="white" id="d5">
+                        <div class="pusty"></div>        
+                    </div>
+                    <div class="black" id="e5">
+                        <div class="pusty"></div>        
+                    </div>
+                    <div class="white" id="f5">
+                        <div class="pusty"></div>        
+                    </div>
+                    <div class="black" id="g5">
+                        <div class="pusty"></div>        
+                    </div>
+                    <div class="white" id="h5">
+                        <div class="pusty"></div>        
+                    </div>
+                    <div class="brzegpion"></div>
+                </div>
+                <div class="rzad" id="6">
+                    <div class="brzegpion"><p>6</p></div>
+                    <div class="white" id="a6">
+                    </div>
+                    <div class="black" id="b6">
+                        <div class="czarny"></div>        
+                    </div>
+                    <div class="white" id="c6">
+                    </div>
+                    <div class="black" id="d6">
+                        <div class="czarny"></div>        
+                    </div>
+                    <div class="white" id="e6">
+                    </div>
+                    <div class="black" id="f6">
+                        <div class="czarny"></div>        
+                    </div>
+                    <div class="white" id="g6">
+                    </div>
+                    <div class="black" id="h6">
+                        <div class="czarny"></div>        
+                    </div>
+                    <div class="brzegpion"></div>
+                </div>
+                <div class="rzad" id="7">
+                    <div class="brzegpion"><p>7</p></div>
+                    <div class="black" id="a7">
+                        <div class="czarny"></div>        
+                    </div>
+                    <div class="white" id="b7">
+                    </div>
+                    <div class="black" id="c7">
+                        <div class="czarny"></div>        
+                    </div>
+                    <div class="white" id="d7">
+                    </div>
+                    <div class="black" id="e7">
+                        <div class="czarny"></div>        
+                    </div>
+                    <div class="white" id="f7">
+                    </div>
+                    <div class="black" id="g7">
+                        <div class="czarny"></div>        
+                    </div>
+                    <div class="white" id="h7">
+                    </div>
+                    <div class="brzegpion"></div>
+                </div>
+                <div class="rzad" id="8">
+                    <div class="brzegpion"><p>8</p></div>
+                    <div class="white" id="a8">
+                    </div>
+                    <div class="black" id="b8">
+                        <div class="czarny"></div>        
+                    </div>
+                    <div class="white" id="c8">
+                    </div>
+                    <div class="black" id="d8">
+                        <div class="czarny"></div>        
+                    </div>
+                    <div class="white" id="e8">
+                    </div>
+                    <div class="black" id="f8">
+                        <div class="czarny"></div>        
+                    </div>
+                    <div class="white" id="g8">
+                    </div>
+                    <div class="black" id="h8">
+                        <div class="czarny"></div>        
+                    </div>
+                    <div class="brzegpion"></div>
+                </div>
+            </div>
+         </div>
+		 <div id="kom">
+			<h3 id="komunikaty"> </h3>
+		 </div>
+		 
+    </div>
+	<div class="pktczarnych">
+		<h1> Gracz 2 </h1>
+		<div id="pkt2">
+		</div>
+	</div>
+	</div>
+    <script>
+           /*Naciśnięty pionek się przesuwa.
+
+           Klasa pionka zmienia się na damka, gdy dotrze do przeciwległej linii.*/
+        
+        var pierwszepole = '0';
+        var drugiepole = '0';
+        var kolejnosc;
+        var przejsciowe;
+		var tekst1 = 'Jeśli masz możliwość wykonaj drugie bicie albo przekaż kolejkę drugiemu graczowi.';
+		var tekst2 = 'Na polu '; //.....
+		var tekst3 = ' nie ma pionka. Wybierz pole, na którym jest pionek.';
+		var tekst4 = 'Ten ruch należy do Twojego przeciwnika, złodziejaszku ruchów. Przekaż kolejkę drugiemu graczowi.';
+		var tekst5 = 'Nie możesz ruszyć tego pionka.';
+		var tekst6 = 'Nie możesz wykonać ruchu na to pole.';
+		var tekst7 = 'Mógłbyś wykonać ten ruch, gdyby na polu ';//.....
+		var tekst8 = ' stał pionek przeciwnika.';
+		var tekst9 = 'Zasady nie dopuszczają takiego ruchu.';
+		var tekst10= 'Nie możesz wykonać takiego ruchu.';
+        if(kolejnosc==null){
+			document.getElementById('komunikaty').innerHTML +='Białe pionki rozpoczynają rozgrywkę.';
+        }
+        $(document).ready(function(){
+            /*Ten element reaguje na naciśnięcie pola czarnego*/
+            
+            $('.white').click(function(event){
+                if(pierwszepole=='0'){
+					document.getElementById('komunikaty').innerHTML = '';
+					document.getElementById('komunikaty').innerHTML += tekst2 + $(event.target).prop('id') + tekst3;
+                }
+                else{
+					document.getElementById('komunikaty').innerHTML = '';
+					document.getElementById('komunikaty').innerHTML += tekst6;
+                    if($(document.getElementById(pierwszepole)).children('div').prop('class')=='bialyD'){
+                        $(document.getElementById(pierwszepole)).children('div').removeClass('bialyD');
+                        $(document.getElementById(pierwszepole)).children('div').addClass('bialy');
+                        pierwszepole='0';
+                        return;
+                    }
+                    if($(document.getElementById(pierwszepole)).children('div').prop('class')=='czarnyD'){
+                        $(document.getElementById(pierwszepole)).children('div').removeClass('czarnyD');
+                        $(document.getElementById(pierwszepole)).children('div').addClass('czarny');
+                        pierwszepole='0';
+                        return;
+                    }
+                }
+            });
+            $('.black').click(function(event){
+                /*Wybieram drugie pole w kolejnym biciu z rzędu. */
+                if(kolejnosc=='BiałoCzarne' ||kolejnosc=='CzarnoBiałe'){
+					document.getElementById('komunikaty').innerHTML = '';
+                    var klasa = $(event.target).prop('class');
+                    var klasapionka = $(document.getElementById(pierwszepole)).children('div').prop('class');
+                    /*Nacisnęłam na obszar planszy drugiego wybranego pola. */
+                    if(klasa == $(document.getElementById(pierwszepole)).prop('class')){
+                        /*Nacisnęłam na obszar planszy drugiego pola. */
+                        /*Jeżeli mój kolor pionków to biały. */
+                        drugiepole = $(event.target).prop('id');
+                        if(klasapionka=='bialyD'){
+                            var klasapionka2 = $(event.target).children('div').prop('class');
+                            /*Nacisnęłam na pole z pionkiem przeciwnego koloru. */
+                            if(klasapionka2=='czarny'){
+                                if(kolejnosc==('BiałoCzarne')){
+                                    $(event.target).children('div').removeClass('czarny');
+                                    $(event.target).children('div').addClass('czarnyD');
+                                    $(document.getElementById(pierwszepole)).children('div').removeClass('bialyD');
+                                    $(document.getElementById(pierwszepole)).children('div').addClass('bialy');
+                                    pierwszepole = $(event.target).prop('id');
+                                    kolejnosc='Czarne';
+                                    return;
+                                }
+                            }
+							if(klasapionka2=='czarnydama'){
+                                if(kolejnosc==('BiałoCzarne')){
+                                    $(event.target).children('div').removeClass('czarnydama');
+                                    $(event.target).children('div').addClass('czarnydamaD');
+                                    $(document.getElementById(pierwszepole)).children('div').removeClass('bialyD');
+                                    $(document.getElementById(pierwszepole)).children('div').addClass('bialy');
+                                    pierwszepole = $(event.target).prop('id');
+                                    kolejnosc='Czarne';
+                                    return;
+                                }
+                            }
+                            /*Nacisnęłam na inny mój pionek - to zamieniam pionek wybrany do ruchu. */
+                            if(klasapionka2=='bialy'){
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                return;
+                            }
+                            /*Powtórnie wybrałam pierwszy pionek - rezygnuję z ruchu nim. */
+                            if(klasapionka2=='bialyD'){
+                                return;
+                            }
+							if(klasapionka2=='bialydama'){
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                return;
+                            }
+                            /*Jako drugie pole wybrałam pole puste. */
+                            if(klasapionka2=='pusty'){
+                                /*Sprawdzam czy mogę sie ruszyć na to pole. */
+                                if(sprawdzZbicie(pierwszepole, drugiepole)){
+                                    /*Usunęłam pionek z pola pierwszego. Następnie kasuje parametry ruchu, aby móc wykonać kolejny.*/
+                                    pierwszepole=drugiepole;
+                                    kolejnosc='BiałoCzarne';
+									if(jestemdamka(drugiepole)){
+										$(document.getElementById(pierwszepole)).children('div').removeClass('bialyD');
+										$(document.getElementById(pierwszepole)).children('div').addClass('bialydamaD');
+									}
+                                    drugiepole='0';
+                                    return;
+                                }
+                                /*Jeśli nie mogę się ruszyć na drugie pole to wypuszczam alert i lasuje parametry pól. */
+                                else{
+                                    document.getElementById('komunikaty').innerHTML +=tekst1; 
+                                    return;
+                                }
+                            }
+                        }
+						if(klasapionka=='bialydamaD'){
+                            var klasapionka2 = $(event.target).children('div').prop('class');
+                            /*Nacisnęłam na pole z pionkiem przeciwnego koloru. */
+                            if(klasapionka2=='czarny'){
+                                if(kolejnosc==('BiałoCzarne')){
+                                    $(event.target).children('div').removeClass('czarny');
+                                    $(event.target).children('div').addClass('czarnyD');
+                                    $(document.getElementById(pierwszepole)).children('div').removeClass('bialydamaD');
+                                    $(document.getElementById(pierwszepole)).children('div').addClass('bialydama');
+                                    pierwszepole = $(event.target).prop('id');
+                                    kolejnosc='Czarne';
+                                    return;
+                                }
+                            }
+							if(klasapionka2=='czarnydama'){
+                                if(kolejnosc==('BiałoCzarne')){
+                                    $(event.target).children('div').removeClass('czarny');
+                                    $(event.target).children('div').addClass('czarnyD');
+                                    $(document.getElementById(pierwszepole)).children('div').removeClass('bialydamaD');
+                                    $(document.getElementById(pierwszepole)).children('div').addClass('bialydama');
+                                    pierwszepole = $(event.target).prop('id');
+                                    kolejnosc='Czarne';
+                                    return;
+                                }
+                            }
+                            /*Nacisnęłam na inny mój pionek */
+                            if(klasapionka2=='bialy'){
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                return;
+                            }
+                            /*Powtórnie wybrałam pierwszy pionek - rezygnuję z ruchu nim. */
+                            if(klasapionka2=='bialydamaD'){
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                return;
+                            }
+							if(klasapionka2=='bialydama'){
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                return;
+                            }
+                            /*Jako drugie pole wybrałam pole puste. */
+                            if(klasapionka2=='pusty'){
+                                /*Sprawdzam czy mogę sie ruszyć na to pole. */
+                                if(damaZbicie(pierwszepole, drugiepole)){
+                                    /*Usunęłam pionek z pola pierwszego. Następnie kasuje parametry ruchu, aby móc wykonac kolejny.*/
+                                    pierwszepole=drugiepole;
+                                    kolejnosc='BiałoCzarne';
+                                    drugiepole='0';
+                                    return;
+                                }
+                                /*Jeśli nie mogę się ruszyć na drugie pole to wypuszczam alert i lasuje parametry pól. */
+                                else{
+									document.getElementById('komunikaty').innerHTML +=tekst1;
+                                    return;
+                                }
+                            }
+                        }
+                        /*Nacisnęłam na pole z pionkiem mojego koloru - czarnego. */
+                        if(klasapionka=='czarnyD'){
+                            var klasapionka2 = $(event.target).children('div').prop('class');
+                            /*Nacisnęłam na pole z pionkiem przeciwnego koloru. */
+                            if(klasapionka2=='bialy'){
+                                if(kolejnosc==('CzarnoBiałe')){
+                                    $(event.target).children('div').removeClass('bialy');
+                                    $(event.target).children('div').addClass('bialyD');
+                                    $(document.getElementById(pierwszepole)).children('div').removeClass('czarnyD');
+                                    $(document.getElementById(pierwszepole)).children('div').addClass('czarny');
+                                    pierwszepole = $(event.target).prop('id');
+                                    kolejnosc='Białe';
+                                    return;
+                                }
+                            }
+							if(klasapionka2=='bialydama'){
+                                if(kolejnosc==('CzarnoBiałe')){
+                                    $(event.target).children('div').removeClass('bialydama');
+                                    $(event.target).children('div').addClass('bialydamaD');
+                                    $(document.getElementById(pierwszepole)).children('div').removeClass('czarnyD');
+                                    $(document.getElementById(pierwszepole)).children('div').addClass('czarny');
+                                    pierwszepole = $(event.target).prop('id');
+                                    kolejnosc='Białe';
+                                    return;
+                                }
+                            }
+                            /*Nacisnęłam na inny mój pionek - to zamieniam pionek wybrany do ruchu. */
+                            if(klasapionka2=='czarny'){
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                return;
+                            }
+                            /*Powtórnie wybrałam pierwszy pionek - rezygnuję z ruchu nim. */
+                            if(klasapionka2=='czarnyD'){
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                return;
+                            }
+							if(klasapionka2=='czarnydama'){
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                return;
+                            }
+                            /*Jako drugie pole wybrałam pole puste. */
+                            if(klasapionka2=='pusty'){
+                                /*Sprawdzam czy mogę sie ruszyć na to pole. */
+                                if(sprawdzZbicie(pierwszepole, drugiepole)){
+                                    /*Usunęłam pionek z pola pierwszego. Następnie kasuje parametry ruchu, aby móc wykonac kolejny.*/
+                                    pierwszepole=drugiepole;
+                                    kolejnosc='CzarnoBiałe';
+									if(jestemdamka(drugiepole)){
+										$(document.getElementById(pierwszepole)).children('div').removeClass('czarnyD');
+										$(document.getElementById(pierwszepole)).children('div').addClass('czarnydamaD');
+									}
+                                    drugiepole='0';
+                                    return;
+                                }
+                                /*Jeśli nie mogę się ruszyć na drugie pole to wypuszczam alert i lasuje parametry pól. */
+                                else{
+									document.getElementById('komunikaty').innerHTML +=tekst1;
+                                    return;
+                                }
+                            }
+                        }
+						if(klasapionka=='czarnydamaD'){
+                            var klasapionka2 = $(event.target).children('div').prop('class');
+                            /*Nacisnęłam na pole z pionkiem przeciwnego koloru. */
+                            if(klasapionka2=='bialy'){
+                                if(kolejnosc==('CzarnoBiałe')){
+                                    $(event.target).children('div').removeClass('bialy');
+                                    $(event.target).children('div').addClass('bialyD');
+                                    $(document.getElementById(pierwszepole)).children('div').removeClass('czarnydamaD');
+                                    $(document.getElementById(pierwszepole)).children('div').addClass('czarnydama');
+                                    pierwszepole = $(event.target).prop('id');
+                                    kolejnosc='Białe';
+                                    return;
+                                }
+                            }
+							if(klasapionka2=='bialydama'){
+                                if(kolejnosc==('CzarnoBiałe')){
+                                    $(event.target).children('div').removeClass('bialydama');
+                                    $(event.target).children('div').addClass('bialydamaD');
+                                    $(document.getElementById(pierwszepole)).children('div').removeClass('czarnydamaD');
+                                    $(document.getElementById(pierwszepole)).children('div').addClass('czarnydama');
+                                    pierwszepole = $(event.target).prop('id');
+                                    kolejnosc='Białe';
+                                    return;
+                                }
+                            }
+                            /*Nacisnęłam na inny mój pionek - to zamieniam pionek wybrany do ruchu. */
+                            if(klasapionka2=='czarny'){
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                return;
+                            }
+                            /*Powtórnie wybrałam pierwszy pionek - rezygnuję z ruchu nim. */
+                            if(klasapionka2=='czarnydama'){
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                return;
+                            }
+							if(klasapionka2=='czarnydamaD'){
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                return;
+                            }
+                            /*Jako drugie pole wybrałam pole puste. */
+                            if(klasapionka2=='pusty'){
+                                /*Sprawdzam czy mogę sie ruszyć na to pole. */
+                                if(damaZbicie(pierwszepole, drugiepole)){
+                                    /*Usunęłam pionek z pola pierwszego. Następnie kasuje parametry ruchu, aby móc wykonac kolejny.*/
+                                    pierwszepole=drugiepole;
+                                    kolejnosc='CzarnoBiałe';
+									drugiepole='0';
+                                    return;
+                                }
+                                /*Jeśli nie mogę się ruszyć na drugie pole to wypuszczam alert i lasuje parametry pól. */
+                                else{
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                    /*Nacisnęłam na pionek byle jakiej klasy. */
+                    else{
+                        var klasapionka2 = $(event.target).prop('class');
+                        /*Moje pionki są białe. */
+                        if(klasapionka=='bialyD'){
+                            /*Nacisnęłam na pole z pionkiem przeciwnego koloru. */
+                            if(klasapionka2=='czarny'){
+                                if(kolejnosc==('BiałoCzarne')){
+                                    $(event.target).removeClass('czarny');
+                                    $(event.target).addClass('czarnyD');
+                                    $(document.getElementById(pierwszepole)).children('div').removeClass('bialyD');
+                                    $(document.getElementById(pierwszepole)).children('div').addClass('bialy');
+                                    pierwszepole = $(event.target).parent('div').prop('id');
+                                    kolejnosc='Czarne';
+                                    return;
+                                }
+                            }
+							if(klasapionka2=='czarnydama'){
+                                if(kolejnosc==('BiałoCzarne')){
+                                    $(event.target).removeClass('czarnydama');
+                                    $(event.target).addClass('czarnydamaD');
+                                    $(document.getElementById(pierwszepole)).children('div').removeClass('bialyD');
+                                    $(document.getElementById(pierwszepole)).children('div').addClass('bialy');
+                                    pierwszepole = $(event.target).parent('div').prop('id');
+                                    kolejnosc='Czarne';
+                                    return;
+                                }
+                            }
+                            /*Nacisnęłam na inny mój pionek - to zamieniam pionek wybrany do ruchu. */
+                            if(klasapionka2=='bialy'){
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                return;
+                            }
+							if(klasapionka2=='bialydama'){
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                return;
+                            }
+                            /*Powtórnie wybrałam pierwszy pionek - rezygnuję z ruchu nim. */
+                            if(klasapionka2=='bialyD'){
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                return;
+                            }
+                            /*Jako drugie pole wybrałam pole puste. */
+                            if(klasapionka2=='pusty'){
+                                if(sprawdzZbicie(pierwszepole, drugiepole)){
+                                    /*Usunęłam pionek z pola pierwszego. Następnie kasuje parametry ruchu, aby móc wykonac kolejny.*/
+                                    pierwszepole=drugiepole;
+                                    kolejnosc='BiałoCzarne';
+									if(jestemdamka(drugiepole)){
+										$(document.getElementById(pierwszepole)).children('div').removeClass('bialyD');
+										$(document.getElementById(pierwszepole)).children('div').addClass('bialydamaD');
+									}
+                                    drugiepole='0';
+                                    return;
+                                }
+                                
+                                else{
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                    return;
+                                }
+                            }
+                        }
+						if(klasapionka=='bialydamaD'){
+                            /*Nacisnęłam na pole z pionkiem przeciwnego koloru. */
+                            if(klasapionka2=='czarny'){
+                                if(kolejnosc==('BiałoCzarne')){
+                                    $(event.target).removeClass('czarny');
+                                    $(event.target).addClass('czarnyD');
+                                    $(document.getElementById(pierwszepole)).children('div').removeClass('bialydamaD');
+                                    $(document.getElementById(pierwszepole)).children('div').addClass('bialydama');
+                                    pierwszepole = $(event.target).parent('div').prop('id');
+                                    kolejnosc='Czarne';
+                                    return;
+                                }
+                            }
+							if(klasapionka2=='czarnydama'){
+                                if(kolejnosc==('BiałoCzarne')){
+                                    $(event.target).removeClass('czarnydama');
+                                    $(event.target).addClass('czarnydamaD');
+                                    $(document.getElementById(pierwszepole)).children('div').removeClass('bialydamaD');
+                                    $(document.getElementById(pierwszepole)).children('div').addClass('bialydama');
+                                    pierwszepole = $(event.target).parent('div').prop('id');
+                                    kolejnosc='Czarne';
+                                    return;
+                                }
+                            }
+                            /*Nacisnęłam na inny mój pionek - to zamieniam pionek wybrany do ruchu. */
+                            if(klasapionka2=='bialy'){
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                return;
+                            }
+							if(klasapionka2=='bialydama'){
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                return;
+                            }
+                            /*Powtórnie wybrałam pierwszy pionek - rezygnuję z ruchu nim. */
+                            if(klasapionka2=='bialydamaD'){
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                return;
+                            }
+                            /*Jako drugie pole wybrałam pole puste. */
+                            if(klasapionka2=='pusty'){
+                                if(sprawdzZbicie(pierwszepole, drugiepole)){
+                                    /*Usunęłam pionek z pola pierwszego. Następnie kasuje parametry ruchu, aby móc wykonac kolejny.*/
+                                    pierwszepole=drugiepole;
+                                    kolejnosc='BiałoCzarne';
+                                    drugiepole='0';
+                                    return;
+                                }
+                                
+                                else{
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                    return;
+                                }
+                            }
+                        }
+                        /*Nacisnęłam na pole z pionkiem mojego koloru - czarnego. */
+                        if(klasapionka=='czarnyD'){
+                            var klasapionka2 = $(event.target).prop('class');
+                            /*Nacisnęłam na pole z pionkiem przeciwnego koloru. */
+                            if(klasapionka2=='bialy'){
+                                if(kolejnosc==('CzarnoBiałe')){
+                                    $(event.target).removeClass('bialy');
+                                    $(event.target).addClass('bialyD');
+                                    $(document.getElementById(pierwszepole)).children('div').removeClass('czarnyD');
+                                    $(document.getElementById(pierwszepole)).children('div').addClass('czarny');
+                                    pierwszepole = $(event.target).parent('div').prop('id');
+                                    kolejnosc='Białe';
+                                    return;
+                                }
+                            }
+							if(klasapionka2=='bialydama'){
+                                if(kolejnosc==('CzarnoBiałe')){
+                                    $(event.target).removeClass('bialydama');
+                                    $(event.target).addClass('bialydamaD');
+                                    $(document.getElementById(pierwszepole)).children('div').removeClass('czarnyD');
+                                    $(document.getElementById(pierwszepole)).children('div').addClass('czarny');
+                                    pierwszepole = $(event.target).parent('div').prop('id');
+                                    kolejnosc='Białe';
+                                    return;
+                                }
+                            }
+                            /*Nacisnęłam na inny mój pionek - to zamieniam pionek wybrany do ruchu. */
+                            if(klasapionka2=='czarny'){
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                return;
+                            }
+							if(klasapionka2=='czarnydama'){
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                return;
+                            }							
+                            /*Powtórnie wybrałam pierwszy pionek - rezygnuję z ruchu nim. */
+                            if(klasapionka2=='czarnyD'){
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                return;
+                            }
+                            /*Jako drugie pole wybrałam pole puste. */
+                            if(klasapionka2=='pusty'){
+                                /*Sprawdzam czy mogę sie ruszyć na to pole. */
+                                if(sprawdzZbicie(pierwszepole, drugiepole)){
+                                    pierwszepole=drugiepole;
+                                    kolejnosc='CzarnoBiałe';
+									if(jestemdamka(drugiepole)){
+										$(document.getElementById(pierwszepole)).children('div').removeClass('czarnyD');
+										$(document.getElementById(pierwszepole)).children('div').addClass('czarnydamaD');
+									}
+                                    drugiepole='0';
+                                    return;
+                                }
+                                else{
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                    return;
+                                }
+                            }
+                        }
+						if(klasapionka=='czarnydamaD'){
+                            var klasapionka2 = $(event.target).prop('class');
+                            /*Nacisnęłam na pole z pionkiem przeciwnego koloru. */
+                            if(klasapionka2=='bialy'){
+                                if(kolejnosc==('CzarnoBiałe')){
+                                    $(event.target).removeClass('bialy');
+                                    $(event.target).addClass('bialyD');
+                                    $(document.getElementById(pierwszepole)).children('div').removeClass('czarnydamaD');
+                                    $(document.getElementById(pierwszepole)).children('div').addClass('czarnydama');
+                                    pierwszepole = $(event.target).parent('div').prop('id');
+                                    kolejnosc='Białe';
+                                    return;
+                                }
+                            }
+							if(klasapionka2=='bialydama'){
+                                if(kolejnosc==('CzarnoBiałe')){
+                                    $(event.target).removeClass('bialydama');
+                                    $(event.target).addClass('bialydamaD');
+                                    $(document.getElementById(pierwszepole)).children('div').removeClass('czarnydamaD');
+                                    $(document.getElementById(pierwszepole)).children('div').addClass('czarnydama');
+                                    pierwszepole = $(event.target).parent('div').prop('id');
+                                    kolejnosc='Białe';
+                                    return;
+                                }
+                            }
+                            /*Nacisnęłam na inny mój pionek - to zamieniam pionek wybrany do ruchu. */
+                            if(klasapionka2=='czarny'){
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                return;
+                            }
+							if(klasapionka2=='czarnydama'){
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                return;
+                            }							
+                            /*Powtórnie wybrałam pierwszy pionek - rezygnuję z ruchu nim. */
+                            if(klasapionka2=='czarnydamaD'){
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+                                return;
+                            }
+                            /*Jako drugie pole wybrałam pole puste. */
+                            if(klasapionka2=='pusty'){
+                                /*Sprawdzam czy mogę sie ruszyć na to pole. */
+                                if(sprawdzZbicie(pierwszepole, drugiepole)){
+                                    pierwszepole=drugiepole;
+                                    drugiepole='0';
+                                    return;
+                                }
+                                else{
+									document.getElementById('komunikaty').innerHTML +=tekst1;
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }       
+                /* Nacisnęłam pierwsze pole*/
+                if(pierwszepole=='0'){
+					document.getElementById('komunikaty').innerHTML = '';
+                    var dziecko = $(event.target).children('div').prop('class');
+                    /*Ale to pole jest puste, więc wyświetlam alert. */
+                    if(dziecko=='pusty'){
+						document.getElementById('komunikaty').innerHTML += tekst2 + $(event.target).prop('id') + tekst3;
+                        return;
+                    }
+                    /*Na polu znajduje się pionek*/
+                    else{
+                        var klasa = $(event.target).prop('class');
+                        /*Nacisnełam pionek na pierwszym polu. */
+                        if(klasa=='bialy'||klasa=='czarny'||klasa=='bialydama'||klasa=='czarnydama'){
+                            var x= $(event.target).parent();
+                            /*Moje pionki są koloru białego. */
+                            if(klasa=='bialy'||klasa=='bialydama'){
+                                if(kolejnosc=='Białe'){
+                                    if(klasa=='bialy'){
+                                        $(event.target).removeClass('bialy');
+                                        $(event.target).addClass('bialyD');
+                                    }
+                                    else{
+                                        $(event.target).removeClass('bialydama');
+                                        $(event.target).addClass('bialydamaD');
+                                    }
+                                }
+                                else if(kolejnosc==null && klasa=='bialy'){
+                                    $(event.target).removeClass('bialy');
+                                    $(event.target).addClass('bialyD');
+                                }
+								else if(kolejnosc==null && klasa=='bialydama'){
+                                    $(event.target).removeClass('bialydama');
+                                    $(event.target).addClass('bialydamaD');
+                                }
+                                else if (kolejnosc=='Czarne'){
+                                    document.getElementById('komunikaty').innerHTML += tekst4;
+                                    return;
+                                }
+                            }
+                            /*Moje pionki są czarne. */
+                            else{
+                                if(kolejnosc=='Czarne'){
+                                    if(klasa=='czarny'){
+                                        $(event.target).removeClass('czarny');
+                                        $(event.target).addClass('czarnyD');
+                                    }
+                                    else{
+                                        $(event.target).removeClass('czarnydama');
+                                        $(event.target).addClass('czarnydamaD');
+                                    }
+                                }
+                                else if(kolejnosc==null && klasa=='czarny'){
+                                    document.getElementById('komunikaty').innerHTML += tekst1;
+                                    return;
+                                }
+								else if(kolejnosc==null && klasa=='czarnydama'){
+                                    document.getElementById('komunikaty').innerHTML += tekst1;
+                                    return;
+                                }
+                                else if (kolejnosc=='Białe'){
+                                    document.getElementById('komunikaty').innerHTML += tekst4;
+                                    return;
+                                }
+                            }
+                            /* Przypisuje id pola do zmiennej pierwszepole. */
+                            pierwszepole = x.prop('id');
+                            /* Wychodzę z kodu, żeby wykonać dalszą akcję. */
+                            return;
+                        }
+                        /*Nacisnęłam pole na pierwszym polu z pionkiem. */
+                        else{
+                            /*Sprawdzam jakiego koloru jest pionek na polu. */
+                            klasa = $(event.target).children('div').prop('class');
+                            /*Pionek jest biały. */
+                            if(klasa=='bialy'||klasa=='bialydama'){
+                                if(kolejnosc=='Białe'){
+                                    if(klasa=='bialy'){
+										$(event.target).children('div').removeClass('bialy');
+										$(event.target).children('div').addClass('bialyD');
+									}
+                                    else{
+                                        $(event.target).children('div').removeClass('bialydama');
+                                        $(event.target).children('div').addClass('bialydamaD');
+                                    }
+                                }
+                                else if(kolejnosc==null && klasa=='bialy'){
+                                    $(event.target).children('div').removeClass('bialy');
+                                    $(event.target).children('div').addClass('bialyD');
+                                }
+								else if(kolejnosc==null && klasa=='bialydama'){
+                                    $(event.target).children('div').removeClass('bialydama');
+                                    $(event.target).children('div').addClass('bialydamaD');
+                                }            
+                                else if (kolejnosc=='Czarne'){
+                                    document.getElementById('komunikaty').innerHTML += tekst4;
+                                    return;
+                                }
+                            }
+                            /*Pionek jest czarny. */
+                            else{
+                                if(kolejnosc=='Czarne'){
+                                    if(klasa=='czarny'){
+                                        $(event.target).children('div').removeClass('czarny');
+                                        $(event.target).children('div').addClass('czarnyD');
+                                    }
+                                    else{
+                                        $(event.target).children('div').removeClass('czarnydama');
+                                        $(event.target).children('div').addClass('czarnydamaD');
+                                    }
+                                }
+                                else if(kolejnosc==null){
+                                    document.getElementById('komunikaty').innerHTML += tekst1;
+                                    return;
+                                }
+                                else if(kolejnosc=='CzarnoBiałe'){
+                                    if((event.target).children('div').prop('id')==drugiepole){
+                                        if(klasa=='czarny'){
+                                            $(event.target).children('div').removeClass('czarny');
+                                            $(event.target).children('div').addClass('czarnyD');
+                                        }
+                                        else{
+                                            $(event.target).children('div').removeClass('czarnydama');
+                                            $(event.target).children('div').addClass('czarnydamaD');
+                                        }
+                                    }   
+                                }
+                                else if(kolejnosc=='BiałoCzarne'){
+                                    if(klasa=='czarny'){
+                                        $(event.target).removeClass('czarny');
+                                        $(event.target).addClass('czarnyD');
+                                    }
+                                    else{
+                                        $(event.target).removeClass('czarnydama');
+                                        $(event.target).addClass('czarnydamaD');
+                                    }
+                                    if($(document.getElementById(pierwszepole)).children('div').removeClass('bialyD')){
+                                        $(document.getElementById(pierwszepole)).children('div').addClass('bialy');
+                                        $(document.getElementById(pierwszepole)).children('div').removeClass('bialyD');
+                                    }
+                                    else if($(document.getElementById(pierwszepole)).children('div').removeClass('bialydamaD')){
+                                        $(document.getElementById(pierwszepole)).children('div').addClass('bialydama');
+                                        $(document.getElementById(pierwszepole)).children('div').removeClass('bialydamaD');
+                                    }
+                                    kolejnosc='Czarne';
+                                }
+                                else{
+                                    document.getElementById('komunikaty').innerHTML += tekst4;
+                                    return;
+                                }
+                            }
+                            /*Przypisuję id tego pola do zmiennej pierwsze pole. */
+                            pierwszepole= $(event.target).prop('id');
+                            /*Wychodze z kodu, żeby wykonać dalszą akcję. */
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                /*Wybrałam drugie pole. */
+                else if(kolejnosc=='Białe'|| kolejnosc=='Czarne' || kolejnosc==null){
+					document.getElementById('komunikaty').innerHTML = '';
+                    var klasa = $(event.target).prop('class');
+                    var klasapionka = $(document.getElementById(pierwszepole)).children('div').prop('class');
+                    /*Nacisnęłam na obszar planszy drugiego wybranego pola. */
+                    if(klasa==$(document.getElementById(pierwszepole)).prop('class')){
+                        /*Nacisnęłam na obszar planszy drugiego pola - pole jest w kolorze czarnym. */
+                        /*Jeżeli mój kolor pionków to biały. */
+                        drugiepole = $(event.target).prop('id');
+						/*Moje pionki są białe. */
+                        if(klasapionka=='bialyD'||klasapionka=='bialydamaD'){
+                            var klasapionka2 = $(event.target).children('div').prop('class');
+                            /*Nacisnęłam na pole z pionkiem przeciwnego koloru. */
+							if(klasapionka2=='czarny'||klasapionka2=='czarnydama'){
+                                /*if(kolejnosc=='Białe'||kolejnosc==null){*/
+                                    if(klasapionka=='bialyD'){
+                                        $(document.getElementById(pierwszepole)).children('div').removeClass('bialyD');
+                                        $(document.getElementById(pierwszepole)).children('div').addClass('bialy');
+                                    }
+                                    else if(klasapionka=='bialydamaD'){
+                                        $(document.getElementById(pierwszepole)).children('div').removeClass('bialydamaD');
+                                        $(document.getElementById(pierwszepole)).children('div').addClass('bialydama');
+                                    }
+                                    document.getElementById('komunikaty').innerHTML += tekst5;
+                                    pierwszepole='0';
+                                    return;
+                            }
+                            /*Nacisnęłam na obszar planszy innego mojego pionek - to zamieniam pionek wybrany do ruchu. */
+                            if(klasapionka2=='bialy'){
+								if(klasapionka=='bialyD'){
+									$(document.getElementById(pierwszepole)).children('div').removeClass('bialyD');
+									$(document.getElementById(pierwszepole)).children('div').addClass('bialy');
+									$(event.target).children('div').removeClass('bialy');
+									$(event.target).children('div').addClass('bialyD');
+									pierwszepole = $(event.target).prop('id');
+									return;
+								}
+								if(klasapionka=='bialydamaD'){
+									$(document.getElementById(pierwszepole)).children('div').removeClass('bialydamaD');
+									$(document.getElementById(pierwszepole)).children('div').addClass('bialydama');
+									$(event.target).children('div').removeClass('bialy');
+									$(event.target).children('div').addClass('bialyD');
+									pierwszepole = $(event.target).prop('id');
+									return;
+								}
+                            }
+                            if(klasapionka2=='bialydama'){
+                                if(klasapionka=='bialyD'){
+									$(document.getElementById(pierwszepole)).children('div').removeClass('bialyD');
+									$(document.getElementById(pierwszepole)).children('div').addClass('bialy');
+									$(event.target).children('div').removeClass('bialydama');
+									$(event.target).children('div').addClass('bialydamaD');
+									pierwszepole = $(event.target).prop('id');
+									return;
+								}
+								if(klasapionka=='bialydamaD'){
+									$(document.getElementById(pierwszepole)).children('div').removeClass('bialydamaD');
+									$(document.getElementById(pierwszepole)).children('div').addClass('bialydama');
+									$(event.target).children('div').removeClass('bialydama');
+									$(event.target).children('div').addClass('bialydamaD');
+									pierwszepole = $(event.target).prop('id');
+									return;
+								}    
+                            }
+                            /*Powtórnie wybrałam pierwszy pionek - rezygnuję z ruchu nim. */
+                            if(klasapionka2=='bialyD'){
+                                $(document.getElementById(pierwszepole)).children('div').removeClass('bialyD');
+                                $(document.getElementById(pierwszepole)).children('div').addClass('bialy');
+                                pierwszepole='0';
+                                return;
+                            }
+                            if(klasapionka2=='bialydamaD'){
+                                $(document.getElementById(pierwszepole)).children('div').removeClass('bialydamaD');
+                                $(document.getElementById(pierwszepole)).children('div').addClass('bialydama');
+                                pierwszepole='0';
+                                return;
+                            }
+                            /*Jako drugie pole wybrałam pole puste. */
+                            if(klasapionka2=='pusty'){
+								/*Chcę wykonac ruch zwykłym pionkiem. */
+								if(klasapionka=='bialyD'){
+                                    /*Sprawdzam czy mogę sie ruszyć na to pole. */
+                                    if (sprawdzZbicie(pierwszepole, drugiepole)){
+                                        pierwszepole=drugiepole;
+										kolejnosc='BiałoCzarne';
+										if(jestemdamka(drugiepole)){
+											$(document.getElementById(pierwszepole)).children('div').removeClass('bialy');
+											$(document.getElementById(pierwszepole)).children('div').addClass('bialydama');
+										}
+										drugiepole='0';
+										return;
+                                    }
+                                    else if(sprawdzRuch(pierwszepole, drugiepole)){
+                                        kolejnosc='Czarne';
+                                        pierwszepole='0';
+										if(jestemdamka(drugiepole)){
+											$(document.getElementById(drugiepole)).children('div').removeClass('bialy');
+											$(document.getElementById(drugiepole)).children('div').addClass('bialydama');
+										}
+										drugiepole='0';
+										return;
+                                    }
+                                    else{
+                                        kolejnosc='Białe';
+                                        pierwszepole='0';
+                                        drugiepole='0';
+                                        return;
+                                    }
+                                    return;
+                                }
+								/*Chcę wykonać ruch damką. */
+								if(klasapionka=='bialydamaD'){
+                                    /*Sprawdzam czy mogę sie ruszyć na to pole. */
+                                    if (damaZbicie(pierwszepole, drugiepole)){
+                                        pierwszepole=drugiepole;
+										kolejnosc='BiałoCzarne';
+										drugiepole='0';
+										return;
+                                    }
+                                    else if(damaRuch(pierwszepole, drugiepole)){
+                                        kolejnosc='Czarne';
+                                        pierwszepole='0';
+										drugiepole='0';
+										return;
+                                    }
+                                    else{
+                                        kolejnosc='Białe';
+                                        pierwszepole='0';
+                                        drugiepole='0';
+                                        return;
+                                    }
+                                    return;
+								}
+								return;
+							}
+							return;
+                        }
+                        /*Nacisnęłam na pole z pionkiem mojego koloru - czarnego. */
+                        if(klasapionka=='czarnyD'||klasapionka=='czarnydamaD'){
+                            var klasapionka2 = $(event.target).children('div').prop('class');
+                            /*Nacisnęłam na pole z pionkiem przeciwnego koloru. */
+                            if(klasapionka2=='bialy'||klasapionka2=='bialydama'){
+								/*if(kolejnosc=='Czarne'){*/
+                                    if(klasapionka=='czarnyD'){
+                                        $(document.getElementById(pierwszepole)).children('div').removeClass('czarnyD');
+                                        $(document.getElementById(pierwszepole)).children('div').addClass('czarny');
+                                    }
+                                    else if(klasapionka=='czarnydamaD'){
+                                        $(document.getElementById(pierwszepole)).children('div').removeClass('czarnydamaD');
+                                        $(document.getElementById(pierwszepole)).children('div').addClass('czarnydama');
+                                    }
+                                    document.getElementById('komunikaty').innerHTML += tekst5;
+                                    pierwszepole='0';
+                                    return;
+                            }
+							/*Nacisnęłam na obszar planszy innego mojego pionek - to zamieniam pionek wybrany do ruchu. */
+                            if(klasapionka2=='czarny'){
+								if(klasapionka=='czarnyD'){
+									$(document.getElementById(pierwszepole)).children('div').removeClass('czarnyD');
+									$(document.getElementById(pierwszepole)).children('div').addClass('czarny');
+									$(event.target).children('div').removeClass('czarny');
+									$(event.target).children('div').addClass('czarnyD');
+									pierwszepole = $(event.target).prop('id');
+									return;
+								}
+								if(klasapionka=='czarnydamaD'){
+									$(document.getElementById(pierwszepole)).children('div').removeClass('czarnydamaD');
+									$(document.getElementById(pierwszepole)).children('div').addClass('czarnydama');
+									$(event.target).children('div').removeClass('czarny');
+									$(event.target).children('div').addClass('czarnyD');
+									pierwszepole = $(event.target).prop('id');
+									return;
+								}
+                            }
+                            else if(klasapionka2=='czarnydama'){
+                                if(klasapionka=='czarnyD'){
+									$(document.getElementById(pierwszepole)).children('div').removeClass('czarnyD');
+									$(document.getElementById(pierwszepole)).children('div').addClass('czarny');
+									$(event.target).children('div').removeClass('czarnydama');
+									$(event.target).children('div').addClass('czarnydamaD');
+									pierwszepole = $(event.target).prop('id');
+									return;
+								}
+								if(klasapionka=='czarnydamaD'){
+									$(document.getElementById(pierwszepole)).children('div').removeClass('czarnydamaD');
+									$(document.getElementById(pierwszepole)).children('div').addClass('czarnydama');
+									$(event.target).children('div').removeClass('czarnydama');
+									$(event.target).children('div').addClass('czarnydamaD');
+									pierwszepole = $(event.target).prop('id');
+									return;
+								}    
+                            }
+                            /*Powtórnie wybrałam pierwszy pionek - rezygnuję z ruchu nim. */
+                            if(klasapionka2=='czarnyD'){
+                                $(document.getElementById(pierwszepole)).children('div').removeClass('czarnyD');
+                                $(document.getElementById(pierwszepole)).children('div').addClass('czarny');
+                                pierwszepole='0';
+                                return;
+                            }
+							if(klasapionka2=='czarnydamaD'){
+                                $(document.getElementById(pierwszepole)).children('div').removeClass('czarnydamaD');
+                                $(document.getElementById(pierwszepole)).children('div').addClass('czarnydama');
+                                pierwszepole='0';
+                                return;
+                            }
+							/*Jako drugie pole wybrałam pole puste. */
+                            if(klasapionka2=='pusty'){
+							/*Używam zwykłego piosnka. */
+								if(klasapionka=='czarnyD'){
+									/*Sprawdzam czy mogę sie ruszyć na to pole. */
+									if (sprawdzZbicie(pierwszepole, drugiepole)){
+										pierwszepole=drugiepole;
+										kolejnosc='CzarnoBiałe';
+										if(jestemdamka(drugiepole)){
+											$(document.getElementById(pierwszepole)).children('div').removeClass('czarny');
+											$(document.getElementById(pierwszepole)).children('div').addClass('czarnydama');
+										}
+										drugiepole='0';
+										return;
+									}
+									/*Sprawdzam czy mogę sie ruszyć na to pole. */
+									else if(sprawdzRuch(pierwszepole, drugiepole)){
+										kolejnosc='Białe';
+										pierwszepole='0';
+										if(jestemdamka(drugiepole)){
+											$(document.getElementById(drugiepole)).children('div').removeClass('czarny');
+											$(document.getElementById(drugiepole)).children('div').addClass('czarnydama');
+										}
+										drugiepole='0';
+										return;
+									}
+									else{
+										kolejnosc='Czarne';
+										pierwszepole='0';
+										drugiepole='0';
+										return;
+									}
+								}
+								/*Chcę wykonać ruch damką. */
+								if(klasapionka=='czarnydamaD'){
+									/*Sprawdzam czy mogę sie ruszyć na to pole. */
+									if (damaZbicie(pierwszepole, drugiepole)){	
+										pierwszepole=drugiepole;
+										kolejnosc='CzarnoBiałe';
+										drugiepole='0';
+										return;
+									}
+									else if(damaRuch(pierwszepole, drugiepole)){
+										kolejnosc='Białe';
+										pierwszepole='0';
+										drugiepole='0';
+										return;
+									}
+									else{
+										kolejnosc='Czarne';
+										pierwszepole='0';
+										drugiepole='0';
+										return;
+									}
+									return;
+								}
+							}
+                            return;
+						}
+                    }
+                    /*Nacisnęłam na pionek. */
+					
+					
+				/*Wprowadziłam element 
+								document.getElementById('komunikaty').innerHTML +=tekst1;
+				w miejsca alertów do tej pory. Nie są one jeszcze kasowane. */
+				
+				
+					
+					
+                    else{
+                        var klasapionka2 = $(event.target).prop('class');
+                        /*Moje pionki są białe. */
+                        if(klasapionka=='bialyD'||klasapionka=='bialydamaD'){							
+                            /*Nacisnęłam na pole z pionkiem przeciwnego koloru. */
+                            if(klasapionka2=='czarny'||klasapionka2=='czarnydama'){
+								/*if(kolejnosc=='Białe' ||kolejnosc==null){*/
+                                    if(klasapionka=='bialyD'){
+                                        $(document.getElementById(pierwszepole)).children('div').removeClass('bialyD');
+                                        $(document.getElementById(pierwszepole)).children('div').addClass('bialyD');
+                                    }
+                                    else if(klasapionka=='czarnydamaD'){
+                                        $(document.getElementById(pierwszepole)).children('div').removeClass('bialydamaD');
+                                        $(document.getElementById(pierwszepole)).children('div').addClass('bialydama');
+                                    }
+                                    document.getElementById('komunikaty').innerHTML +=tekst5;
+                                    pierwszepole='0';
+                                    return;
+                                /*}
+								else if(kolejnosc=='BiałoCzarne'){
+                                    $(event.target).children('div').removeClass('czarny');
+                                    $(event.target).children('div').addClass('czarnyD');
+                                    var zmienna = $(document.getElementById(pierwszepole));
+                                    if($(zmienna).children('div').prop('class')=='bialyD'){
+                                        $(zmienna).children('div').removeClass('bialyD');
+                                        $(zmienna).children('div').addClass('bialy');
+                                    }
+                                    else if($(zmienna).children('div').prop('class')=='bialydamaD'){
+                                        $(zmienna).children('div').removeClass('bialydamaD');
+                                        $(zmienna).children('div').addClass('bialydama');
+                                    }
+                                    pierwszepole= $(event.target).prop('id');
+                                    return;
+                                }*/
+                            }
+                            /*Nacisnęłam na inny mój pionek - to zamieniam pionek wybrany do ruchu. */
+                            if(klasapionka2=='bialy'){
+								if(klasapionka=='bialyD'){
+                                $(document.getElementById(pierwszepole)).children('div').removeClass('bialyD');
+                                $(document.getElementById(pierwszepole)).children('div').addClass('bialy');
+                                $(event.target).removeClass('bialy');
+                                $(event.target).addClass('bialyD');
+                                pierwszepole = $(event.target).parent('div').prop('id');
+                                return;
+								}
+								if(klasapionka=='bialydamaD'){
+                                $(document.getElementById(pierwszepole)).children('div').removeClass('bialydamaD');
+                                $(document.getElementById(pierwszepole)).children('div').addClass('bialydama');
+                                $(event.target).removeClass('bialy');
+                                $(event.target).addClass('bialyD');
+                                pierwszepole = $(event.target).parent('div').prop('id');
+                                return;
+								}
+                            }
+							if(klasapionka2=='bialydama'){
+								if(klasapionka=='bialyD'){
+                                $(document.getElementById(pierwszepole)).children('div').removeClass('bialyD');
+                                $(document.getElementById(pierwszepole)).children('div').addClass('bialy');
+                                $(event.target).removeClass('bialydama');
+                                $(event.target).addClass('bialydamaD');
+                                pierwszepole = $(event.target).parent('div').prop('id');
+                                return;
+								}
+								if(klasapionka=='bialydamaD'){
+                                $(document.getElementById(pierwszepole)).children('div').removeClass('bialydamaD');
+                                $(document.getElementById(pierwszepole)).children('div').addClass('bialydama');
+                                $(event.target).removeClass('bialydama');
+                                $(event.target).addClass('bialydamaD');
+                                pierwszepole = $(event.target).parent('div').prop('id');
+                                return;
+								}
+                            }
+                            /*Powtórnie wybrałam pierwszy pionek - rezygnuję z ruchu nim. */
+                            if(klasapionka2=='bialyD'){
+                                $(document.getElementById(pierwszepole)).children('div').removeClass('bialyD');
+                                $(document.getElementById(pierwszepole)).children('div').addClass('bialy');
+                                pierwszepole='0';
+                                return;
+                            }
+							if(klasapionka2=='bialydamaD'){
+                                $(document.getElementById(pierwszepole)).children('div').removeClass('bialydamaD');
+                                $(document.getElementById(pierwszepole)).children('div').addClass('bialydama');
+                                pierwszepole='0';
+                                return;
+                            }
+                            /*Jako drugie pole wybrałam pole puste. */
+                            if(klasapionka2=='pusty'){
+								if( klasapionka=='bialyD'){
+                                /*Sprawdzam czy mogę sie ruszyć na to pole. */
+                                if (sprawdzZbicie(pierwszepole, drugiepole)){
+                                    pierwszepole=drugiepole;
+                                    kolejnosc='BiałoCzarne';
+									if(jestemdamka(drugiepole)){
+										$(document.getElementById(pierwszepole)).children('div').removeClass('bialyD');
+										$(document.getElementById(pierwszepole)).children('div').addClass('bialydamaD');
+									}
+                                    drugiepole='0';
+                                    return;
+                                }
+                                /*Sprawdzam czy mogę sie ruszyć na to pole. */
+                                else if(sprawdzRuch(pierwszepole, drugiepole)){
+                                    kolejnosc='Czarne';
+                                    pierwszepole='0';
+									if(jestemdamka(drugiepole)){
+										$(document.getElementById(drugiepole)).children('div').removeClass('bialyD');
+										$(document.getElementById(drugiepole)).children('div').addClass('bialydamaD');
+									}
+									drugiepole='0';
+									return;
+                                }
+                                else{
+                                    kolejnosc='Białe';
+                                    pierwszepole='0';
+                                    drugiepole='0';
+                                    return;
+                                }
+                                }
+								/*Chcę wykonać ruch damką. */
+								else if(klasapionka=='bialydamaD'){
+									/*Sprawdzam czy mogę sie ruszyć na to pole. */
+									if (damaZbicie(pierwszepole, drugiepole)){	
+										pierwszepole=drugiepole;
+										kolejnosc='BiałoCzarne';
+										drugiepole='0';
+										return;
+									}
+									else if(damaRuch(pierwszepole, drugiepole)){
+										kolejnosc='Czarne';
+										pierwszepole='0';
+										drugiepole='0';
+										return;
+									}
+									else{
+										kolejnosc='Białe';
+										pierwszepole='0';
+										drugiepole='0';
+										return;
+									}
+								}
+							}
+							return;
+                        }
+                        /*Nacisnęłam na drugi pionek, gdy mój kolor to czarne. */
+                        else if(klasapionka=='czarnyD' || klasapionka=='czarnydamaD'){
+							/*Nacisnęłam na pole z pionkiem przeciwnego koloru. */
+                            if(klasapionka2=='bialy'||klasapionka2=='bialydama'){
+								/*if(kolejnosc=='Czarne'){*/
+								if(klasapionka=='czarnyD'){
+									$(document.getElementById(pierwszepole)).children('div').removeClass('czarnyD');
+									$(document.getElementById(pierwszepole)).children('div').addClass('czarny');
+								}
+								else if(klasapionka=='czarnydamaD'){
+									$(document.getElementById(pierwszepole)).children('div').removeClass('czarnydamaD');
+									$(document.getElementById(pierwszepole)).children('div').addClass('czarnydama');
+								}
+								document.getElementById('komunikaty').innerHTML +=tekst5;
+								pierwszepole='0';
+								return;
+                            }		
+                            /*Nacisnęłam na inny mój pionek - to zamieniam pionek wybrany do ruchu. */
+                            if(klasapionka2=='czarny'){
+								if(klasapionka=='czarnyD'){
+									$(document.getElementById(pierwszepole)).children('div').removeClass('czarnyD');
+									$(document.getElementById(pierwszepole)).children('div').addClass('czarny');
+									$(event.target).removeClass('czarny');
+									$(event.target).addClass('czarnyD');
+									pierwszepole = $(event.target).parent('div').prop('id');
+									return;
+								}
+								if(klasapionka=='czarnydamaD'){
+									$(document.getElementById(pierwszepole)).children('div').removeClass('czarnydamaD');
+									$(document.getElementById(pierwszepole)).children('div').addClass('czarnydama');
+									$(event.target).removeClass('czarny');
+									$(event.target).addClass('czarnyD');
+									pierwszepole = $(event.target).parent('div').prop('id');
+									return;
+								}
+                            }
+							else if(klasapionka2=='czarnydama'){
+								if(klasapionka=='czarnyD'){
+                                $(document.getElementById(pierwszepole)).children('div').removeClass('czarnyD');
+                                $(document.getElementById(pierwszepole)).children('div').addClass('czarny');
+                                $(event.target).removeClass('czarnydama');
+                                $(event.target).addClass('czarnydamaD');
+                                pierwszepole = $(event.target).parent('div').prop('id');
+                                return;
+								}
+								if(klasapionka=='czarnydamaD'){
+                                $(document.getElementById(pierwszepole)).children('div').removeClass('czarnydamaD');
+                                $(document.getElementById(pierwszepole)).children('div').addClass('czarnydama');
+                                $(event.target).removeClass('czarnydama');
+                                $(event.target).addClass('czarnydamaD');
+                                pierwszepole = $(event.target).parent('div').prop('id');
+                                return;
+								}
+                            }
+							/*Powtórnie wybrałam pierwszy pionek - rezygnuję z ruchu nim. */
+                            else if(klasapionka2=='czarnyD'){
+                                $(document.getElementById(pierwszepole)).children('div').removeClass('czarnyD');
+                                $(document.getElementById(pierwszepole)).children('div').addClass('czarny');
+                                pierwszepole='0';
+                                return;
+                            }
+                            /*Jako drugie pole wybrałam pole puste. */
+                            else if(klasapionka2=='pusty'){
+                                /*Sprawdzam czy mogę sie ruszyć na to pole. */
+                                if (sprawdzZbicie(pierwszepole, drugiepole)){
+                                        pierwszepole=drugiepole;
+                                        kolejnosc='CzarnoBiałe';
+										if(jestemdamka(drugiepole)){
+											$(document.getElementById(pierwszepole)).children('div').removeClass('bialyD');
+											$(document.getElementById(pierwszepole)).children('div').addClass('bialydamaD');
+										}
+                                        drugiepole='0';
+                                        return;
+                                    }
+                                    /*Sprawdzam czy mogę sie ruszyć na to pole. */
+                                    else if(sprawdzRuch(pierwszepole, drugiepole)){
+                                        kolejnosc='Białe';
+                                        pierwszepole='0';
+										if(jestemdamka(drugiepole)){
+											$(document.getElementById(drugiepole)).children('div').removeClass('czarnyD');
+											$(document.getElementById(drugiepole)).children('div').addClass('czarnydamaD');
+										}
+										drugiepole='0';
+										return;
+                                    }
+                                else{
+                                    kolejnosc='Czarne';
+                                    pierwszepole='0';
+                                    drugiepole='0';
+                                    return;
+                                }
+								/*Chcę wykonać ruch damką. */
+								if(klasapionka=='czarnydamaD'){
+									/*Sprawdzam czy mogę sie ruszyć na to pole. */
+									if (damaZbicie(pierwszepole, drugiepole)){	
+										pierwszepole=drugiepole;
+										kolejnosc='CzarnoBiałe';
+										drugiepole='0';
+										return;
+									}
+									else if(damaRuch(pierwszepole, drugiepole)){
+										kolejnosc='Białe';
+										pierwszepole='0';
+										drugiepole='0';
+										return;
+									}
+									else{
+										kolejnosc='Czarne';
+										pierwszepole='0';
+										drugiepole='0';
+										return;
+									}
+									return;
+								}								
+                                return;
+                            }
+                        }
+                    }
+                }
+            });
+        });
+		function sprawdzZbicie(pierwszepole, drugiepole){
+			var rzad1 = pierwszepole.charAt(1).charCodeAt(0);
+			var kolumna1 = pierwszepole.charAt(0).charCodeAt(0);
+			var rzad2= drugiepole.charAt(1).charCodeAt(0);
+			var kolumna2 = drugiepole.charAt(0).charCodeAt(0);
+			var klasapionka;
+			/*Jeśli jest to pionek biały . */
+			if ($(document.getElementById(pierwszepole)).children('div').prop('class') == 'bialyD'||$(document.getElementById(pierwszepole)).children('div').prop('class') =='bialydamaD') {
+				/*Ma możliwość bicia. */
+				if((rzad2==rzad1+2) && (Math.abs(kolumna1-kolumna2)==2)){
+					var rzad3=rzad1+1;
+					var kolumna3 = '0';
+					/*Biały pionek bije w prawą stronę. */
+					if(kolumna2>kolumna1){
+						kolumna3=kolumna1+1;
+						rzad3=String.fromCharCode(rzad3);
+						kolumna3=String.fromCharCode(kolumna3);
+						var trzeciepole = kolumna3+rzad3;
+						if ($(document.getElementById(trzeciepole)).children('div').prop('class')== 'czarny'){
+							$(document.getElementById(trzeciepole)).children('div').removeClass('czarny');
+							$(document.getElementById(trzeciepole)).children('div').addClass('pusty');
+							$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+							$(document.getElementById(drugiepole)).children('div').addClass('bialyD');
+							/*Właśnie ustawiłam pionek na polu drugim. */
+							var zmienna = $(document.getElementById(pierwszepole));
+							$(zmienna).children('div').removeClass('bialyD');
+							$(zmienna).children('div').addClass('pusty');
+							/*Usunęłam pionek z pola pierwszego. Następnie kasuje parametry ruchu, aby móc wykonac kolejny.*/
+							document.getElementById('pkt1').innerHTML +='<div class="pkt"><div class="cz"></div></div>';
+							return true;
+						}
+						else if ($(document.getElementById(trzeciepole)).children('div').prop('class')== 'czarnydama'){
+							$(document.getElementById(trzeciepole)).children('div').removeClass('czarnydama');
+							$(document.getElementById(trzeciepole)).children('div').addClass('pusty');
+							$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+							$(document.getElementById(drugiepole)).children('div').addClass('bialyD');
+							/*Właśnie ustawiłam pionek na polu drugim. */
+							var zmienna = $(document.getElementById(pierwszepole));
+							$(zmienna).children('div').removeClass('bialyD');
+							$(zmienna).children('div').addClass('pusty');
+							/*Usunęłam pionek z pola pierwszego. Następnie kasuje parametry ruchu, aby móc wykonac kolejny.*/
+								document.getElementById('pkt1').innerHTML +='<div class="pkt"><div class="czD"></div></div>';
+							return true;
+						}
+						else{
+							document.getElementById('komunikaty').innerHTML += tekst7 + trzeciepole + tekst8;
+							return false;
+						}
+					}
+					/*Biały pionek bije w lewą stronę. */
+					else if(kolumna2<kolumna1){
+						kolumna3=kolumna1-1;
+						rzad3=String.fromCharCode(rzad3);
+						kolumna3=String.fromCharCode(kolumna3);
+						var trzeciepole = kolumna3+rzad3;
+						if ($(document.getElementById(trzeciepole)).children('div').prop('class')== 'czarny'){
+							$(document.getElementById(trzeciepole)).children('div').removeClass('czarny');
+							$(document.getElementById(trzeciepole)).children('div').addClass('pusty');
+							$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+							$(document.getElementById(drugiepole)).children('div').addClass('bialyD');
+							/*Właśnie ustawiłam pionek na polu drugim. */
+							var zmienna = $(document.getElementById(pierwszepole));
+							$(zmienna).children('div').removeClass('bialyD');
+							$(zmienna).children('div').addClass('pusty');
+							/*Usunęłam pionek z pola pierwszego. Następnie kasuje parametry ruchu, aby móc wykonac kolejny.*/
+								document.getElementById('pkt1').innerHTML +='<div class="pkt"><div class="cz"></div></div>';
+							return true;
+						}
+						else if ($(document.getElementById(trzeciepole)).children('div').prop('class')== 'czarnydama'){
+							$(document.getElementById(trzeciepole)).children('div').removeClass('czarnydama');
+							$(document.getElementById(trzeciepole)).children('div').addClass('pusty');
+							$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+							$(document.getElementById(drugiepole)).children('div').addClass('bialyD');
+							/*Właśnie ustawiłam pionek na polu drugim. */
+							var zmienna = $(document.getElementById(pierwszepole));
+							$(zmienna).children('div').removeClass('bialyD');
+							$(zmienna).children('div').addClass('pusty');
+							/*Usunęłam pionek z pola pierwszego. Następnie kasuje parametry ruchu, aby móc wykonac kolejny.*/
+								document.getElementById('pkt1').innerHTML +='<div class="pkt"><div class="czD"></div></div>';
+							return true;
+						}
+						else{
+							document.getElementById('komunikaty').innerHTML += tekst7 + trzeciepole + tekst8;
+							return false;
+						}
+					}
+					return false;
+				}
+			}
+			/*Jeśli jest to pionek czarny. */
+			else if($(document.getElementById(pierwszepole)).children('div').prop('class') == 'czarnyD'||$(document.getElementById(pierwszepole)).children('div').prop('class') =='czarnydamaD'){
+				/*Ma możliwość bicia. */
+				if((rzad2==rzad1-2) && (Math.abs(kolumna1-kolumna2)==2)){
+					var rzad3=rzad1-1;
+					var kolumna3 = '0';
+					/*Czarny pionek bije w prawą stronę. */
+					if(kolumna2>kolumna1){
+						kolumna3=kolumna1+1;
+						rzad3=String.fromCharCode(rzad3);
+						kolumna3=String.fromCharCode(kolumna3);
+						var trzeciepole = kolumna3+rzad3;
+						if ($(document.getElementById(trzeciepole)).children('div').prop('class')=='bialy'){
+							$(document.getElementById(trzeciepole)).children('div').removeClass('bialy');
+							$(document.getElementById(trzeciepole)).children('div').addClass('pusty');
+							$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+							$(document.getElementById(drugiepole)).children('div').addClass('czarnyD');
+							/*Właśnie ustawiłam pionek na polu drugim. */
+							var zmienna = $(document.getElementById(pierwszepole));
+							$(zmienna).children('div').removeClass('czarnyD');
+							$(zmienna).children('div').addClass('pusty');
+							document.getElementById('pkt2').innerHTML +='<div class="pkt"><div class="bia"></div></div>';
+							return true;
+						}
+						else if ($(document.getElementById(trzeciepole)).children('div').prop('class')=='bialydama'){
+							$(document.getElementById(trzeciepole)).children('div').removeClass('bialydama');
+							$(document.getElementById(trzeciepole)).children('div').addClass('pusty');
+							$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+							$(document.getElementById(drugiepole)).children('div').addClass('czarnyD');
+							/*Właśnie ustawiłam pionek na polu drugim. */
+							var zmienna = $(document.getElementById(pierwszepole));
+							$(zmienna).children('div').removeClass('czarnyD');
+							$(zmienna).children('div').addClass('pusty');
+							document.getElementById('pkt2').innerHTML +='<div class="pkt"><div class="biaD"></div></div>';
+							return true;
+						}
+						else{
+							document.getElementById('komunikaty').innerHTML += tekst7 + trzeciepole + tekst8;
+							return false;
+						}
+					}
+					/*Czarny pionek bije w lewą stronę. */
+					if(kolumna2<kolumna1){
+						kolumna3=kolumna1-1;
+						rzad3=String.fromCharCode(rzad3);
+						kolumna3=String.fromCharCode(kolumna3);
+						var trzeciepole = kolumna3+rzad3;
+						if ($(document.getElementById(trzeciepole)).children('div').prop('class')=='bialy'){
+							$(document.getElementById(trzeciepole)).children('div').removeClass('bialy');
+							$(document.getElementById(trzeciepole)).children('div').addClass('pusty');
+							$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+							$(document.getElementById(drugiepole)).children('div').addClass('czarnyD');
+							/*Właśnie ustawiłam pionek na polu drugim. */
+							var zmienna = $(document.getElementById(pierwszepole));
+							$(zmienna).children('div').removeClass('czarnyD');
+							$(zmienna).children('div').addClass('pusty');
+							document.getElementById('pkt2').innerHTML +='<div class="pkt"><div class="bia"></div></div>';
+							return true;
+						}
+						else if ($(document.getElementById(trzeciepole)).children('div').prop('class')=='bialydama'){
+							$(document.getElementById(trzeciepole)).children('div').removeClass('bialydama');
+							$(document.getElementById(trzeciepole)).children('div').addClass('pusty');
+							$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+							$(document.getElementById(drugiepole)).children('div').addClass('czarnyD');
+							/*Właśnie ustawiłam pionek na polu drugim. */
+							var zmienna = $(document.getElementById(pierwszepole));
+							$(zmienna).children('div').removeClass('czarnyD');
+							$(zmienna).children('div').addClass('pusty');
+							document.getElementById('pkt2').innerHTML +='<div class="pkt"><div class="biaD"></div></div>';
+							return true;
+						}
+						else{
+							document.getElementById('komunikaty').innerHTML += tekst7 + trzeciepole + tekst8;
+							return false;
+						}
+					}
+					return false;
+				}
+			}
+		}
+		function sprawdzRuch(pierwszepole, drugiepole){
+			var rzad1 = pierwszepole.charAt(1).charCodeAt(0);
+			var kolumna1 = pierwszepole.charAt(0).charCodeAt(0);
+			var rzad2= drugiepole.charAt(1).charCodeAt(0);
+			var kolumna2 = drugiepole.charAt(0).charCodeAt(0);
+			var klasapionka;
+			/*Ustawiam wybieranie koloru pionka który wykonuje ruch. */
+			if($(document.getElementById(pierwszepole)).children('div').prop('class') == 'bialyD'){
+				klasapionka = 'czarny';
+			}
+			else{
+				klasapionka = 'bialy';
+			}
+			/*Jeśli jest to pionek biały . */
+			if (klasapionka == 'czarny') {
+				/*Biały pionek ma możliwość ruchu. */
+				if((rzad2==rzad1+1) && (Math.abs(kolumna1-kolumna2)==1)){
+					$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+					$(document.getElementById(drugiepole)).children('div').addClass('bialy');
+					/*Właśnie ustawiłam pionek na polu drugim. */
+					var zmienna = $(document.getElementById(pierwszepole));
+					$(zmienna).children('div').removeClass('bialyD');
+					$(zmienna).children('div').addClass('pusty');
+					/*Usunęłam pionek z pola pierwszego. Następnie kasuje parametry ruchu, aby móc wykonac kolejny.*/
+					return true;
+				}
+				/*Ruch, który gracz próbuje wykonać jest niedozwolony. */
+				else{
+					document.getElementById('komunikaty').innerHTML += tekst9;
+					$(document.getElementById(pierwszepole)).children('div').removeClass('bialyD');
+					$(document.getElementById(pierwszepole)).children('div').addClass('bialy');
+					return false;
+				}
+			}
+			/*Jeśli jest to pionek czarny. */
+			else{
+				/*Czarny pionek ma możliwość ruchu. */
+				if((rzad2==rzad1-1) && (Math.abs(kolumna1-kolumna2)==1)){
+					$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+					$(document.getElementById(drugiepole)).children('div').addClass('czarny');
+					/*Właśnie ustawiłam pionek na polu drugim. */
+					var zmienna = $(document.getElementById(pierwszepole));
+					$(zmienna).children('div').removeClass('czarnyD');
+					$(zmienna).children('div').addClass('pusty');
+					/*Usunęłam pionek z pola pierwszego. Następnie kasuje parametry ruchu, aby móc wykonac kolejny.*/
+					return true;
+				}
+				/*Ruch, który gracz próbuje wykonać jest niedozwolony. */
+				else{
+					document.getElementById('komunikaty').innerHTML += tekst9;
+					$(document.getElementById(pierwszepole)).children('div').removeClass('czarnyD');
+					$(document.getElementById(pierwszepole)).children('div').addClass('czarny');
+					return false;
+				}
+			}
+		}
+		function jestemdamka(drugiepole){					
+			if($(document.getElementById(drugiepole)).children('div').prop('class')=='czarny' && $(document.getElementById(drugiepole)).parent('div').prop('id')=='1'){
+				return true;
+			}
+			if($(document.getElementById(drugiepole)).children('div').prop('class')=='bialy' && $(document.getElementById(drugiepole)).parent('div').prop('id')=='8'){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		function damaRuch(pierwszepole, drugiepole){
+			var rzad1 = pierwszepole.charAt(1).charCodeAt(0);
+			var kolumna1 = pierwszepole.charAt(0).charCodeAt(0);
+			var rzad2= drugiepole.charAt(1).charCodeAt(0);
+			var kolumna2 = drugiepole.charAt(0).charCodeAt(0);
+			var x;
+			var y=rzad1;
+			var rzadz = Math.abs(rzad1-rzad2);
+			var kolumnaz = Math.abs(kolumna1-kolumna2);
+			var klasabijacego;
+			if($(document.getElementById(pierwszepole)).children('div').prop('class')=='bialydamaD'){
+				klasabijacego = 'bialy';
+			}
+			else{
+				klasabijacego = 'czarny';
+			}
+			if(rzadz==kolumnaz){
+				if(kolumna1<kolumna2){
+					if(rzad1<rzad2){
+						for( x=kolumna1+1; x<kolumna2; x++){
+							y=y+1;
+							x=String.fromCharCode(x);
+							y=String.fromCharCode(y);
+							var id = x+y;
+							if($(document.getElementById(id)).children('div').prop('class')!= 'pusty'){
+								document.getElementById('komunikaty').innerHTML += tekst10;
+								return false;
+							}
+							x=x.charCodeAt(0);
+							y=y.charCodeAt(0);
+						}
+						if(klasabijacego=='czarny'){
+							$(document.getElementById(pierwszepole)).children('div').addClass('pusty');
+							$(document.getElementById(pierwszepole)).children('div').removeClass('czarnydamaD');
+							$(document.getElementById(drugiepole)).children('div').addClass('czarnydama');
+							$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+						}
+						else{
+							$(document.getElementById(pierwszepole)).children('div').addClass('pusty');
+							$(document.getElementById(pierwszepole)).children('div').removeClass('bialydamaD');
+							$(document.getElementById(drugiepole)).children('div').addClass('bialydama');
+							$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+						}
+						return true;
+					}
+					else{
+						for( x=kolumna1+1; x<kolumna2; x++){
+							y=y-1;
+							x=String.fromCharCode(x);
+							y=String.fromCharCode(y);
+							var id = x+y;
+							if($(document.getElementById(id)).children('div').prop('class')!= 'pusty'){
+								document.getElementById('komunikaty').innerHTML += tekst10;
+								return false;
+							}
+							x=x.charCodeAt(0);
+							y=y.charCodeAt(0);
+						}
+						if(klasabijacego=='czarny'){
+							$(document.getElementById(pierwszepole)).children('div').addClass('pusty');
+							$(document.getElementById(pierwszepole)).children('div').removeClass('czarnydamaD');
+							$(document.getElementById(drugiepole)).children('div').addClass('czarnydama');
+							$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+						}
+						else{
+							$(document.getElementById(pierwszepole)).children('div').addClass('pusty');
+							$(document.getElementById(pierwszepole)).children('div').removeClass('bialydamaD');
+							$(document.getElementById(drugiepole)).children('div').addClass('bialydama');
+							$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+						}
+						return true;
+					}
+				}
+				else if(kolumna1>kolumna2){
+					if(rzad1<rzad2){
+						for( x=kolumna1-1; x>kolumna2; x--){
+							y=y+1;
+							x=String.fromCharCode(x);
+							y=String.fromCharCode(y);
+							var id = x+y;
+							if($(document.getElementById(id)).children('div').prop('class')!= 'pusty'){
+								document.getElementById('komunikaty').innerHTML += tekst10;
+								return false;
+							}
+							x=x.charCodeAt(0);
+							y=y.charCodeAt(0);
+						}
+						if(klasabijacego=='czarny'){
+							$(document.getElementById(pierwszepole)).children('div').addClass('pusty');
+							$(document.getElementById(pierwszepole)).children('div').removeClass('czarnydamaD');
+							$(document.getElementById(drugiepole)).children('div').addClass('czarnydama');
+							$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+						}
+						else{
+							$(document.getElementById(pierwszepole)).children('div').addClass('pusty');
+							$(document.getElementById(pierwszepole)).children('div').removeClass('bialydamaD');
+							$(document.getElementById(drugiepole)).children('div').addClass('bialydama');
+							$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+						}
+						return true;
+					}
+					else{
+						for( x=kolumna1-1; x>kolumna2; x--){
+							y=y-1;
+							x=String.fromCharCode(x);
+							y=String.fromCharCode(y);
+							var id = x+y;
+							if($(document.getElementById(id)).children('div').prop('class')!= 'pusty'){
+								document.getElementById('komunikaty').innerHTML += tekst10;
+								return false;
+							}
+							x=x.charCodeAt(0);
+							y=y.charCodeAt(0);
+						}
+						if(klasabijacego=='czarny'){
+							$(document.getElementById(pierwszepole)).children('div').addClass('pusty');
+							$(document.getElementById(pierwszepole)).children('div').removeClass('czarnydamaD');
+							$(document.getElementById(drugiepole)).children('div').addClass('czarnydama');
+							$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+						}
+						else{
+							$(document.getElementById(pierwszepole)).children('div').addClass('pusty');
+							$(document.getElementById(pierwszepole)).children('div').removeClass('bialydamaD');
+							$(document.getElementById(drugiepole)).children('div').addClass('bialydama');
+							$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+						}
+						return true;       
+					}
+				}
+			}
+			else{
+				return false;
+			}
+		}
+		function damaZbicie(pierwszepole, drugiepole){
+			var rzad1 = pierwszepole.charAt(1).charCodeAt(0);
+			var kolumna1 = pierwszepole.charAt(0).charCodeAt(0);
+			var rzad2= drugiepole.charAt(1).charCodeAt(0);
+			var kolumna2 = drugiepole.charAt(0).charCodeAt(0);
+			var x;
+			var y=rzad1;
+			var rzadz = Math.abs(rzad1-rzad2);
+			var kolumnaz = Math.abs(kolumna1-kolumna2);
+			if(rzadz==kolumnaz){
+				if(kolumna1<kolumna2){
+					if(rzad1<rzad2){
+						var rzadbicia=String.fromCharCode(rzad2-1);
+						var kolumnabicia = String.fromCharCode(kolumna2-1);
+						var bicie = kolumnabicia+rzadbicia;
+						if($(document.getElementById(pierwszepole)).children('div').prop('class')=='bialydamaD' && ($(document.getElementById(bicie)).children('div').prop('class') == 'czarny' || $(document.getElementById(bicie)).children('div').prop('class') == 'czarnydama')){
+							for( x=kolumna1+1; x<kolumna2-1; x++){
+								y=y+1;
+								x=String.fromCharCode(x);
+								y=String.fromCharCode(y);
+								var id = x+y;
+								if($(document.getElementById(id)).children('div').prop('class')!= 'pusty'){
+									document.getElementById('komunikaty').innerHTML += tekst10;
+									return false;
+								}
+								x=x.charCodeAt(0);
+								y=y.charCodeAt(0);
+							}
+							$(document.getElementById(pierwszepole)).children('div').addClass('pusty');
+							$(document.getElementById(pierwszepole)).children('div').removeClass('bialydamaD');
+							$(document.getElementById(drugiepole)).children('div').addClass('bialydamaD');
+							$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+							if ($(document.getElementById(bicie)).children('div').prop('class') == 'czarny'){
+								$(document.getElementById(bicie)).children('div').removeClass('czarny');
+								$(document.getElementById(bicie)).children('div').addClass('pusty');
+								document.getElementById('pkt1').innerHTML +='<div class="pkt"><div class="cz"></div></div>';
+							}
+							else{
+								$(document.getElementById(bicie)).children('div').removeClass('czarnydama');
+								$(document.getElementById(bicie)).children('div').addClass('pusty');
+								document.getElementById('pkt1').innerHTML +='<div class="pkt"><div class="czD"></div></div>';
+							}
+							return true;
+						}
+						if($(document.getElementById(pierwszepole)).children('div').prop('class')=='czarnydamaD' && ($(document.getElementById(bicie)).children('div').prop('class') == 'bialy' || $(document.getElementById(bicie)).children('div').prop('class') == 'bialydama')){
+							for( x=kolumna1+1; x<kolumna2-1; x++){
+								y=y+1;
+								x=String.fromCharCode(x);
+								y=String.fromCharCode(y);
+								var id = x+y;
+								if($(document.getElementById(id)).children('div').prop('class')!= 'pusty'){
+									document.getElementById('komunikaty').innerHTML += tekst10;
+									return false;
+								}
+								x=x.charCodeAt(0);
+								y=y.charCodeAt(0);
+							}
+							$(document.getElementById(pierwszepole)).children('div').addClass('pusty');
+							$(document.getElementById(pierwszepole)).children('div').removeClass('czarnydamaD');
+							$(document.getElementById(drugiepole)).children('div').addClass('czarnydamaD');
+							$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+							if ($(document.getElementById(bicie)).children('div').prop('class') == 'bialy'){
+								$(document.getElementById(bicie)).children('div').removeClass('bialy');
+								$(document.getElementById(bicie)).children('div').addClass('pusty');
+								document.getElementById('pkt2').innerHTML +='<div class="pkt"><div class="bia"></div></div>';
+							}
+							else{
+								$(document.getElementById(bicie)).children('div').removeClass('bialydama');
+								$(document.getElementById(bicie)).children('div').addClass('pusty');
+								document.getElementById('pkt2').innerHTML +='<div class="pkt"><div class="biaD"></div></div>';
+							}
+							return true;
+						}
+						else{
+							return false;
+						}
+					}
+					else{
+						var rzadbicia=String.fromCharCode(rzad2+1);
+						var kolumnabicia = String.fromCharCode(kolumna2-1);
+						var bicie = kolumnabicia+rzadbicia;
+						if($(document.getElementById(pierwszepole)).children('div').prop('class')=='bialydamaD' && ($(document.getElementById(bicie)).children('div').prop('class') == 'czarny' || $(document.getElementById(bicie)).children('div').prop('class') == 'czarnydama')){
+							for( x=kolumna1+1; x<kolumna2-1; x++){
+								y=y-1;
+								x=String.fromCharCode(x);
+								y=String.fromCharCode(y);
+								var id = x+y;
+								if($(document.getElementById(id)).children('div').prop('class')!= 'pusty'){
+									document.getElementById('komunikaty').innerHTML += tekst10;
+									return false;
+								}
+								x=x.charCodeAt(0);
+								y=y.charCodeAt(0);
+							}
+							$(document.getElementById(pierwszepole)).children('div').addClass('pusty');
+							$(document.getElementById(pierwszepole)).children('div').removeClass('bialydamaD');
+							$(document.getElementById(drugiepole)).children('div').addClass('bialydamaD');
+							$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+							if ($(document.getElementById(bicie)).children('div').prop('class') == 'czarny'){
+								$(document.getElementById(bicie)).children('div').removeClass('czarny');
+								$(document.getElementById(bicie)).children('div').addClass('pusty');
+								document.getElementById('pkt1').innerHTML +='<div class="pkt"><div class="cz"></div></div>';
+							}
+							else{
+								$(document.getElementById(bicie)).children('div').removeClass('czarnydama');
+								$(document.getElementById(bicie)).children('div').addClass('pusty');
+								document.getElementById('pkt1').innerHTML +='<div class="pkt"><div class="czD"></div></div>';
+							}
+							return true;
+						}
+						if($(document.getElementById(pierwszepole)).children('div').prop('class')=='czarnydamaD' && ($(document.getElementById(bicie)).children('div').prop('class') == 'bialy' || $(document.getElementById(bicie)).children('div').prop('class') == 'bialydama')){
+							for( x=kolumna1+1; x<kolumna2-1; x++){
+								y=y-1;
+								x=String.fromCharCode(x);
+								y=String.fromCharCode(y);
+								var id = x+y;
+								if($(document.getElementById(id)).children('div').prop('class')!= 'pusty'){
+									document.getElementById('komunikaty').innerHTML += tekst10;
+									return false;
+								}
+								x=x.charCodeAt(0);
+								y=y.charCodeAt(0);
+							}
+							$(document.getElementById(pierwszepole)).children('div').addClass('pusty');
+							$(document.getElementById(pierwszepole)).children('div').removeClass('czarnydamaD');
+							$(document.getElementById(drugiepole)).children('div').addClass('czarnydamaD');
+							$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+							if ($(document.getElementById(bicie)).children('div').prop('class') == 'bialy'){
+								$(document.getElementById(bicie)).children('div').removeClass('bialy');
+								$(document.getElementById(bicie)).children('div').addClass('pusty');
+								document.getElementById('pkt2').innerHTML +='<div class="pkt"><div class="bia"></div></div>';
+							}
+							else{
+								$(document.getElementById(bicie)).children('div').removeClass('bialydama');
+								$(document.getElementById(bicie)).children('div').addClass('pusty');
+								document.getElementById('pkt2').innerHTML +='<div class="pkt"><div class="biaD"></div></div>';
+							}
+							return true;
+						}
+						else{
+							return false;
+						}
+					}
+				}
+
+				else if(kolumna1>kolumna2){
+					if(rzad1<rzad2){
+						var rzadbicia=String.fromCharCode(rzad2-1);
+						var kolumnabicia = String.fromCharCode(kolumna2+1);
+						var bicie = kolumnabicia+rzadbicia;
+						if($(document.getElementById(pierwszepole)).children('div').prop('class')=='bialydamaD' && ($(document.getElementById(bicie)).children('div').prop('class') == 'czarny' || $(document.getElementById(bicie)).children('div').prop('class') == 'czarnydama')){
+							for( x=kolumna1-1; x>kolumna2+1; x--){
+								y=y+1;
+								x=String.fromCharCode(x);
+								y=String.fromCharCode(y);
+								var id = x+y;
+								if($(document.getElementById(id)).children('div').prop('class')!= 'pusty'){
+									return false;
+								}
+								x=x.charCodeAt(0);
+								y=y.charCodeAt(0);
+							}
+							$(document.getElementById(pierwszepole)).children('div').addClass('pusty');
+							$(document.getElementById(pierwszepole)).children('div').removeClass('bialydamaD');
+							$(document.getElementById(drugiepole)).children('div').addClass('bialydamaD');
+							$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+							if ($(document.getElementById(bicie)).children('div').prop('class') == 'czarny'){
+								$(document.getElementById(bicie)).children('div').removeClass('czarny');
+								$(document.getElementById(bicie)).children('div').addClass('pusty');
+								document.getElementById('pkt1').innerHTML +='<div class="pkt"><div class="cz"></div></div>';
+							}
+							else{
+								$(document.getElementById(bicie)).children('div').removeClass('czarnydama');
+								$(document.getElementById(bicie)).children('div').addClass('pusty');
+								document.getElementById('pkt1').innerHTML +='<div class="pkt"><div class="czD"></div></div>';
+							}
+							return true;
+						}
+						if($(document.getElementById(pierwszepole)).children('div').prop('class')=='czarnydamaD' && ($(document.getElementById(bicie)).children('div').prop('class') == 'bialy' || $(document.getElementById(bicie)).children('div').prop('class') == 'bialydama')){
+							for( x=kolumna1-1; x>kolumna2+1; x--){
+								y=y+1;
+								x=String.fromCharCode(x);
+								y=String.fromCharCode(y);
+								var id = x+y;
+								if($(document.getElementById(id)).children('div').prop('class')!= 'pusty'){
+									return false;
+								}
+								x=x.charCodeAt(0);
+								y=y.charCodeAt(0);
+							}
+							$(document.getElementById(pierwszepole)).children('div').addClass('pusty');
+							$(document.getElementById(pierwszepole)).children('div').removeClass('czarnydamaD');
+							$(document.getElementById(drugiepole)).children('div').addClass('czarnydamaD');
+							$(document.getElementById(drugiepole)).children('div').removeClass('pusty');if ($(document.getElementById(bicie)).children('div').prop('class') == 'bialy'){
+								$(document.getElementById(bicie)).children('div').removeClass('bialy');
+								$(document.getElementById(bicie)).children('div').addClass('pusty');
+								document.getElementById('pkt2').innerHTML +='<div class="pkt"><div class="bia"></div></div>';
+							}
+							else{
+								$(document.getElementById(bicie)).children('div').removeClass('bialydama');
+								$(document.getElementById(bicie)).children('div').addClass('pusty');
+								document.getElementById('pkt2').innerHTML +='<div class="pkt"><div class="biaD"></div></div>';
+							}
+							return true;
+						}
+					}
+					else{
+						var rzadbicia=String.fromCharCode(rzad2+1);
+						var kolumnabicia = String.fromCharCode(kolumna2+1);
+						var bicie = kolumnabicia+rzadbicia;
+						if($(document.getElementById(pierwszepole)).children('div').prop('class')=='bialydamaD' && ($(document.getElementById(bicie)).children('div').prop('class') == 'czarny' || $(document.getElementById(bicie)).children('div').prop('class') == 'czarnydama')){
+							for( x=kolumna1-1; x>kolumna2+1; x--){
+								y=y-1;
+								x=String.fromCharCode(x);
+								y=String.fromCharCode(y);
+								var id = x+y;
+								if($(document.getElementById(id)).children('div').prop('class')!= 'pusty'){
+									return false;
+								}
+								x=x.charCodeAt(0);
+								y=y.charCodeAt(0);
+							}
+							$(document.getElementById(pierwszepole)).children('div').addClass('pusty');
+							$(document.getElementById(pierwszepole)).children('div').removeClass('bialydamaD');
+							$(document.getElementById(drugiepole)).children('div').addClass('bialydamaD');
+							$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+							if ($(document.getElementById(bicie)).children('div').prop('class') == 'czarny'){
+								$(document.getElementById(bicie)).children('div').removeClass('czarny');
+								$(document.getElementById(bicie)).children('div').addClass('pusty');
+								document.getElementById('pkt1').innerHTML +='<div class="pkt"><div class="cz"></div></div>';
+							}
+							else{
+								$(document.getElementById(bicie)).children('div').removeClass('czarnydama');
+								$(document.getElementById(bicie)).children('div').addClass('pusty');
+								document.getElementById('pkt1').innerHTML +='<div class="pkt"><div class="czD"></div></div>';
+							}
+							return true;
+						}
+						if($(document.getElementById(pierwszepole)).children('div').prop('class')=='czarnydamaD' && ($(document.getElementById(bicie)).children('div').prop('class') == 'bialy' || $(document.getElementById(bicie)).children('div').prop('class') == 'bialydama')){
+							for( x=kolumna1-1; x>kolumna2+1; x--){
+								y=y-1;
+								x=String.fromCharCode(x);
+								y=String.fromCharCode(y);
+								var id = x+y;
+								if($(document.getElementById(id)).children('div').prop('class')!= 'pusty'){
+									return false;
+								}
+								x=x.charCodeAt(0);
+								y=y.charCodeAt(0);
+							}
+							$(document.getElementById(pierwszepole)).children('div').addClass('pusty');
+							$(document.getElementById(pierwszepole)).children('div').removeClass('czarnydamaD');
+							$(document.getElementById(drugiepole)).children('div').addClass('czarnydamaD');
+							$(document.getElementById(drugiepole)).children('div').removeClass('pusty');
+							if ($(document.getElementById(bicie)).children('div').prop('class') == 'bialy'){
+								$(document.getElementById(bicie)).children('div').removeClass('bialy');
+								$(document.getElementById(bicie)).children('div').addClass('pusty');
+								document.getElementById('pkt2').innerHTML +='<div class="pkt"><div class="bia"></div></div>';
+							}
+							else{
+								$(document.getElementById(bicie)).children('div').removeClass('bialydama');
+								$(document.getElementById(bicie)).children('div').addClass('pusty');
+								document.getElementById('pkt2').innerHTML +='<div class="pkt"><div class="biaD"></div></div>';
+							}
+							return true;
+						}
+					}
+				}
+			}
+		}
+    </script>
+  </body>
+</html>
