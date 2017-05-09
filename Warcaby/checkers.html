@@ -1,0 +1,2595 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dawcio gra w warcaby!!!</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <style>
+		body {
+            background-image: url("images.jpg");
+            background-size: cover;
+            font-family: calibri;
+            color: white;
+            text-shadow: 0px 0px 2px black;
+            user-select: none;
+            cursor: pointer;
+		}
+        
+        @keyframes fade-in{
+            from    {opacity: 0;}
+            to      {opacity: 1;}
+        }
+        
+		#tips{
+			text-align: center;
+		}
+		.base {
+			position: absolute;
+            width: 1020px;
+            height: 750px;
+            overflow: hidden;
+            margin: auto;
+            top: 0px; left: 0px; bottom: 0px; right: 0px;
+		}
+		.BoxForPointsOfWhitePawns{
+			width:200px;
+			position:relative;
+			float:left;
+			height:450px;
+			margin-top: 4%;
+			margin-left: 4%;
+            background: url('back.jpg');
+            background-size: cover;
+            box-shadow: inset 0px 0px 5px white,
+                              0px 10px 10px rgba(0,0,0,0.7);
+		}
+		.BoxForPointsOfWhitePawns h1{
+			color: white;
+				font-size:22px;
+				height:1em;
+				line-height:2em;
+				text-align: center;
+		}
+		.pointsOfBlackPawns{
+			width:200px;
+			position:relative;
+			float:left;
+			height:450px;
+			margin-top: 4%;
+            background: url('back.jpg');
+            background-size: cover;
+            box-shadow: inset 0px 0px 5px white,
+                              0px 10px 10px rgba(0,0,0,0.7);
+		}
+		.pointsOfBlackPawns h1{
+			color: white;
+				font-size:22px;
+				height:1em;
+				line-height:2em;
+				text-align: center;
+		}
+		.PointsOfWhitePawns{
+			position: absolute;
+			width:200px;
+			height:400px;
+		}
+		.PointsOfBlackPawns{
+			position: absolute;
+			width:200px;
+			height:400px;
+		}
+		.score{
+			width: 40px;
+            height: 50px;
+			margin: 13px;
+            position: relative;
+			float:left;
+		}
+		.blackScore {
+			width: 30px;
+            height: 30px;
+            margin: 10px auto;
+            position: relative;
+            background: linear-gradient(to bottom,  #494949 31%,#262626 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94c4fe', endColorstr='#d3f6fe',GradientType=0 );             border-radius: 50%;
+            color: #000; 
+            -webkit-box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, .2);    
+            box-shadow:  0px 1px 2px 0px rgba(0, 0, 0, .2);
+		}
+		.blackLadyScore {
+            width: 30px;
+            height: 30px;
+            margin: 10px auto;
+            position: relative;
+            background: linear-gradient(to bottom,  #494949 31%,#262626 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94c4fe', endColorstr='#d3f6fe',GradientType=0 );             border-radius: 50%;
+            color: #000; 
+            -webkit-box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, .2);    
+            box-shadow:  0px 1px 2px 0px rgba(0, 0, 0, .2);
+            position: relative;
+        }
+		.blackLadyScore:before {
+            content: "";
+            width: 53%;
+            height: 20%;
+            display: block;
+            position: absolute;
+            left: 23%;
+            top: 7%
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom,  rgba(255,255,255,0.7) 0%,
+                                          rgba(255,255,255,0.5) 4%,
+                                          rgba(255,255,255,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+        }
+        .blackLadyScore:after {
+            content:"";
+            display: block;
+            position: absolute;
+            border-radius: 100%;
+            width:20%;
+            height: 20%;
+            top: 40%;
+            left: 40%;
+            background-color: red;
+        }
+		.whiteScore{
+			width: 30px;
+            height: 30px;
+            margin: 10px auto;
+            position: relative;
+            background: linear-gradient(to bottom,  #efefef 31%,#dddddd 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94c4fe', endColorstr='#d3f6fe',GradientType=0 );             border-radius: 50%;
+            color: #000; 
+            -webkit-box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, .2);    
+            box-shadow:  0px 1px 2px 0px rgba(0, 0, 0, .2);
+		}
+		.whiteLadyScore {
+            width: 30px;
+            height: 30px;
+            margin: 10px auto;
+            position: relative;
+            background: linear-gradient(to bottom,  #efefef 31%,#dddddd 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94c4fe', endColorstr='#d3f6fe',GradientType=0 );             border-radius: 50%;
+            color: red; 
+            -webkit-box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, .2);    
+            box-shadow:  0px 1px 2px 0px rgba(0, 0, 0, .2);
+        }
+		
+        .whiteLadyScore:before {
+            content: "";
+            width: 53%;
+            height: 20%;
+            display: block;
+            position: absolute;
+            left: 23%;
+            top: 7%
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom,  rgba(255,255,255,0.7) 0%,
+                                          rgba(255,255,255,0.5) 4%,
+                                          rgba(255,255,255,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+        }
+        .whiteLadyScore:after {
+            content:"";
+            display: block;
+            position: absolute;
+            border-radius: 100%;
+            width:20%;
+            height: 20%;
+            top: 40%;
+            left: 40%;
+            background-color: red;
+        }
+		#boxForTips {
+			width:450px;
+            height: 150px;
+			margin-top:500px;
+            background: url('back.jpg');
+            background-size: cover;
+            box-shadow: inset 0px 0px 5px white,
+                              0px 10px 10px rgba(0,0,0,0.7);
+		}
+        .container {
+            width:450px;
+			position:relative;
+			float: left;
+            height: 800px;
+            padding: 4%;
+        }
+        .board {
+            position: absolute;
+            width: 450px;
+            background: url('back.jpg');
+            background-size: cover;
+            height: 450px;
+            box-shadow: inset 0px 0px 5px white,
+                              0px 10px 10px rgba(0,0,0,0.7);
+        }
+        .horizontalEngeOfBoard {
+            width: 50px;
+            height: 25px;
+            position: relative;
+            float: left;
+            text-align: center;
+            padding-top: 5px;
+        }
+        .verticalEngeOfBoard {
+            width: 25px;
+            height: 50px;
+            position: relative;
+            float: left;
+            text-align: center;
+        }
+        .whiteField {
+            background-image: url(jasnedrewno.png);
+            width: 50px;
+            height: 50px;
+            position: relative;
+            float: left;
+        }
+        .blackField {
+            background-image: url(ciemnedrewno.png);
+            width: 50px;
+            height: 50px;
+            position: relative;
+            float: left;
+            filter: brightness(140%);
+        }
+        .whitePawn {
+            width: 30px;
+            height: 30px;
+            margin: 10px auto;
+            position: relative;
+            background: linear-gradient(to bottom,  #efefef 31%,#dddddd 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94c4fe', endColorstr='#d3f6fe',GradientType=0 );             border-radius: 50%;
+            color: #000; 
+            -webkit-box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, .2);    
+            box-shadow:  0px 1px 2px 0px rgba(0, 0, 0, .2);
+            position: relative;
+        }
+        .whitePawn:before {
+            content: "";
+            width: 53%;
+            height: 20%;
+            display: block;
+            position: absolute;
+            left: 23%;
+            top: 7%
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom,  rgba(255,255,255,0.7) 0%,
+                                          rgba(255,255,255,0.5) 4%,
+                                          rgba(255,255,255,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+        }
+        .whiteLadyPawn {
+            width: 30px;
+            height: 30px;
+            margin: 10px auto;
+            position: relative;
+            background: linear-gradient(to bottom,  #efefef 31%,#dddddd 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94c4fe', endColorstr='#d3f6fe',GradientType=0 );             border-radius: 50%;
+            color: red; 
+            -webkit-box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, .2);    
+            box-shadow:  0px 1px 2px 0px rgba(0, 0, 0, .2);
+            position: relative;
+        }
+        .whiteLadyPawn:before {
+            content: "";
+            width: 53%;
+            height: 20%;
+            display: block;
+            position: absolute;
+            left: 23%;
+            top: 7%
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom,  rgba(255,255,255,0.7) 0%,
+                                          rgba(255,255,255,0.5) 4%,
+                                          rgba(255,255,255,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+        }
+        .whiteLadyPawn:after {
+            content:"";
+            display: block;
+            position: absolute;
+            border-radius: 100%;
+            width:20%;
+            height: 20%;
+            top: 40%;
+            left: 40%;
+            background-color: red;
+        }
+        .bigWhiteLadyPawn {
+            width: 40px;
+            height: 40px;
+            margin: 5px auto;
+            position: relative;
+            background: linear-gradient(to bottom,  #efefef 31%,#dddddd 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94c4fe', endColorstr='#d3f6fe',GradientType=0 );             
+			border-radius: 50%;
+            color: #000; 
+            -webkit-box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, .2);    
+            box-shadow:  0px 1px 2px 0px rgba(0, 0, 0, .2);
+            position: relative;
+        }
+        .bigWhiteLadyPawn:before {
+            content: "";
+            width: 53%;
+            height: 20%;
+            display: block;
+            position: absolute;
+            left: 23%;
+            top: 7%
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom,  rgba(255,255,255,0.7) 0%,
+                                          rgba(255,255,255,0.5) 4%,
+                                          rgba(255,255,255,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+        }
+        .bigWhiteLadyPawn:after {
+            content:"";
+            display: block;
+            position: absolute;
+            border-radius: 100%;
+            width:20%;
+            height: 20%;
+            top: 40%;
+            left: 40%;
+            background-color: red;
+        }        
+        .bigWhitePawn {
+            width: 40px;
+            height: 40px;
+            margin: 5px auto;
+            position: relative;
+            background: linear-gradient(to bottom,  #efefef 31%,#dddddd 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94c4fe', endColorstr='#d3f6fe',GradientType=0 );             border-radius: 50%;
+            color: #000; 
+            -webkit-box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, .2);    
+            box-shadow:  0px 1px 2px 0px rgba(0, 0, 0, .2);
+            position: relative;
+        }
+        .bigWhitePawn:before {
+            content: "";
+            width: 53%;
+            height: 20%;
+            display: block;
+            position: absolute;
+            left: 23%;
+            top: 7%
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom,  rgba(255,255,255,0.7) 0%,
+                                          rgba(255,255,255,0.5) 4%,
+                                          rgba(255,255,255,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+        }
+        .bigblackPawn {
+            width: 40px;
+            height: 40px;
+            margin: 5px auto;
+            position: relative;
+             background: linear-gradient(to bottom,  #494949 31%,#262626 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94c4fe', endColorstr='#d3f6fe',GradientType=0 );             border-radius: 50%;
+            color: #000; 
+            -webkit-box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, .2);    
+            box-shadow:  0px 1px 2px 0px rgba(0, 0, 0, .2);
+            position: relative;
+        }
+        .bigblackPawn:before {
+            content: "";
+            width: 53%;
+            height: 20%;
+            display: block;
+            position: absolute;
+            left: 23%;
+            top: 7%
+
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom,  rgba(255,255,255,0.7) 0%,
+                                          rgba(255,255,255,0.5) 4%,
+                                          rgba(255,255,255,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+        }
+        .blackPawn {
+            width: 30px;
+            height: 30px;
+            margin: 10px auto;
+            position: relative;
+            background: linear-gradient(to bottom,  #494949 31%,#262626 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94c4fe', endColorstr='#d3f6fe',GradientType=0 );             border-radius: 50%;
+            color: #000; 
+            -webkit-box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, .2);    
+            box-shadow:  0px 1px 2px 0px rgba(0, 0, 0, .2);
+            position: relative;
+        }
+        .blackPawn:before {
+            content: "";
+            width: 53%;
+            height: 20%;
+            display: block;
+            position: absolute;
+            left: 23%;
+            top: 7%
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom,  rgba(255,255,255,0.7) 0%,
+                                          rgba(255,255,255,0.5) 4%,
+                                          rgba(255,255,255,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+        }
+        .blackLadyPawn {
+            width: 30px;
+            height: 30px;
+            margin: 10px auto;
+            position: relative;
+            background: linear-gradient(to bottom,  #494949 31%,#262626 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94c4fe', endColorstr='#d3f6fe',GradientType=0 );             border-radius: 50%;
+            color: #000; 
+            -webkit-box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, .2);    
+            box-shadow:  0px 1px 2px 0px rgba(0, 0, 0, .2);
+            position: relative;
+        }
+        .blackLadyPawn:before {
+            content: "";
+            width: 53%;
+            height: 20%;
+            display: block;
+            position: absolute;
+            left: 23%;
+            top: 7%
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom,  rgba(255,255,255,0.7) 0%,
+                                          rgba(255,255,255,0.5) 4%,
+                                          rgba(255,255,255,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+        }
+        .blackLadyPawn:after {
+            content:"";
+            display: block;
+            position: absolute;
+            border-radius: 100%;
+            width:20%;
+            height: 20%;
+            top: 40%;
+            left: 40%;
+            background-color: red;
+/*            margin:19px auto;*/
+        }
+        .bigBlackLadyPawn {
+            width: 40px;
+            height: 40px;
+            margin: 5px auto;
+            position: relative;
+            background: linear-gradient(to bottom,  #494949 31%,#262626 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#94c4fe', endColorstr='#d3f6fe',GradientType=0 );             border-radius: 50%;
+            color: #000; 
+            -webkit-box-shadow:  0px 1px 3px 0px rgba(0, 0, 0, .2);    
+            box-shadow:  0px 1px 2px 0px rgba(0, 0, 0, .2);
+            position: relative;
+        }
+        .bigBlackLadyPawn:before {
+            content: "";
+            width: 53%;
+            height: 20%;
+            display: block;
+            position: absolute;
+            left: 23%;
+            top: 7%
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom,  rgba(255,255,255,0.7) 0%,
+                                          rgba(255,255,255,0.5) 4%,
+                                          rgba(255,255,255,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+        }
+        .bigBlackLadyPawn:after {
+            content:"";
+            display: block;
+            position: absolute;
+            border-radius: 100%;
+            width:20%;
+            height: 20%;
+            top: 40%;
+            left: 40%;
+            background-color: red;
+/*            margin:19px auto;*/
+        }
+
+    </style>
+  </head>
+  <body>
+  <div class="base">
+	<div class="BoxForPointsOfWhitePawns">
+		<h1> Gracz 1 </h1>
+		<div id="PointsOfWhitePawns">
+		</div>
+	</div>
+    <div class="container">
+        <div class="board">
+            <div class="box"><!--Sądzę, że to można usunąć, jest tylko w tym miejscu -->
+                <div class="row" >
+                    <div class="horizontalEngeOfBoard" style="width: 25px;"></div>
+                    <div class="horizontalEngeOfBoard">a</div>
+                    <div class="horizontalEngeOfBoard">b</div>
+                    <div class="horizontalEngeOfBoard">c</div>
+                    <div class="horizontalEngeOfBoard">d</div>
+                    <div class="horizontalEngeOfBoard">e</div>
+                    <div class="horizontalEngeOfBoard">f</div>
+                    <div class="horizontalEngeOfBoard">g</div>
+                    <div class="horizontalEngeOfBoard">h</div>
+                    <div class="horizontalEngeOfBoard" style="width: 25px;"></div>
+                </div>
+                <div class="row" id="1">
+                    <div class="verticalEngeOfBoard"><p>1</p></div>
+                    <div class="blackField" id="a1">
+                        <div class="whitePawn"></div>        
+                    </div>
+                    <div class="white" id="b1">
+                    </div>
+                    <div class="blackField" id="c1">
+                        <div class="whitePawn"></div>        
+                    </div>
+                    <div class="whiteField" id="d1">
+                    </div>
+                    <div class="blackField" id="e1">
+                        <div class="whitePawn"></div>        
+                    </div>
+                    <div class="whiteField" id="f1">
+                    </div>
+                    <div class="blackField" id="g1">
+                        <div class="whitePawn"></div>        
+                    </div>
+                    <div class="whiteField" id="h1">
+                    </div>
+                    <div class="verticalEngeOfBoard"></div>
+                </div>
+                <div class="row" id="2">
+                    <div class="verticalEngeOfBoard"><p>2</p></div>
+                    <div class="whiteField" id="a2">
+                    </div>
+                    <div class="blackField" id="b2">
+                        <div class="whitePawn"></div>        
+                    </div>
+                    <div class="whiteField" id="c2">
+                    </div>
+                    <div class="blackField" id="d2">
+                        <div class="whitePawn"></div>        
+                    </div>
+                    <div class="whiteField" id="e2">
+                    </div>
+                    <div class="blackField" id="f2">
+                        <div class="whitePawn"></div>        
+                    </div>
+                    <div class="whiteField" id="g2">
+                    </div>
+                    <div class="blackField" id="h2">
+                        <div class="whitePawn"></div>        
+                    </div>
+                    <div class="verticalEngeOfBoard"></div>
+                </div>
+                <div class="row" id="3">
+                    <div class="verticalEngeOfBoard"><p>3</p></div>
+                    <div class="blackField" id="a3">
+                        <div class="whitePawn"></div>        
+                    </div>
+                    <div class="whiteField" id="b3">
+                    </div>
+                    <div class="blackField" id="c3">
+                        <div class="whitePawn"></div>        
+                    </div>
+                    <div class="whiteField" id="d3">
+                    </div>
+                    <div class="blackField" id="e3">
+                        <div class="whitePawn"></div>        
+                    </div>
+                    <div class="whiteField" id="f3">
+                    </div>
+                    <div class="blackField" id="g3">
+                        <div class="whitePawn"></div>        
+                    </div>
+                    <div class="whiteField" id="h3">
+                    </div>
+                    <div class="verticalEngeOfBoard"></div>
+                </div>
+                <div class="row" id="4">
+                    <div class="verticalEngeOfBoard"><p>4</p></div>
+                    <div class="whiteField" id="a4">
+                        <div class="empty"></div>        
+                    </div>
+                    <div class="blackField" id="b4">
+                        <div class="empty"></div>        
+                    </div>
+                    <div class="whiteField" id="c4">
+                        <div class="empty"></div>        
+                    </div>
+                    <div class="blackField" id="d4">
+                        <div class="empty"></div>        
+                    </div>
+                    <div class="whiteField" id="e4">
+                        <div class="empty"></div>        
+                    </div>
+                    <div class="blackField" id="f4">
+                        <div class="empty"></div>        
+                    </div>
+                    <div class="whiteField" id="g4">
+                        <div class="empty"></div>        
+                    </div>
+                    <div class="blackField" id="h4">
+                        <div class="empty"></div>        
+                    </div>
+                    <div class="verticalEngeOfBoard"></div>
+                </div>
+                <div class="row" id="5">
+                    <div class="verticalEngeOfBoard"><p>5</p></div>
+                    <div class="blackField" id="a5">
+                        <div class="empty"></div>        
+                    </div>
+                    <div class="whiteField" id="b5">
+                        <div class="empty"></div>        
+                    </div>
+                    <div class="blackField" id="c5">
+                        <div class="empty"></div>        
+                    </div>
+                    <div class="whiteField" id="d5">
+                        <div class="empty"></div>        
+                    </div>
+                    <div class="blackField" id="e5">
+                        <div class="empty"></div>        
+                    </div>
+                    <div class="whiteField" id="f5">
+                        <div class="empty"></div>        
+                    </div>
+                    <div class="blackField" id="g5">
+                        <div class="empty"></div>        
+                    </div>
+                    <div class="whiteField" id="h5">
+                        <div class="empty"></div>        
+                    </div>
+                    <div class="verticalEngeOfBoard"></div>
+                </div>
+                <div class="row" id="6">
+                    <div class="verticalEngeOfBoard"><p>6</p></div>
+                    <div class="whiteField" id="a6">
+                    </div>
+                    <div class="blackField" id="b6">
+                        <div class="blackPawn"></div>        
+                    </div>
+                    <div class="whiteField" id="c6">
+                    </div>
+                    <div class="blackField" id="d6">
+                        <div class="blackPawn"></div>        
+                    </div>
+                    <div class="whiteField" id="e6">
+                    </div>
+                    <div class="blackField" id="f6">
+                        <div class="blackPawn"></div>        
+                    </div>
+                    <div class="whiteField" id="g6">
+                    </div>
+                    <div class="blackField" id="h6">
+                        <div class="blackPawn"></div>        
+                    </div>
+                    <div class="verticalEngeOfBoard"></div>
+                </div>
+                <div class="row" id="7">
+                    <div class="verticalEngeOfBoard"><p>7</p></div>
+                    <div class="blackField" id="a7">
+                        <div class="blackPawn"></div>        
+                    </div>
+                    <div class="whiteField" id="b7">
+                    </div>
+                    <div class="blackField" id="c7">
+                        <div class="blackPawn"></div>        
+                    </div>
+                    <div class="whiteField" id="d7">
+                    </div>
+                    <div class="blackField" id="e7">
+                        <div class="blackPawn"></div>        
+                    </div>
+                    <div class="whiteField" id="f7">
+                    </div>
+                    <div class="blackField" id="g7">
+                        <div class="blackPawn"></div>        
+                    </div>
+                    <div class="whiteField" id="h7">
+                    </div>
+                    <div class="verticalEngeOfBoard"></div>
+                </div>
+                <div class="row" id="8">
+                    <div class="verticalEngeOfBoard"><p>8</p></div>
+                    <div class="whiteField" id="a8">
+                    </div>
+                    <div class="blackField" id="b8">
+                        <div class="blackPawn"></div>        
+                    </div>
+                    <div class="whiteField" id="c8">
+                    </div>
+                    <div class="blackField" id="d8">
+                        <div class="blackPawn"></div>        
+                    </div>
+                    <div class="whiteField" id="e8">
+                    </div>
+                    <div class="blackField" id="f8">
+                        <div class="blackPawn"></div>        
+                    </div>
+                    <div class="whiteField" id="g8">
+                    </div>
+                    <div class="blackField" id="h8">
+                        <div class="blackPawn"></div>        
+                    </div>
+                    <div class="verticalEngeOfBoard"></div>
+                </div>
+            </div>
+         </div>
+		 <div id="boxForTips">
+			<h3 id="tips"> </h3>
+		 </div>
+		 
+    </div>
+	<div class="pointsOfBlackPawns">
+		<h1> Gracz 2 </h1>
+		<div id="PointsOfBlackPawns">
+		</div>
+	</div>
+	</div>
+    <script>
+           /*Naciśnięty pionek się przesuwa.
+
+           Klasa pionka zmienia się na damka, gdy dotrze do przeciwległej linii.*/
+        
+        var firstField = '0';
+        var secondField = '0';
+        var sequence;
+		var tips1 = 'Jeśli masz możliwość wykonaj drugie attack albo przekaż kolejkę drugiemu graczowi.';
+		var tips2 = 'Na polu '; //.....
+		var tips3 = ' nie ma pionka. Wybierz pole, na którym jest pionek.';
+		var tips4 = 'Ten ruch należy do Twojego przeciwnika, złodziejaszku ruchów. Przekaż kolejkę drugiemu graczowi.';
+		var tips5 = 'Nie możesz ruszyć tego pionka.';
+		var tips6 = 'Nie możesz wykonać ruchu na to pole.';
+		var tips7 = 'Mógłbyś wykonać ten ruch, gdyby na polu ';//.....
+		var tips8 = ' stał pionek przeciwnika.';
+		var tips9 = 'Zasady nie dopuszczają takiego ruchu.';
+		var tips10= 'Nie możesz wykonać takiego ruchu.';
+        if(sequence==null){
+			document.getElementById('tips').innerHTML +='Białe pionki rozpoczynają rozgrywkę.';
+        }
+        $(document).ready(function(){
+            /*Ten element reaguje na naciśnięcie pola czarnego*/
+            
+            $('.whiteField').click(function(event){
+                if(firstField=='0'){
+					document.getElementById('tips').innerHTML = '';
+					document.getElementById('tips').innerHTML += tips2 + $(event.target).prop('id') + tips3;
+                }
+                else{
+					document.getElementById('tips').innerHTML = '';
+					document.getElementById('tips').innerHTML += tips6;
+                    if($(document.getElementById(firstField)).children('div').prop('class')=='bigWhitePawn'){
+                        $(document.getElementById(firstField)).children('div').removeClass('bigWhitePawn');
+                        $(document.getElementById(firstField)).children('div').addClass('whitePawn');
+                        firstField='0';
+                        return;
+                    }
+                    if($(document.getElementById(firstField)).children('div').prop('class')=='bigblackPawn'){
+                        $(document.getElementById(firstField)).children('div').removeClass('bigblackPawn');
+                        $(document.getElementById(firstField)).children('div').addClass('blackPawn');
+                        firstField='0';
+                        return;
+                    }
+                }
+            });
+            $('.blackField').click(function(event){
+                /*Wybieram drugie pole w kolejnym biciu z rzędu. */
+                if(sequence=='whiteAndBlack' ||sequence=='blackAndWhite'){
+					document.getElementById('tips').innerHTML = '';
+                    var classEventTarget = $(event.target).prop('class');
+                    var classOfPawn = $(document.getElementById(firstField)).children('div').prop('class');
+                    /*Nacisnęłam na obszar planszy drugiego wybranego pola. */
+                    if(classEventTarget == $(document.getElementById(firstField)).prop('class')){
+                        /*Nacisnęłam na obszar planszy drugiego pola. */
+                        /*Jeżeli mój kolor pionków to biały. */
+                        secondField = $(event.target).prop('id');
+                        if(classOfPawn=='bigWhitePawn'){
+                            var classOfPawn2 = $(event.target).children('div').prop('class');
+                            /*Nacisnęłam na pole z pionkiem przeciwnego koloru. */
+                            if(classOfPawn2=='blackPawn'){
+                                if(sequence==('whiteAndBlack')){
+                                    $(event.target).children('div').removeClass('blackPawn');
+                                    $(event.target).children('div').addClass('bigblackPawn');
+                                    $(document.getElementById(firstField)).children('div').removeClass('bigWhitePawn');
+                                    $(document.getElementById(firstField)).children('div').addClass('whitePawn');
+                                    firstField = $(event.target).prop('id');
+                                    sequence='blackTurn';
+                                    return;
+                                }
+                            }
+							if(classOfPawn2=='blackLadyPawn'){
+                                if(sequence==('whiteAndBlack')){
+                                    $(event.target).children('div').removeClass('blackLadyPawn');
+                                    $(event.target).children('div').addClass('bigBlackLadyPawn');
+                                    $(document.getElementById(firstField)).children('div').removeClass('bigWhitePawn');
+                                    $(document.getElementById(firstField)).children('div').addClass('whitePawn');
+                                    firstField = $(event.target).prop('id');
+                                    sequence='blackTurn';
+                                    return;
+                                }
+                            }
+                            /*Nacisnęłam na inny mój pionek - to zamieniam pionek wybrany do ruchu. */
+                            if(classOfPawn2=='whitePawn'){
+								document.getElementById('tips').innerHTML +=tips1;
+                                return;
+                            }
+                            /*Powtórnie wybrałam pierwszy pionek - rezygnuję z ruchu nim. */
+                            if(classOfPawn2=='bigWhitePawn'){
+                                return;
+                            }
+							if(classOfPawn2=='whiteLadyPawn'){
+								document.getElementById('tips').innerHTML +=tips1;
+                                return;
+                            }
+                            /*Jako drugie pole wybrałam pole puste. */
+                            if(classOfPawn2=='empty'){
+                                /*Sprawdzam czy mogę sie ruszyć na to pole. */
+                                if(checkIfLadyAttack(firstField, secondField)){
+                                    /*Usunęłam pionek z pola pierwszego. Następnie kasuje parametry ruchu, aby móc wykonać kolejny.*/
+                                    firstField=secondField;
+                                    sequence='whiteAndBlack';
+									if(iAmALady(secondField)){
+										$(document.getElementById(firstField)).children('div').removeClass('bigWhitePawn');
+										$(document.getElementById(firstField)).children('div').addClass('bigWhiteLadyPawn');
+									}
+                                    secondField='0';
+                                    return;
+                                }
+                                /*Jeśli nie mogę się ruszyć na drugie pole to wypuszczam alert i lasuje parametry pól. */
+                                else{
+                                    document.getElementById('tips').innerHTML +=tips1; 
+                                    return;
+                                }
+                            }
+                        }
+						if(classOfPawn=='bigWhiteLadyPawn'){
+                            var classOfPawn2 = $(event.target).children('div').prop('class');
+                            /*Nacisnęłam na pole z pionkiem przeciwnego koloru. */
+                            if(classOfPawn2=='blackPawn'){
+                                if(sequence==('whiteAndBlack')){
+                                    $(event.target).children('div').removeClass('blackPawn');
+                                    $(event.target).children('div').addClass('bigblackPawn');
+                                    $(document.getElementById(firstField)).children('div').removeClass('bigWhiteLadyPawn');
+                                    $(document.getElementById(firstField)).children('div').addClass('whiteLadyPawn');
+                                    firstField = $(event.target).prop('id');
+                                    sequence='blackTurn';
+                                    return;
+                                }
+                            }
+							if(classOfPawn2=='blackLadyPawn'){
+                                if(sequence==('whiteAndBlack')){
+                                    $(event.target).children('div').removeClass('blackPawn');
+                                    $(event.target).children('div').addClass('bigblackPawn');
+                                    $(document.getElementById(firstField)).children('div').removeClass('bigWhiteLadyPawn');
+                                    $(document.getElementById(firstField)).children('div').addClass('whiteLadyPawn');
+                                    firstField = $(event.target).prop('id');
+                                    sequence='blackTurn';
+                                    return;
+                                }
+                            }
+                            /*Nacisnęłam na inny mój pionek */
+                            if(classOfPawn2=='whitePawn'){
+								document.getElementById('tips').innerHTML +=tips1;
+                                return;
+                            }
+                            /*Powtórnie wybrałam pierwszy pionek - rezygnuję z ruchu nim. */
+                            if(classOfPawn2=='bigWhiteLadyPawn'){
+								document.getElementById('tips').innerHTML +=tips1;
+                                return;
+                            }
+							if(classOfPawn2=='whiteLadyPawn'){
+								document.getElementById('tips').innerHTML +=tips1;
+                                return;
+                            }
+                            /*Jako drugie pole wybrałam pole puste. */
+                            if(classOfPawn2=='empty'){
+                                /*Sprawdzam czy mogę sie ruszyć na to pole. */
+                                if(ladyAttacke(firstField, secondField)){
+                                    /*Usunęłam pionek z pola pierwszego. Następnie kasuje parametry ruchu, aby móc wykonac kolejny.*/
+                                    firstField=secondField;
+                                    sequence='whiteAndBlack';
+                                    secondField='0';
+                                    return;
+                                }
+                                /*Jeśli nie mogę się ruszyć na drugie pole to wypuszczam alert i lasuje parametry pól. */
+                                else{
+									document.getElementById('tips').innerHTML +=tips1;
+                                    return;
+                                }
+                            }
+                        }
+                        /*Nacisnęłam na pole z pionkiem mojego koloru - czarnego. */
+                        if(classOfPawn=='bigblackPawn'){
+                            var classOfPawn2 = $(event.target).children('div').prop('class');
+                            /*Nacisnęłam na pole z pionkiem przeciwnego koloru. */
+                            if(classOfPawn2=='whitePawn'){
+                                if(sequence==('blackAndWhite')){
+                                    $(event.target).children('div').removeClass('whitePawn');
+                                    $(event.target).children('div').addClass('bigWhitePawn');
+                                    $(document.getElementById(firstField)).children('div').removeClass('bigblackPawn');
+                                    $(document.getElementById(firstField)).children('div').addClass('blackPawn');
+                                    firstField = $(event.target).prop('id');
+                                    sequence='whiteTurn';
+                                    return;
+                                }
+                            }
+							if(classOfPawn2=='whiteLadyPawn'){
+                                if(sequence==('blackAndWhite')){
+                                    $(event.target).children('div').removeClass('whiteLadyPawn');
+                                    $(event.target).children('div').addClass('bigWhiteLadyPawn');
+                                    $(document.getElementById(firstField)).children('div').removeClass('bigblackPawn');
+                                    $(document.getElementById(firstField)).children('div').addClass('blackPawn');
+                                    firstField = $(event.target).prop('id');
+                                    sequence='whiteTurn';
+                                    return;
+                                }
+                            }
+                            /*Nacisnęłam na inny mój pionek - to zamieniam pionek wybrany do ruchu. */
+                            if(classOfPawn2=='blackPawn'){
+								document.getElementById('tips').innerHTML +=tips1;
+                                return;
+                            }
+                            /*Powtórnie wybrałam pierwszy pionek - rezygnuję z ruchu nim. */
+                            if(classOfPawn2=='bigblackPawn'){
+								document.getElementById('tips').innerHTML +=tips1;
+                                return;
+                            }
+							if(classOfPawn2=='blackLadyPawn'){
+								document.getElementById('tips').innerHTML +=tips1;
+                                return;
+                            }
+                            /*Jako drugie pole wybrałam pole puste. */
+                            if(classOfPawn2=='empty'){
+                                /*Sprawdzam czy mogę sie ruszyć na to pole. */
+                                if(checkIfLadyAttack(firstField, secondField)){
+                                    /*Usunęłam pionek z pola pierwszego. Następnie kasuje parametry ruchu, aby móc wykonac kolejny.*/
+                                    firstField=secondField;
+                                    sequence='blackAndWhite';
+									if(iAmALady(secondField)){
+										$(document.getElementById(firstField)).children('div').removeClass('bigblackPawn');
+										$(document.getElementById(firstField)).children('div').addClass('bigBlackLadyPawn');
+									}
+                                    secondField='0';
+                                    return;
+                                }
+                                /*Jeśli nie mogę się ruszyć na drugie pole to wypuszczam alert i lasuje parametry pól. */
+                                else{
+									document.getElementById('tips').innerHTML +=tips1;
+                                    return;
+                                }
+                            }
+                        }
+						if(classOfPawn=='bigBlackLadyPawn'){
+                            var classOfPawn2 = $(event.target).children('div').prop('class');
+                            /*Nacisnęłam na pole z pionkiem przeciwnego koloru. */
+                            if(classOfPawn2=='whitePawn'){
+                                if(sequence==('blackAndWhite')){
+                                    $(event.target).children('div').removeClass('whitePawn');
+                                    $(event.target).children('div').addClass('bigWhitePawn');
+                                    $(document.getElementById(firstField)).children('div').removeClass('bigBlackLadyPawn');
+                                    $(document.getElementById(firstField)).children('div').addClass('blackLadyPawn');
+                                    firstField = $(event.target).prop('id');
+                                    sequence='whiteTurn';
+                                    return;
+                                }
+                            }
+							if(classOfPawn2=='whiteLadyPawn'){
+                                if(sequence==('blackAndWhite')){
+                                    $(event.target).children('div').removeClass('whiteLadyPawn');
+                                    $(event.target).children('div').addClass('bigWhiteLadyPawn');
+                                    $(document.getElementById(firstField)).children('div').removeClass('bigBlackLadyPawn');
+                                    $(document.getElementById(firstField)).children('div').addClass('blackLadyPawn');
+                                    firstField = $(event.target).prop('id');
+                                    sequence='whiteTurn';
+                                    return;
+                                }
+                            }
+                            /*Nacisnęłam na inny mój pionek - to zamieniam pionek wybrany do ruchu. */
+                            if(classOfPawn2=='blackPawn'){
+								document.getElementById('tips').innerHTML +=tips1;
+                                return;
+                            }
+                            /*Powtórnie wybrałam pierwszy pionek - rezygnuję z ruchu nim. */
+                            if(classOfPawn2=='blackLadyPawn'){
+								document.getElementById('tips').innerHTML +=tips1;
+                                return;
+                            }
+							if(classOfPawn2=='bigBlackLadyPawn'){
+								document.getElementById('tips').innerHTML +=tips1;
+                                return;
+                            }
+                            /*Jako drugie pole wybrałam pole puste. */
+                            if(classOfPawn2=='empty'){
+                                /*Sprawdzam czy mogę sie ruszyć na to pole. */
+                                if(ladyAttacke(firstField, secondField)){
+                                    /*Usunęłam pionek z pola pierwszego. Następnie kasuje parametry ruchu, aby móc wykonac kolejny.*/
+                                    firstField=secondField;
+                                    sequence='blackAndWhite';
+									secondField='0';
+                                    return;
+                                }
+                                /*Jeśli nie mogę się ruszyć na drugie pole to wypuszczam alert i lasuje parametry pól. */
+                                else{
+								document.getElementById('tips').innerHTML +=tips1;
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                    /*Nacisnęłam na pionek byle jakiej klasy. */
+                    else{
+                        var classOfPawn2 = $(event.target).prop('class');
+                        /*Moje pionki są białe. */
+                        if(classOfPawn=='bigWhitePawn'){
+                            /*Nacisnęłam na pole z pionkiem przeciwnego koloru. */
+                            if(classOfPawn2=='blackPawn'){
+                                if(sequence==('whiteAndBlack')){
+                                    $(event.target).removeClass('blackPawn');
+                                    $(event.target).addClass('bigblackPawn');
+                                    $(document.getElementById(firstField)).children('div').removeClass('bigWhitePawn');
+                                    $(document.getElementById(firstField)).children('div').addClass('whitePawn');
+                                    firstField = $(event.target).parent('div').prop('id');
+                                    sequence='blackTurn';
+                                    return;
+                                }
+                            }
+							if(classOfPawn2=='blackLadyPawn'){
+                                if(sequence==('whiteAndBlack')){
+                                    $(event.target).removeClass('blackLadyPawn');
+                                    $(event.target).addClass('bigBlackLadyPawn');
+                                    $(document.getElementById(firstField)).children('div').removeClass('bigWhitePawn');
+                                    $(document.getElementById(firstField)).children('div').addClass('whitePawn');
+                                    firstField = $(event.target).parent('div').prop('id');
+                                    sequence='blackTurn';
+                                    return;
+                                }
+                            }
+                            /*Nacisnęłam na inny mój pionek - to zamieniam pionek wybrany do ruchu. */
+                            if(classOfPawn2=='whitePawn'){
+								document.getElementById('tips').innerHTML +=tips1;
+                                return;
+                            }
+							if(classOfPawn2=='whiteLadyPawn'){
+								document.getElementById('tips').innerHTML +=tips1;
+                                return;
+                            }
+                            /*Powtórnie wybrałam pierwszy pionek - rezygnuję z ruchu nim. */
+                            if(classOfPawn2=='bigWhitePawn'){
+								document.getElementById('tips').innerHTML +=tips1;
+                                return;
+                            }
+                            /*Jako drugie pole wybrałam pole puste. */
+                            if(classOfPawn2=='empty'){
+                                if(checkIfLadyAttack(firstField, secondField)){
+                                    /*Usunęłam pionek z pola pierwszego. Następnie kasuje parametry ruchu, aby móc wykonac kolejny.*/
+                                    firstField=secondField;
+                                    sequence='whiteAndBlack';
+									if(iAmALady(secondField)){
+										$(document.getElementById(firstField)).children('div').removeClass('bigWhitePawn');
+										$(document.getElementById(firstField)).children('div').addClass('bigWhiteLadyPawn');
+									}
+                                    secondField='0';
+                                    return;
+                                }
+                                
+                                else{
+								document.getElementById('tips').innerHTML +=tips1;
+                                    return;
+                                }
+                            }
+                        }
+						if(classOfPawn=='bigWhiteLadyPawn'){
+                            /*Nacisnęłam na pole z pionkiem przeciwnego koloru. */
+                            if(classOfPawn2=='blackPawn'){
+                                if(sequence==('whiteAndBlack')){
+                                    $(event.target).removeClass('blackPawn');
+                                    $(event.target).addClass('bigblackPawn');
+                                    $(document.getElementById(firstField)).children('div').removeClass('bigWhiteLadyPawn');
+                                    $(document.getElementById(firstField)).children('div').addClass('whiteLadyPawn');
+                                    firstField = $(event.target).parent('div').prop('id');
+                                    sequence='blackTurn';
+                                    return;
+                                }
+                            }
+							if(classOfPawn2=='blackLadyPawn'){
+                                if(sequence==('whiteAndBlack')){
+                                    $(event.target).removeClass('blackLadyPawn');
+                                    $(event.target).addClass('bigBlackLadyPawn');
+                                    $(document.getElementById(firstField)).children('div').removeClass('bigWhiteLadyPawn');
+                                    $(document.getElementById(firstField)).children('div').addClass('whiteLadyPawn');
+                                    firstField = $(event.target).parent('div').prop('id');
+                                    sequence='blackTurn';
+                                    return;
+                                }
+                            }
+                            /*Nacisnęłam na inny mój pionek - to zamieniam pionek wybrany do ruchu. */
+                            if(classOfPawn2=='whitePawn'){
+								document.getElementById('tips').innerHTML +=tips1;
+                                return;
+                            }
+							if(classOfPawn2=='whiteLadyPawn'){
+								document.getElementById('tips').innerHTML +=tips1;
+                                return;
+                            }
+                            /*Powtórnie wybrałam pierwszy pionek - rezygnuję z ruchu nim. */
+                            if(classOfPawn2=='bigWhiteLadyPawn'){
+								document.getElementById('tips').innerHTML +=tips1;
+                                return;
+                            }
+                            /*Jako drugie pole wybrałam pole puste. */
+                            if(classOfPawn2=='empty'){
+                                if(checkIfLadyAttack(firstField, secondField)){
+                                    /*Usunęłam pionek z pola pierwszego. Następnie kasuje parametry ruchu, aby móc wykonac kolejny.*/
+                                    firstField=secondField;
+                                    sequence='whiteAndBlack';
+                                    secondField='0';
+                                    return;
+                                }
+                                
+                                else{
+								document.getElementById('tips').innerHTML +=tips1;
+                                    return;
+                                }
+                            }
+                        }
+                        /*Nacisnęłam na pole z pionkiem mojego koloru - czarnego. */
+                        if(classOfPawn=='bigblackPawn'){
+                            var classOfPawn2 = $(event.target).prop('class');
+                            /*Nacisnęłam na pole z pionkiem przeciwnego koloru. */
+                            if(classOfPawn2=='whitePawn'){
+                                if(sequence==('blackAndWhite')){
+                                    $(event.target).removeClass('whitePawn');
+                                    $(event.target).addClass('bigWhitePawn');
+                                    $(document.getElementById(firstField)).children('div').removeClass('bigblackPawn');
+                                    $(document.getElementById(firstField)).children('div').addClass('blackPawn');
+                                    firstField = $(event.target).parent('div').prop('id');
+                                    sequence='whiteTurn';
+                                    return;
+                                }
+                            }
+							if(classOfPawn2=='whiteLadyPawn'){
+                                if(sequence==('blackAndWhite')){
+                                    $(event.target).removeClass('whiteLadyPawn');
+                                    $(event.target).addClass('bigWhiteLadyPawn');
+                                    $(document.getElementById(firstField)).children('div').removeClass('bigblackPawn');
+                                    $(document.getElementById(firstField)).children('div').addClass('blackPawn');
+                                    firstField = $(event.target).parent('div').prop('id');
+                                    sequence='whiteTurn';
+                                    return;
+                                }
+                            }
+                            /*Nacisnęłam na inny mój pionek - to zamieniam pionek wybrany do ruchu. */
+                            if(classOfPawn2=='blackPawn'){
+								document.getElementById('tips').innerHTML +=tips1;
+                                return;
+                            }
+							if(classOfPawn2=='blackLadyPawn'){
+								document.getElementById('tips').innerHTML +=tips1;
+                                return;
+                            }							
+                            /*Powtórnie wybrałam pierwszy pionek - rezygnuję z ruchu nim. */
+                            if(classOfPawn2=='bigblackPawn'){
+								document.getElementById('tips').innerHTML +=tips1;
+                                return;
+                            }
+                            /*Jako drugie pole wybrałam pole puste. */
+                            if(classOfPawn2=='empty'){
+                                /*Sprawdzam czy mogę sie ruszyć na to pole. */
+                                if(checkIfLadyAttack(firstField, secondField)){
+                                    firstField=secondField;
+                                    sequence='blackAndWhite';
+									if(iAmALady(secondField)){
+										$(document.getElementById(firstField)).children('div').removeClass('bigblackPawn');
+										$(document.getElementById(firstField)).children('div').addClass('bigBlackLadyPawn');
+									}
+                                    secondField='0';
+                                    return;
+                                }
+                                else{
+								document.getElementById('tips').innerHTML +=tips1;
+                                    return;
+                                }
+                            }
+                        }
+						if(classOfPawn=='bigBlackLadyPawn'){
+                            var classOfPawn2 = $(event.target).prop('class');
+                            /*Nacisnęłam na pole z pionkiem przeciwnego koloru. */
+                            if(classOfPawn2=='whitePawn'){
+                                if(sequence==('blackAndWhite')){
+                                    $(event.target).removeClass('whitePawn');
+                                    $(event.target).addClass('bigWhitePawn');
+                                    $(document.getElementById(firstField)).children('div').removeClass('bigBlackLadyPawn');
+                                    $(document.getElementById(firstField)).children('div').addClass('blackLadyPawn');
+                                    firstField = $(event.target).parent('div').prop('id');
+                                    sequence='whiteTurn';
+                                    return;
+                                }
+                            }
+							if(classOfPawn2=='whiteLadyPawn'){
+                                if(sequence==('blackAndWhite')){
+                                    $(event.target).removeClass('whiteLadyPawn');
+                                    $(event.target).addClass('bigWhiteLadyPawn');
+                                    $(document.getElementById(firstField)).children('div').removeClass('bigBlackLadyPawn');
+                                    $(document.getElementById(firstField)).children('div').addClass('blackLadyPawn');
+                                    firstField = $(event.target).parent('div').prop('id');
+                                    sequence='whiteTurn';
+                                    return;
+                                }
+                            }
+                            /*Nacisnęłam na inny mój pionek - to zamieniam pionek wybrany do ruchu. */
+                            if(classOfPawn2=='blackPawn'){
+								document.getElementById('tips').innerHTML +=tips1;
+                                return;
+                            }
+							if(classOfPawn2=='blackLadyPawn'){
+								document.getElementById('tips').innerHTML +=tips1;
+                                return;
+                            }							
+                            /*Powtórnie wybrałam pierwszy pionek - rezygnuję z ruchu nim. */
+                            if(classOfPawn2=='bigBlackLadyPawn'){
+								document.getElementById('tips').innerHTML +=tips1;
+                                return;
+                            }
+                            /*Jako drugie pole wybrałam pole puste. */
+                            if(classOfPawn2=='empty'){
+                                /*Sprawdzam czy mogę sie ruszyć na to pole. */
+                                if(checkIfLadyAttack(firstField, secondField)){
+                                    firstField=secondField;
+                                    secondField='0';
+                                    return;
+                                }
+                                else{
+									document.getElementById('tips').innerHTML +=tips1;
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }       
+                /* Nacisnęłam pierwsze pole*/
+                if(firstField=='0'){
+					document.getElementById('tips').innerHTML = '';
+                    var childernDiv = $(event.target).children('div').prop('class');
+                    /*Ale to pole jest puste, więc wyświetlam alert. */
+                    if(childernDiv=='empty'){
+						document.getElementById('tips').innerHTML += tips2 + $(event.target).prop('id') + tips3;
+                        return;
+                    }
+                    /*Na polu znajduje się pionek*/
+                    else{
+                        var classEventTarget = $(event.target).prop('class');
+                        /*Nacisnełam pionek na pierwszym polu. */
+                        if(classEventTarget=='whitePawn'||classEventTarget=='blackPawn'||classEventTarget=='whiteLadyPawn'||classEventTarget=='blackLadyPawn'){
+                            var x= $(event.target).parent();
+                            /*Moje pionki są koloru białego. */
+                            if(classEventTarget=='whitePawn'||classEventTarget=='whiteLadyPawn'){
+                                if(sequence=='whiteTurn'){
+                                    if(classEventTarget=='whitePawn'){
+                                        $(event.target).removeClass('whitePawn');
+                                        $(event.target).addClass('bigWhitePawn');
+                                    }
+                                    else{
+                                        $(event.target).removeClass('whiteLadyPawn');
+                                        $(event.target).addClass('bigWhiteLadyPawn');
+                                    }
+                                }
+                                else if(sequence==null && classEventTarget=='whitePawn'){
+                                    $(event.target).removeClass('whitePawn');
+                                    $(event.target).addClass('bigWhitePawn');
+                                }
+								else if(sequence==null && classEventTarget=='whiteLadyPawn'){
+                                    $(event.target).removeClass('whiteLadyPawn');
+                                    $(event.target).addClass('bigWhiteLadyPawn');
+                                }
+                                else if (sequence=='blackTurn'){
+                                    document.getElementById('tips').innerHTML += tips4;
+                                    return;
+                                }
+                            }
+                            /*Moje pionki są czarne. */
+                            else{
+                                if(sequence=='blackTurn'){
+                                    if(classEventTarget=='blackPawn'){
+                                        $(event.target).removeClass('blackPawn');
+                                        $(event.target).addClass('bigblackPawn');
+                                    }
+                                    else{
+                                        $(event.target).removeClass('blackLadyPawn');
+                                        $(event.target).addClass('bigBlackLadyPawn');
+                                    }
+                                }
+                                else if(sequence==null && classEventTarget=='blackPawn'){
+                                    document.getElementById('tips').innerHTML += tips1;
+                                    return;
+                                }
+								else if(sequence==null && classEventTarget=='blackLadyPawn'){
+                                    document.getElementById('tips').innerHTML += tips1;
+                                    return;
+                                }
+                                else if (sequence=='whiteTurn'){
+                                    document.getElementById('tips').innerHTML += tips4;
+                                    return;
+                                }
+                            }
+                            /* Przypisuje id pola do zmiennej firstField. */
+                            firstField = x.prop('id');
+                            /* Wychodzę z kodu, żeby wykonać dalszą akcję. */
+                            return;
+                        }
+                        /*Nacisnęłam pole na pierwszym polu z pionkiem. */
+                        else{
+                            /*Sprawdzam jakiego koloru jest pionek na polu. */
+                            classChildrenEventTarget = $(event.target).children('div').prop('class');
+                            /*Pionek jest biały. */
+                            if(classChildrenEventTarget=='whitePawn'||classChildrenEventTarget=='whiteLadyPawn'){
+                                if(sequence=='whiteTurn'){
+                                    if(classChildrenEventTarget=='whitePawn'){
+										$(event.target).children('div').removeClass('whitePawn');
+										$(event.target).children('div').addClass('bigWhitePawn');
+									}
+                                    else{
+                                        $(event.target).children('div').removeClass('whiteLadyPawn');
+                                        $(event.target).children('div').addClass('bigWhiteLadyPawn');
+                                    }
+                                }
+                                else if(sequence==null && classChildrenEventTarget=='whitePawn'){
+                                    $(event.target).children('div').removeClass('whitePawn');
+                                    $(event.target).children('div').addClass('bigWhitePawn');
+                                }
+								else if(sequence==null && classChildrenEventTarget=='whiteLadyPawn'){
+                                    $(event.target).children('div').removeClass('whiteLadyPawn');
+                                    $(event.target).children('div').addClass('bigWhiteLadyPawn');
+                                }            
+                                else if (sequence=='blackTurn'){
+                                    document.getElementById('tips').innerHTML += tips4;
+                                    return;
+                                }
+                            }
+                            /*Pionek jest blackPawn. */
+                            else{
+                                if(sequence=='blackTurn'){
+                                    if(classChildrenEventTarget=='blackPawn'){
+                                        $(event.target).children('div').removeClass('blackPawn');
+                                        $(event.target).children('div').addClass('bigblackPawn');
+                                    }
+                                    else{
+                                        $(event.target).children('div').removeClass('blackLadyPawn');
+                                        $(event.target).children('div').addClass('bigBlackLadyPawn');
+                                    }
+                                }
+                                else if(sequence==null){
+                                    document.getElementById('tips').innerHTML += tips1;
+                                    return;
+                                }
+                                else if(sequence=='blackAndWhite'){
+                                    if((event.target).children('div').prop('id')==secondField){
+                                        if(classChildrenEventTarget=='blackPawn'){
+                                            $(event.target).children('div').removeClass('blackPawn');
+                                            $(event.target).children('div').addClass('bigblackPawn');
+                                        }
+                                        else{
+                                            $(event.target).children('div').removeClass('blackLadyPawn');
+                                            $(event.target).children('div').addClass('bigBlackLadyPawn');
+                                        }
+                                    }   
+                                }
+                                else if(sequence=='whiteAndBlack'){
+                                    if(classChildrenEventTarget=='blackPawn'){
+                                        $(event.target).removeClass('blackPawn');
+                                        $(event.target).addClass('bigblackPawn');
+                                    }
+                                    else{
+                                        $(event.target).removeClass('blackLadyPawn');
+                                        $(event.target).addClass('bigBlackLadyPawn');
+                                    }
+                                    if($(document.getElementById(firstField)).children('div').removeClass('bigWhitePawn')){
+                                        $(document.getElementById(firstField)).children('div').addClass('whitePawn');
+                                        $(document.getElementById(firstField)).children('div').removeClass('bigWhitePawn');
+                                    }
+                                    else if($(document.getElementById(firstField)).children('div').removeClass('bigWhiteLadyPawn')){
+                                        $(document.getElementById(firstField)).children('div').addClass('whiteLadyPawn');
+                                        $(document.getElementById(firstField)).children('div').removeClass('bigWhiteLadyPawn');
+                                    }
+                                    sequence='blackTurn';
+                                }
+                                else{
+                                    document.getElementById('tips').innerHTML += tips4;
+                                    return;
+                                }
+                            }
+                            /*Przypisuję id tego pola do zmiennej pierwsze pole. */
+                            firstField= $(event.target).prop('id');
+                            /*Wychodze z kodu, żeby wykonać dalszą akcję. */
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                /*Wybrałam drugie pole. */
+                else if(sequence=='whiteTurn'|| sequence=='blackTurn' || sequence==null){
+					document.getElementById('tips').innerHTML = '';
+                    var classEventTarget = $(event.target).prop('class');
+                    var classOfPawn = $(document.getElementById(firstField)).children('div').prop('class');
+                    /*Nacisnęłam na obszar planszy drugiego wybranego pola. */
+                    if(classEventTarget==$(document.getElementById(firstField)).prop('class')){
+                        /*Nacisnęłam na obszar planszy drugiego pola - pole jest w kolorze blackPawnm. */
+                        /*Jeżeli mój kolor pionków to biały. */
+                        secondField = $(event.target).prop('id');
+						/*Moje pionki są białe. */
+                        if(classOfPawn=='bigWhitePawn'||classOfPawn=='bigWhiteLadyPawn'){
+                            var classOfPawn2 = $(event.target).children('div').prop('class');
+                            /*Nacisnęłam na pole z pionkiem przeciwnego koloru. */
+							if(classOfPawn2=='blackPawn'||classOfPawn2=='blackLadyPawn'){
+                                /*if(sequence=='whiteTurn'||sequence==null){*/
+                                    if(classOfPawn=='bigWhitePawn'){
+                                        $(document.getElementById(firstField)).children('div').removeClass('bigWhitePawn');
+                                        $(document.getElementById(firstField)).children('div').addClass('whitePawn');
+                                    }
+                                    else if(classOfPawn=='bigWhiteLadyPawn'){
+                                        $(document.getElementById(firstField)).children('div').removeClass('bigWhiteLadyPawn');
+                                        $(document.getElementById(firstField)).children('div').addClass('whiteLadyPawn');
+                                    }
+                                    document.getElementById('tips').innerHTML += tips5;
+                                    firstField='0';
+                                    return;
+                            }
+                            /*Nacisnęłam na obszar planszy innego mojego pionek - to zamieniam pionek wybrany do ruchu. */
+                            if(classOfPawn2=='whitePawn'){
+								if(classOfPawn=='bigWhitePawn'){
+									$(document.getElementById(firstField)).children('div').removeClass('bigWhitePawn');
+									$(document.getElementById(firstField)).children('div').addClass('whitePawn');
+									$(event.target).children('div').removeClass('whitePawn');
+									$(event.target).children('div').addClass('bigWhitePawn');
+									firstField = $(event.target).prop('id');
+									return;
+								}
+								if(classOfPawn=='bigWhiteLadyPawn'){
+									$(document.getElementById(firstField)).children('div').removeClass('bigWhiteLadyPawn');
+									$(document.getElementById(firstField)).children('div').addClass('whiteLadyPawn');
+									$(event.target).children('div').removeClass('whitePawn');
+									$(event.target).children('div').addClass('bigWhitePawn');
+									firstField = $(event.target).prop('id');
+									return;
+								}
+                            }
+                            if(classOfPawn2=='whiteLadyPawn'){
+                                if(classOfPawn=='bigWhitePawn'){
+									$(document.getElementById(firstField)).children('div').removeClass('bigWhitePawn');
+									$(document.getElementById(firstField)).children('div').addClass('whitePawn');
+									$(event.target).children('div').removeClass('whiteLadyPawn');
+									$(event.target).children('div').addClass('bigWhiteLadyPawn');
+									firstField = $(event.target).prop('id');
+									return;
+								}
+								if(classOfPawn=='bigWhiteLadyPawn'){
+									$(document.getElementById(firstField)).children('div').removeClass('bigWhiteLadyPawn');
+									$(document.getElementById(firstField)).children('div').addClass('whiteLadyPawn');
+									$(event.target).children('div').removeClass('whiteLadyPawn');
+									$(event.target).children('div').addClass('bigWhiteLadyPawn');
+									firstField = $(event.target).prop('id');
+									return;
+								}    
+                            }
+                            /*Powtórnie wybrałam pierwszy pionek - rezygnuję z ruchu nim. */
+                            if(classOfPawn2=='bigWhitePawn'){
+                                $(document.getElementById(firstField)).children('div').removeClass('bigWhitePawn');
+                                $(document.getElementById(firstField)).children('div').addClass('whitePawn');
+                                firstField='0';
+                                return;
+                            }
+                            if(classOfPawn2=='bigWhiteLadyPawn'){
+                                $(document.getElementById(firstField)).children('div').removeClass('bigWhiteLadyPawn');
+                                $(document.getElementById(firstField)).children('div').addClass('whiteLadyPawn');
+                                firstField='0';
+                                return;
+                            }
+                            /*Jako drugie pole wybrałam pole puste. */
+                            if(classOfPawn2=='empty'){
+								/*Chcę wykonac ruch zwykłym pionkiem. */
+								if(classOfPawn=='bigWhitePawn'){
+                                    /*Sprawdzam czy mogę sie ruszyć na to pole. */
+                                    if (checkIfLadyAttack(firstField, secondField)){
+                                        firstField=secondField;
+										sequence='whiteAndBlack';
+										if(iAmALady(secondField)){
+											$(document.getElementById(firstField)).children('div').removeClass('whitePawn');
+											$(document.getElementById(firstField)).children('div').addClass('whiteLadyPawn');
+										}
+										secondField='0';
+										return;
+                                    }
+                                    else if(checkIfMovementIsCorrect(firstField, secondField)){
+                                        sequence='blackTurn';
+                                        firstField='0';
+										if(iAmALady(secondField)){
+											$(document.getElementById(secondField)).children('div').removeClass('whitePawn');
+											$(document.getElementById(secondField)).children('div').addClass('whiteLadyPawn');
+										}
+										secondField='0';
+										return;
+                                    }
+                                    else{
+                                        sequence='whiteTurn';
+                                        firstField='0';
+                                        secondField='0';
+                                        return;
+                                    }
+                                    return;
+                                }
+								/*Chcę wykonać ruch damką. */
+								if(classOfPawn=='bigWhiteLadyPawn'){
+                                    /*Sprawdzam czy mogę sie ruszyć na to pole. */
+                                    if (ladyAttacke(firstField, secondField)){
+                                        firstField=secondField;
+										sequence='whiteAndBlack';
+										secondField='0';
+										return;
+                                    }
+                                    else if(ladyMovement(firstField, secondField)){
+                                        sequence='blackTurn';
+                                        firstField='0';
+										secondField='0';
+										return;
+                                    }
+                                    else{
+                                        sequence='whiteTurn';
+                                        firstField='0';
+                                        secondField='0';
+                                        return;
+                                    }
+                                    return;
+								}
+								return;
+							}
+							return;
+                        }
+                        /*Nacisnęłam na pole z pionkiem mojego koloru - czarnego. */
+                        if(classOfPawn=='bigblackPawn'||classOfPawn=='bigBlackLadyPawn'){
+                            var classOfPawn2 = $(event.target).children('div').prop('class');
+                            /*Nacisnęłam na pole z pionkiem przeciwnego koloru. */
+                            if(classOfPawn2=='whitePawn'||classOfPawn2=='whiteLadyPawn'){
+								/*if(sequence=='blackTurn'){*/
+                                    if(classOfPawn=='bigblackPawn'){
+                                        $(document.getElementById(firstField)).children('div').removeClass('bigblackPawn');
+                                        $(document.getElementById(firstField)).children('div').addClass('blackPawn');
+                                    }
+                                    else if(classOfPawn=='bigBlackLadyPawn'){
+                                        $(document.getElementById(firstField)).children('div').removeClass('bigBlackLadyPawn');
+                                        $(document.getElementById(firstField)).children('div').addClass('blackLadyPawn');
+                                    }
+                                    document.getElementById('tips').innerHTML += tips5;
+                                    firstField='0';
+                                    return;
+                            }
+							/*Nacisnęłam na obszar planszy innego mojego pionek - to zamieniam pionek wybrany do ruchu. */
+                            if(classOfPawn2=='blackPawn'){
+								if(classOfPawn=='bigblackPawn'){
+									$(document.getElementById(firstField)).children('div').removeClass('bigblackPawn');
+									$(document.getElementById(firstField)).children('div').addClass('blackPawn');
+									$(event.target).children('div').removeClass('blackPawn');
+									$(event.target).children('div').addClass('bigblackPawn');
+									firstField = $(event.target).prop('id');
+									return;
+								}
+								if(classOfPawn=='bigBlackLadyPawn'){
+									$(document.getElementById(firstField)).children('div').removeClass('bigBlackLadyPawn');
+									$(document.getElementById(firstField)).children('div').addClass('blackLadyPawn');
+									$(event.target).children('div').removeClass('blackPawn');
+									$(event.target).children('div').addClass('bigblackPawn');
+									firstField = $(event.target).prop('id');
+									return;
+								}
+                            }
+                            else if(classOfPawn2=='blackLadyPawn'){
+                                if(classOfPawn=='bigblackPawn'){
+									$(document.getElementById(firstField)).children('div').removeClass('bigblackPawn');
+									$(document.getElementById(firstField)).children('div').addClass('blackPawn');
+									$(event.target).children('div').removeClass('blackLadyPawn');
+									$(event.target).children('div').addClass('bigBlackLadyPawn');
+									firstField = $(event.target).prop('id');
+									return;
+								}
+								if(classOfPawn=='bigBlackLadyPawn'){
+									$(document.getElementById(firstField)).children('div').removeClass('bigBlackLadyPawn');
+									$(document.getElementById(firstField)).children('div').addClass('blackLadyPawn');
+									$(event.target).children('div').removeClass('blackLadyPawn');
+									$(event.target).children('div').addClass('bigBlackLadyPawn');
+									firstField = $(event.target).prop('id');
+									return;
+								}    
+                            }
+                            /*Powtórnie wybrałam pierwszy pionek - rezygnuję z ruchu nim. */
+                            if(classOfPawn2=='bigblackPawn'){
+                                $(document.getElementById(firstField)).children('div').removeClass('bigblackPawn');
+                                $(document.getElementById(firstField)).children('div').addClass('blackPawn');
+                                firstField='0';
+                                return;
+                            }
+							if(classOfPawn2=='bigBlackLadyPawn'){
+                                $(document.getElementById(firstField)).children('div').removeClass('bigBlackLadyPawn');
+                                $(document.getElementById(firstField)).children('div').addClass('blackLadyPawn');
+                                firstField='0';
+                                return;
+                            }
+							/*Jako drugie pole wybrałam pole puste. */
+                            if(classOfPawn2=='empty'){
+							/*Używam zwykłego piosnka. */
+								if(classOfPawn=='bigblackPawn'){
+									/*Sprawdzam czy mogę sie ruszyć na to pole. */
+									if (checkIfLadyAttack(firstField, secondField)){
+										firstField=secondField;
+										sequence='blackAndWhite';
+										if(iAmALady(secondField)){
+											$(document.getElementById(firstField)).children('div').removeClass('blackPawn');
+											$(document.getElementById(firstField)).children('div').addClass('blackLadyPawn');
+										}
+										secondField='0';
+										return;
+									}
+									/*Sprawdzam czy mogę sie ruszyć na to pole. */
+									else if(checkIfMovementIsCorrect(firstField, secondField)){
+										sequence='whiteTurn';
+										firstField='0';
+										if(iAmALady(secondField)){
+											$(document.getElementById(secondField)).children('div').removeClass('blackPawn');
+											$(document.getElementById(secondField)).children('div').addClass('blackLadyPawn');
+										}
+										secondField='0';
+										return;
+									}
+									else{
+										sequence='blackTurn';
+										firstField='0';
+										secondField='0';
+										return;
+									}
+								}
+								/*Chcę wykonać ruch damką. */
+								if(classOfPawn=='bigBlackLadyPawn'){
+									/*Sprawdzam czy mogę sie ruszyć na to pole. */
+									if (ladyAttacke(firstField, secondField)){	
+										firstField=secondField;
+										sequence='blackAndWhite';
+										secondField='0';
+										return;
+									}
+									else if(ladyMovement(firstField, secondField)){
+										sequence='whiteTurn';
+										firstField='0';
+										secondField='0';
+										return;
+									}
+									else{
+										sequence='blackTurn';
+										firstField='0';
+										secondField='0';
+										return;
+									}
+									return;
+								}
+							}
+                            return;
+						}
+                    }
+                    /*Nacisnęłam na pionek. */
+					
+					
+				/*Wprowadziłam element 
+								document.getElementById('tips').innerHTML +=tips1;
+				w miejsca alertów do tej pory. Nie są one jeszcze kasowane. */
+				
+				
+					
+					
+                    else{
+                        var classOfPawn2 = $(event.target).prop('class');
+                        /*Moje pionki są białe. */
+                        if(classOfPawn=='bigWhitePawn'||classOfPawn=='bigWhiteLadyPawn'){							
+                            /*Nacisnęłam na pole z pionkiem przeciwnego koloru. */
+                            if(classOfPawn2=='blackPawn'||classOfPawn2=='blackLadyPawn'){
+									if(classOfPawn=='bigWhitePawn'){
+									$(document.getElementById(firstField)).children('div').removeClass('bigWhitePawn');
+									$(document.getElementById(firstField)).children('div').addClass('bigWhitePawn');
+								}
+								else if(classOfPawn=='bigBlackLadyPawn'){
+									$(document.getElementById(firstField)).children('div').removeClass('bigWhiteLadyPawn');
+									$(document.getElementById(firstField)).children('div').addClass('whiteLadyPawn');
+								}
+								document.getElementById('tips').innerHTML +=tips5;
+								firstField='0';
+								return;
+                            }
+                            /*Nacisnęłam na inny mój pionek - to zamieniam pionek wybrany do ruchu. */
+                            if(classOfPawn2=='whitePawn'){
+								if(classOfPawn=='bigWhitePawn'){
+                                $(document.getElementById(firstField)).children('div').removeClass('bigWhitePawn');
+                                $(document.getElementById(firstField)).children('div').addClass('whitePawn');
+                                $(event.target).removeClass('whitePawn');
+                                $(event.target).addClass('bigWhitePawn');
+                                firstField = $(event.target).parent('div').prop('id');
+                                return;
+								}
+								if(classOfPawn=='bigWhiteLadyPawn'){
+                                $(document.getElementById(firstField)).children('div').removeClass('bigWhiteLadyPawn');
+                                $(document.getElementById(firstField)).children('div').addClass('whiteLadyPawn');
+                                $(event.target).removeClass('whitePawn');
+                                $(event.target).addClass('bigWhitePawn');
+                                firstField = $(event.target).parent('div').prop('id');
+                                return;
+								}
+                            }
+							if(classOfPawn2=='whiteLadyPawn'){
+								if(classOfPawn=='bigWhitePawn'){
+                                $(document.getElementById(firstField)).children('div').removeClass('bigWhitePawn');
+                                $(document.getElementById(firstField)).children('div').addClass('whitePawn');
+                                $(event.target).removeClass('whiteLadyPawn');
+                                $(event.target).addClass('bigWhiteLadyPawn');
+                                firstField = $(event.target).parent('div').prop('id');
+                                return;
+								}
+								if(classOfPawn=='bigWhiteLadyPawn'){
+                                $(document.getElementById(firstField)).children('div').removeClass('bigWhiteLadyPawn');
+                                $(document.getElementById(firstField)).children('div').addClass('whiteLadyPawn');
+                                $(event.target).removeClass('whiteLadyPawn');
+                                $(event.target).addClass('bigWhiteLadyPawn');
+                                firstField = $(event.target).parent('div').prop('id');
+                                return;
+								}
+                            }
+                            /*Powtórnie wybrałam pierwszy pionek - rezygnuję z ruchu nim. */
+                            if(classOfPawn2=='bigWhitePawn'){
+                                $(document.getElementById(firstField)).children('div').removeClass('bigWhitePawn');
+                                $(document.getElementById(firstField)).children('div').addClass('whitePawn');
+                                firstField='0';
+                                return;
+                            }
+							if(classOfPawn2=='bigWhiteLadyPawn'){
+                                $(document.getElementById(firstField)).children('div').removeClass('bigWhiteLadyPawn');
+                                $(document.getElementById(firstField)).children('div').addClass('whiteLadyPawn');
+                                firstField='0';
+                                return;
+                            }
+                            /*Jako drugie pole wybrałam pole puste. */
+                            if(classOfPawn2=='empty'){
+								if( classOfPawn=='bigWhitePawn'){
+                                /*Sprawdzam czy mogę sie ruszyć na to pole. */
+                                if (checkIfLadyAttack(firstField, secondField)){
+                                    firstField=secondField;
+                                    sequence='whiteAndBlack';
+									if(iAmALady(secondField)){
+										$(document.getElementById(firstField)).children('div').removeClass('bigWhitePawn');
+										$(document.getElementById(firstField)).children('div').addClass('bigWhiteLadyPawn');
+									}
+                                    secondField='0';
+                                    return;
+                                }
+                                /*Sprawdzam czy mogę sie ruszyć na to pole. */
+                                else if(checkIfMovementIsCorrect(firstField, secondField)){
+                                    sequence='blackTurn';
+                                    firstField='0';
+									if(iAmALady(secondField)){
+										$(document.getElementById(secondField)).children('div').removeClass('bigWhitePawn');
+										$(document.getElementById(secondField)).children('div').addClass('bigWhiteLadyPawn');
+									}
+									secondField='0';
+									return;
+                                }
+                                else{
+                                    sequence='whiteTurn';
+                                    firstField='0';
+                                    secondField='0';
+                                    return;
+                                }
+                                }
+								/*Chcę wykonać ruch damką. */
+								else if(classOfPawn=='bigWhiteLadyPawn'){
+									/*Sprawdzam czy mogę sie ruszyć na to pole. */
+									if (ladyAttacke(firstField, secondField)){	
+										firstField=secondField;
+										sequence='whiteAndBlack';
+										secondField='0';
+										return;
+									}
+									else if(ladyMovement(firstField, secondField)){
+										sequence='blackTurn';
+										firstField='0';
+										secondField='0';
+										return;
+									}
+									else{
+										sequence='whiteTurn';
+										firstField='0';
+										secondField='0';
+										return;
+									}
+								}
+							}
+							return;
+                        }
+                        /*Nacisnęłam na drugi pionek, gdy mój kolor to czarne. */
+                        else if(classOfPawn=='bigblackPawn' || classOfPawn=='bigBlackLadyPawn'){
+							/*Nacisnęłam na pole z pionkiem przeciwnego koloru. */
+                            if(classOfPawn2=='whitePawn'||classOfPawn2=='whiteLadyPawn'){
+								/*if(sequence=='blackTurn'){*/
+								if(classOfPawn=='bigblackPawn'){
+									$(document.getElementById(firstField)).children('div').removeClass('bigblackPawn');
+									$(document.getElementById(firstField)).children('div').addClass('blackPawn');
+								}
+								else if(classOfPawn=='bigBlackLadyPawn'){
+									$(document.getElementById(firstField)).children('div').removeClass('bigBlackLadyPawn');
+									$(document.getElementById(firstField)).children('div').addClass('blackLadyPawn');
+								}
+								document.getElementById('tips').innerHTML +=tips5;
+								firstField='0';
+								return;
+                            }		
+                            /*Nacisnęłam na inny mój pionek - to zamieniam pionek wybrany do ruchu. */
+                            if(classOfPawn2=='blackPawn'){
+								if(classOfPawn=='bigblackPawn'){
+									$(document.getElementById(firstField)).children('div').removeClass('bigblackPawn');
+									$(document.getElementById(firstField)).children('div').addClass('blackPawn');
+									$(event.target).removeClass('blackPawn');
+									$(event.target).addClass('bigblackPawn');
+									firstField = $(event.target).parent('div').prop('id');
+									return;
+								}
+								if(classOfPawn=='bigBlackLadyPawn'){
+									$(document.getElementById(firstField)).children('div').removeClass('bigBlackLadyPawn');
+									$(document.getElementById(firstField)).children('div').addClass('blackLadyPawn');
+									$(event.target).removeClass('blackPawn');
+									$(event.target).addClass('bigblackPawn');
+									firstField = $(event.target).parent('div').prop('id');
+									return;
+								}
+                            }
+							else if(classOfPawn2=='blackLadyPawn'){
+								if(classOfPawn=='bigblackPawn'){
+                                $(document.getElementById(firstField)).children('div').removeClass('bigblackPawn');
+                                $(document.getElementById(firstField)).children('div').addClass('blackPawn');
+                                $(event.target).removeClass('blackLadyPawn');
+                                $(event.target).addClass('bigBlackLadyPawn');
+                                firstField = $(event.target).parent('div').prop('id');
+                                return;
+								}
+								if(classOfPawn=='bigBlackLadyPawn'){
+                                $(document.getElementById(firstField)).children('div').removeClass('bigBlackLadyPawn');
+                                $(document.getElementById(firstField)).children('div').addClass('blackLadyPawn');
+                                $(event.target).removeClass('blackLadyPawn');
+                                $(event.target).addClass('bigBlackLadyPawn');
+                                firstField = $(event.target).parent('div').prop('id');
+                                return;
+								}
+                            }
+							/*Powtórnie wybrałam pierwszy pionek - rezygnuję z ruchu nim. */
+                            else if(classOfPawn2=='bigblackPawn'){
+                                $(document.getElementById(firstField)).children('div').removeClass('bigblackPawn');
+                                $(document.getElementById(firstField)).children('div').addClass('blackPawn');
+                                firstField='0';
+                                return;
+                            }
+                            /*Jako drugie pole wybrałam pole puste. */
+                            else if(classOfPawn2=='empty'){
+                                /*Sprawdzam czy mogę sie ruszyć na to pole. */
+                                if (checkIfLadyAttack(firstField, secondField)){
+                                        firstField=secondField;
+                                        sequence='blackAndWhite';
+										if(iAmALady(secondField)){
+											$(document.getElementById(firstField)).children('div').removeClass('bigWhitePawn');
+											$(document.getElementById(firstField)).children('div').addClass('bigWhiteLadyPawn');
+										}
+                                        secondField='0';
+                                        return;
+                                    }
+                                    /*Sprawdzam czy mogę sie ruszyć na to pole. */
+                                    else if(checkIfMovementIsCorrect(firstField, secondField)){
+                                        sequence='whiteTurn';
+                                        firstField='0';
+										if(iAmALady(secondField)){
+											$(document.getElementById(secondField)).children('div').removeClass('bigblackPawn');
+											$(document.getElementById(secondField)).children('div').addClass('bigBlackLadyPawn');
+										}
+										secondField='0';
+										return;
+                                    }
+                                else{
+                                    sequence='blackTurn';
+                                    firstField='0';
+                                    secondField='0';
+                                    return;
+                                }
+								/*Chcę wykonać ruch damką. */
+								if(classOfPawn=='bigBlackLadyPawn'){
+									/*Sprawdzam czy mogę sie ruszyć na to pole. */
+									if (ladyAttacke(firstField, secondField)){	
+										firstField=secondField;
+										sequence='blackAndWhite';
+										secondField='0';
+										return;
+									}
+									else if(ladyMovement(firstField, secondField)){
+										sequence='whiteTurn';
+										firstField='0';
+										secondField='0';
+										return;
+									}
+									else{
+										sequence='blackTurn';
+										firstField='0';
+										secondField='0';
+										return;
+									}
+									return;
+								}								
+                                return;
+                            }
+                        }
+                    }
+                }
+            });
+        });
+		function checkIfLadyAttack(firstField, secondField){
+			var row1 = firstField.charAt(1).charCodeAt(0);
+			var column1 = firstField.charAt(0).charCodeAt(0);
+			var row2= secondField.charAt(1).charCodeAt(0);
+			var column2 = secondField.charAt(0).charCodeAt(0);
+			var classOfPawn;
+			/*Jeśli jest to pionek biały . */
+			if ($(document.getElementById(firstField)).children('div').prop('class') == 'bigWhitePawn'||$(document.getElementById(firstField)).children('div').prop('class') =='bigWhiteLadyPawn') {
+				/*Ma możliwość bicia. */
+				if((row2==row1+2) && (Math.abs(column1-column2)==2)){
+					var row3=row1+1;
+					var column3 = '0';
+					/*Biały pionek bije w prawą stronę. */
+					if(column2>column1){
+						column3=column1+1;
+						row3=String.fromCharCode(row3);
+						column3=String.fromCharCode(column3);
+						var attackedBox = column3+row3;
+						if ($(document.getElementById(attackedBox)).children('div').prop('class')== 'blackPawn'){
+							$(document.getElementById(attackedBox)).children('div').removeClass('blackPawn');
+							$(document.getElementById(attackedBox)).children('div').addClass('empty');
+							$(document.getElementById(secondField)).children('div').removeClass('empty');
+							$(document.getElementById(secondField)).children('div').addClass('bigWhitePawn');
+							/*Właśnie ustawiłam pionek na polu drugim. */
+							var idOfFirstField = $(document.getElementById(firstField));
+							$(idOfFirstField).children('div').removeClass('bigWhitePawn');
+							$(idOfFirstField).children('div').addClass('empty');
+							/*Usunęłam pionek z pola pierwszego. Następnie kasuje parametry ruchu, aby móc wykonac kolejny.*/
+							document.getElementById('PointsOfWhitePawns').innerHTML +='<div class="score"><div class="blackScore"></div></div>';
+							return true;
+						}
+						else if ($(document.getElementById(attackedBox)).children('div').prop('class')== 'blackLadyPawn'){
+							$(document.getElementById(attackedBox)).children('div').removeClass('blackLadyPawn');
+							$(document.getElementById(attackedBox)).children('div').addClass('empty');
+							$(document.getElementById(secondField)).children('div').removeClass('empty');
+							$(document.getElementById(secondField)).children('div').addClass('bigWhitePawn');
+							/*Właśnie ustawiłam pionek na polu drugim. */
+							var idOfFirstField = $(document.getElementById(firstField));
+							$(idOfFirstField).children('div').removeClass('bigWhitePawn');
+							$(idOfFirstField).children('div').addClass('empty');
+							/*Usunęłam pionek z pola pierwszego. Następnie kasuje parametry ruchu, aby móc wykonac kolejny.*/
+								document.getElementById('PointsOfWhitePawns').innerHTML +='<div class="score"><div class="blackLadyScore"></div></div>';
+							return true;
+						}
+						else{
+							document.getElementById('tips').innerHTML += tips7 + attackedBox + tips8;
+							return false;
+						}
+					}
+					/*Biały pionek bije w lewą stronę. */
+					else if(column2<column1){
+						column3=column1-1;
+						row3=String.fromCharCode(row3);
+						column3=String.fromCharCode(column3);
+						var attackedBox = column3+row3;
+						if ($(document.getElementById(attackedBox)).children('div').prop('class')== 'blackPawn'){
+							$(document.getElementById(attackedBox)).children('div').removeClass('blackPawn');
+							$(document.getElementById(attackedBox)).children('div').addClass('empty');
+							$(document.getElementById(secondField)).children('div').removeClass('empty');
+							$(document.getElementById(secondField)).children('div').addClass('bigWhitePawn');
+							/*Właśnie ustawiłam pionek na polu drugim. */
+							var idOfFirstField = $(document.getElementById(firstField));
+							$(idOfFirstField).children('div').removeClass('bigWhitePawn');
+							$(idOfFirstField).children('div').addClass('empty');
+							/*Usunęłam pionek z pola pierwszego. Następnie kasuje parametry ruchu, aby móc wykonac kolejny.*/
+								document.getElementById('PointsOfWhitePawns').innerHTML +='<div class="score"><div class="blackScore"></div></div>';
+							return true;
+						}
+						else if ($(document.getElementById(attackedBox)).children('div').prop('class')== 'blackLadyPawn'){
+							$(document.getElementById(attackedBox)).children('div').removeClass('blackLadyPawn');
+							$(document.getElementById(attackedBox)).children('div').addClass('empty');
+							$(document.getElementById(secondField)).children('div').removeClass('empty');
+							$(document.getElementById(secondField)).children('div').addClass('bigWhitePawn');
+							/*Właśnie ustawiłam pionek na polu drugim. */
+							var idOfFirstField = $(document.getElementById(firstField));
+							$(idOfFirstField).children('div').removeClass('bigWhitePawn');
+							$(idOfFirstField).children('div').addClass('empty');
+							/*Usunęłam pionek z pola pierwszego. Następnie kasuje parametry ruchu, aby móc wykonac kolejny.*/
+								document.getElementById('PointsOfWhitePawns').innerHTML +='<div class="score"><div class="blackLadyScore"></div></div>';
+							return true;
+						}
+						else{
+							document.getElementById('tips').innerHTML += tips7 + attackedBox + tips8;
+							return false;
+						}
+					}
+					return false;
+				}
+			}
+			/*Jeśli jest to pionek blackPawn. */
+			else if($(document.getElementById(firstField)).children('div').prop('class') == 'bigblackPawn'||$(document.getElementById(firstField)).children('div').prop('class') =='bigBlackLadyPawn'){
+				/*Ma możliwość bicia. */
+				if((row2==row1-2) && (Math.abs(column1-column2)==2)){
+					var row3=row1-1;
+					var column3 = '0';
+					/*blackPawn pionek bije w prawą stronę. */
+					if(column2>column1){
+						column3=column1+1;
+						row3=String.fromCharCode(row3);
+						column3=String.fromCharCode(column3);
+						var attackedBox = column3+row3;
+						if ($(document.getElementById(attackedBox)).children('div').prop('class')=='whitePawn'){
+							$(document.getElementById(attackedBox)).children('div').removeClass('whitePawn');
+							$(document.getElementById(attackedBox)).children('div').addClass('empty');
+							$(document.getElementById(secondField)).children('div').removeClass('empty');
+							$(document.getElementById(secondField)).children('div').addClass('bigblackPawn');
+							/*Właśnie ustawiłam pionek na polu drugim. */
+							var idOfFirstField = $(document.getElementById(firstField));
+							$(idOfFirstField).children('div').removeClass('bigblackPawn');
+							$(idOfFirstField).children('div').addClass('empty');
+							document.getElementById('PointsOfBlackPawns').innerHTML +='<div class="score"><div class="whiteScore"></div></div>';
+							return true;
+						}
+						else if ($(document.getElementById(attackedBox)).children('div').prop('class')=='whiteLadyPawn'){
+							$(document.getElementById(attackedBox)).children('div').removeClass('whiteLadyPawn');
+							$(document.getElementById(attackedBox)).children('div').addClass('empty');
+							$(document.getElementById(secondField)).children('div').removeClass('empty');
+							$(document.getElementById(secondField)).children('div').addClass('bigblackPawn');
+							/*Właśnie ustawiłam pionek na polu drugim. */
+							var idOfFirstField = $(document.getElementById(firstField));
+							$(idOfFirstField).children('div').removeClass('bigblackPawn');
+							$(idOfFirstField).children('div').addClass('empty');
+							document.getElementById('PointsOfBlackPawns').innerHTML +='<div class="score"><div class="whiteLadyScore"></div></div>';
+							return true;
+						}
+						else{
+							document.getElementById('tips').innerHTML += tips7 + attackedBox + tips8;
+							return false;
+						}
+					}
+					/*blackPawn pionek bije w lewą stronę. */
+					if(column2<column1){
+						column3=column1-1;
+						row3=String.fromCharCode(row3);
+						column3=String.fromCharCode(column3);
+						var attackedBox = column3+row3;
+						if ($(document.getElementById(attackedBox)).children('div').prop('class')=='whitePawn'){
+							$(document.getElementById(attackedBox)).children('div').removeClass('whitePawn');
+							$(document.getElementById(attackedBox)).children('div').addClass('empty');
+							$(document.getElementById(secondField)).children('div').removeClass('empty');
+							$(document.getElementById(secondField)).children('div').addClass('bigblackPawn');
+							/*Właśnie ustawiłam pionek na polu drugim. */
+							var idOfFirstField = $(document.getElementById(firstField));
+							$(idOfFirstField).children('div').removeClass('bigblackPawn');
+							$(idOfFirstField).children('div').addClass('empty');
+							document.getElementById('PointsOfBlackPawns').innerHTML +='<div class="score"><div class="whiteScore"></div></div>';
+							return true;
+						}
+						else if ($(document.getElementById(attackedBox)).children('div').prop('class')=='whiteLadyPawn'){
+							$(document.getElementById(attackedBox)).children('div').removeClass('whiteLadyPawn');
+							$(document.getElementById(attackedBox)).children('div').addClass('empty');
+							$(document.getElementById(secondField)).children('div').removeClass('empty');
+							$(document.getElementById(secondField)).children('div').addClass('bigblackPawn');
+							/*Właśnie ustawiłam pionek na polu drugim. */
+							var idOfFirstField = $(document.getElementById(firstField));
+							$(idOfFirstField).children('div').removeClass('bigblackPawn');
+							$(idOfFirstField).children('div').addClass('empty');
+							document.getElementById('PointsOfBlackPawns').innerHTML +='<div class="score"><div class="whiteLadyScore"></div></div>';
+							return true;
+						}
+						else{
+							document.getElementById('tips').innerHTML += tips7 + attackedBox + tips8;
+							return false;
+						}
+					}
+					return false;
+				}
+			}
+		}
+		function checkIfMovementIsCorrect(firstField, secondField){
+			var row1 = firstField.charAt(1).charCodeAt(0);
+			var column1 = firstField.charAt(0).charCodeAt(0);
+			var row2= secondField.charAt(1).charCodeAt(0);
+			var column2 = secondField.charAt(0).charCodeAt(0);
+			var classOfPawn;
+			/*Ustawiam wybieranie koloru pionka który wykonuje ruch. */
+			if($(document.getElementById(firstField)).children('div').prop('class') == 'bigWhitePawn'){
+				classOfPawn = 'blackPawn';
+			}
+			else{
+				classOfPawn = 'whitePawn';
+			}
+			/*Jeśli jest to pionek biały . */
+			if (classOfPawn == 'blackPawn') {
+				/*Biały pionek ma możliwość ruchu. */
+				if((row2==row1+1) && (Math.abs(column1-column2)==1)){
+					$(document.getElementById(secondField)).children('div').removeClass('empty');
+					$(document.getElementById(secondField)).children('div').addClass('whitePawn');
+					/*Właśnie ustawiłam pionek na polu drugim. */
+					var idOfFirstField = $(document.getElementById(firstField));
+					$(idOfFirstField).children('div').removeClass('bigWhitePawn');
+					$(idOfFirstField).children('div').addClass('empty');
+					/*Usunęłam pionek z pola pierwszego. Następnie kasuje parametry ruchu, aby móc wykonac kolejny.*/
+					return true;
+				}
+				/*Ruch, który gracz próbuje wykonać jest niedozwolony. */
+				else{
+					document.getElementById('tips').innerHTML += tips9;
+					$(document.getElementById(firstField)).children('div').removeClass('bigWhitePawn');
+					$(document.getElementById(firstField)).children('div').addClass('whitePawn');
+					return false;
+				}
+			}
+			/*Jeśli jest to pionek blackPawn. */
+			else{
+				/*blackPawn pionek ma możliwość ruchu. */
+				if((row2==row1-1) && (Math.abs(column1-column2)==1)){
+					$(document.getElementById(secondField)).children('div').removeClass('empty');
+					$(document.getElementById(secondField)).children('div').addClass('blackPawn');
+					/*Właśnie ustawiłam pionek na polu drugim. */
+					var idOfFirstField = $(document.getElementById(firstField));
+					$(idOfFirstField).children('div').removeClass('bigblackPawn');
+					$(idOfFirstField).children('div').addClass('empty');
+					/*Usunęłam pionek z pola pierwszego. Następnie kasuje parametry ruchu, aby móc wykonac kolejny.*/
+					return true;
+				}
+				/*Ruch, który gracz próbuje wykonać jest niedozwolony. */
+				else{
+					document.getElementById('tips').innerHTML += tips9;
+					$(document.getElementById(firstField)).children('div').removeClass('bigblackPawn');
+					$(document.getElementById(firstField)).children('div').addClass('blackPawn');
+					return false;
+				}
+			}
+		}
+		function iAmALady(secondField){					
+			if($(document.getElementById(secondField)).children('div').prop('class')=='blackPawn' && $(document.getElementById(secondField)).parent('div').prop('id')=='1'){
+				return true;
+			}
+			if($(document.getElementById(secondField)).children('div').prop('class')=='whitePawn' && $(document.getElementById(secondField)).parent('div').prop('id')=='8'){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		function ladyMovement(firstField, secondField){
+			var row1 = firstField.charAt(1).charCodeAt(0);
+			var column1 = firstField.charAt(0).charCodeAt(0);
+			var row2= secondField.charAt(1).charCodeAt(0);
+			var column2 = secondField.charAt(0).charCodeAt(0);
+			var y=row1;
+			var differenceOfRows = Math.abs(row1-row2);
+			var differenceOfColumns = Math.abs(column1-column2);
+			var classOfAttackingPawn;
+			if($(document.getElementById(firstField)).children('div').prop('class')=='bigWhiteLadyPawn'){
+				classOfAttackingPawn = 'whitePawn';
+			}
+			else{
+				classOfAttackingPawn = 'blackPawn';
+			}
+			if(differenceOfRows==differenceOfColumns){
+				if(column1<column2){
+					if(row1<row2){
+						for(var x=column1+1; x<column2; x++){
+							y=y+1;
+							x=String.fromCharCode(x);
+							y=String.fromCharCode(y);
+							var id = x+y;
+							if($(document.getElementById(id)).children('div').prop('class')!= 'empty'){
+								document.getElementById('tips').innerHTML += tips10;
+								return false;
+							}
+							x=x.charCodeAt(0);
+							y=y.charCodeAt(0);
+						}
+						if(classOfAttackingPawn=='blackPawn'){
+							$(document.getElementById(firstField)).children('div').addClass('empty');
+							$(document.getElementById(firstField)).children('div').removeClass('bigBlackLadyPawn');
+							$(document.getElementById(secondField)).children('div').addClass('blackLadyPawn');
+							$(document.getElementById(secondField)).children('div').removeClass('empty');
+						}
+						else{
+							$(document.getElementById(firstField)).children('div').addClass('empty');
+							$(document.getElementById(firstField)).children('div').removeClass('bigWhiteLadyPawn');
+							$(document.getElementById(secondField)).children('div').addClass('whiteLadyPawn');
+							$(document.getElementById(secondField)).children('div').removeClass('empty');
+						}
+						return true;
+					}
+					else{
+						for(var x=column1+1; x<column2; x++){
+							y=y-1;
+							x=String.fromCharCode(x);
+							y=String.fromCharCode(y);
+							var id = x+y;
+							if($(document.getElementById(id)).children('div').prop('class')!= 'empty'){
+								document.getElementById('tips').innerHTML += tips10;
+								return false;
+							}
+							x=x.charCodeAt(0);
+							y=y.charCodeAt(0);
+						}
+						if(classOfAttackingPawn=='blackPawn'){
+							$(document.getElementById(firstField)).children('div').addClass('empty');
+							$(document.getElementById(firstField)).children('div').removeClass('bigBlackLadyPawn');
+							$(document.getElementById(secondField)).children('div').addClass('blackLadyPawn');
+							$(document.getElementById(secondField)).children('div').removeClass('empty');
+						}
+						else{
+							$(document.getElementById(firstField)).children('div').addClass('empty');
+							$(document.getElementById(firstField)).children('div').removeClass('bigWhiteLadyPawn');
+							$(document.getElementById(secondField)).children('div').addClass('whiteLadyPawn');
+							$(document.getElementById(secondField)).children('div').removeClass('empty');
+						}
+						return true;
+					}
+				}
+				else if(column1>column2){
+					if(row1<row2){
+						for(var x=column1-1; x>column2; x--){
+							y=y+1;
+							x=String.fromCharCode(x);
+							y=String.fromCharCode(y);
+							var id = x+y;
+							if($(document.getElementById(id)).children('div').prop('class')!= 'empty'){
+								document.getElementById('tips').innerHTML += tips10;
+								return false;
+							}
+							x=x.charCodeAt(0);
+							y=y.charCodeAt(0);
+						}
+						if(classOfAttackingPawn=='blackPawn'){
+							$(document.getElementById(firstField)).children('div').addClass('empty');
+							$(document.getElementById(firstField)).children('div').removeClass('bigBlackLadyPawn');
+							$(document.getElementById(secondField)).children('div').addClass('blackLadyPawn');
+							$(document.getElementById(secondField)).children('div').removeClass('empty');
+						}
+						else{
+							$(document.getElementById(firstField)).children('div').addClass('empty');
+							$(document.getElementById(firstField)).children('div').removeClass('bigWhiteLadyPawn');
+							$(document.getElementById(secondField)).children('div').addClass('whiteLadyPawn');
+							$(document.getElementById(secondField)).children('div').removeClass('empty');
+						}
+						return true;
+					}
+					else{
+						for(var x=column1-1; x>column2; x--){
+							y=y-1;
+							x=String.fromCharCode(x);
+							y=String.fromCharCode(y);
+							var id = x+y;
+							if($(document.getElementById(id)).children('div').prop('class')!= 'empty'){
+								document.getElementById('tips').innerHTML += tips10;
+								return false;
+							}
+							x=x.charCodeAt(0);
+							y=y.charCodeAt(0);
+						}
+						if(classOfAttackingPawn=='blackPawn'){
+							$(document.getElementById(firstField)).children('div').addClass('empty');
+							$(document.getElementById(firstField)).children('div').removeClass('bigBlackLadyPawn');
+							$(document.getElementById(secondField)).children('div').addClass('blackLadyPawn');
+							$(document.getElementById(secondField)).children('div').removeClass('empty');
+						}
+						else{
+							$(document.getElementById(firstField)).children('div').addClass('empty');
+							$(document.getElementById(firstField)).children('div').removeClass('bigWhiteLadyPawn');
+							$(document.getElementById(secondField)).children('div').addClass('whiteLadyPawn');
+							$(document.getElementById(secondField)).children('div').removeClass('empty');
+						}
+						return true;       
+					}
+				}
+			}
+			else{
+				return false;
+			}
+		}
+		function ladyAttacke(firstField, secondField){
+			var row1 = firstField.charAt(1).charCodeAt(0);
+			var kolumna1 = firstField.charAt(0).charCodeAt(0);
+			var row2= secondField.charAt(1).charCodeAt(0);
+			var kolumna2 = secondField.charAt(0).charCodeAt(0);
+			var y=row1;
+			var differenceOfRows = Math.abs(row1-row2);
+			var differenceOfColumns = Math.abs(column1-kolumna2);
+			if(differenceOfRows==differenceOfColumns){
+				if(column1<column2){
+					if(row1<row2){
+						var attackedRow=String.fromCharCode(row2-1);
+						var attackedColumn = String.fromCharCode(column2-1);
+						var attack = attackedColumn+attackedRow;
+						if($(document.getElementById(firstField)).children('div').prop('class')=='bigWhiteLadyPawn' && ($(document.getElementById(attack)).children('div').prop('class') == 'blackPawn' || $(document.getElementById(attack)).children('div').prop('class') == 'blackLadyPawn')){
+							for(var x=column1+1; x<column2-1; x++){
+								y=y+1;
+								x=String.fromCharCode(x);
+								y=String.fromCharCode(y);
+								var id = x+y;
+								if($(document.getElementById(id)).children('div').prop('class')!= 'empty'){
+									document.getElementById('tips').innerHTML += tips10;
+									return false;
+								}
+								x=x.charCodeAt(0);
+								y=y.charCodeAt(0);
+							}
+							$(document.getElementById(firstField)).children('div').addClass('empty');
+							$(document.getElementById(firstField)).children('div').removeClass('bigWhiteLadyPawn');
+							$(document.getElementById(secondField)).children('div').addClass('bigWhiteLadyPawn');
+							$(document.getElementById(secondField)).children('div').removeClass('empty');
+							if ($(document.getElementById(attack)).children('div').prop('class') == 'blackPawn'){
+								$(document.getElementById(attack)).children('div').removeClass('blackPawn');
+								$(document.getElementById(attack)).children('div').addClass('empty');
+								document.getElementById('PointsOfWhitePawns').innerHTML +='<div class="score"><div class="blackScore"></div></div>';
+							}
+							else{
+								$(document.getElementById(attack)).children('div').removeClass('blackLadyPawn');
+								$(document.getElementById(attack)).children('div').addClass('empty');
+								document.getElementById('PointsOfWhitePawns').innerHTML +='<div class="score"><div class="blackLadyScore"></div></div>';
+							}
+							return true;
+						}
+						if($(document.getElementById(firstField)).children('div').prop('class')=='bigBlackLadyPawn' && ($(document.getElementById(attack)).children('div').prop('class') == 'whitePawn' || $(document.getElementById(attack)).children('div').prop('class') == 'whiteLadyPawn')){
+							for(var x=column1+1; x<column2-1; x++){
+								y=y+1;
+								x=String.fromCharCode(x);
+								y=String.fromCharCode(y);
+								var id = x+y;
+								if($(document.getElementById(id)).children('div').prop('class')!= 'empty'){
+									document.getElementById('tips').innerHTML += tips10;
+									return false;
+								}
+								x=x.charCodeAt(0);
+								y=y.charCodeAt(0);
+							}
+							$(document.getElementById(firstField)).children('div').addClass('empty');
+							$(document.getElementById(firstField)).children('div').removeClass('bigBlackLadyPawn');
+							$(document.getElementById(secondField)).children('div').addClass('bigBlackLadyPawn');
+							$(document.getElementById(secondField)).children('div').removeClass('empty');
+							if ($(document.getElementById(attack)).children('div').prop('class') == 'whitePawn'){
+								$(document.getElementById(attack)).children('div').removeClass('whitePawn');
+								$(document.getElementById(attack)).children('div').addClass('empty');
+								document.getElementById('PointsOfBlackPawns').innerHTML +='<div class="score"><div class="whiteScore"></div></div>';
+							}
+							else{
+								$(document.getElementById(attack)).children('div').removeClass('whiteLadyPawn');
+								$(document.getElementById(attack)).children('div').addClass('empty');
+								document.getElementById('PointsOfBlackPawns').innerHTML +='<div class="score"><div class="whiteLadyScore"></div></div>';
+							}
+							return true;
+						}
+						else{
+							return false;
+						}
+					}
+					else{
+						var attackedRow=String.fromCharCode(row2+1);
+						var columnbicia = String.fromCharCode(column2-1);
+						var attack = attackedColumn+attackedRow;
+						if($(document.getElementById(firstField)).children('div').prop('class')=='bigWhiteLadyPawn' && ($(document.getElementById(attack)).children('div').prop('class') == 'blackPawn' || $(document.getElementById(attack)).children('div').prop('class') == 'blackLadyPawn')){
+							for(var x=column1+1; x<column2-1; x++){
+								y=y-1;
+								x=String.fromCharCode(x);
+								y=String.fromCharCode(y);
+								var id = x+y;
+								if($(document.getElementById(id)).children('div').prop('class')!= 'empty'){
+									document.getElementById('tips').innerHTML += tips10;
+									return false;
+								}
+								x=x.charCodeAt(0);
+								y=y.charCodeAt(0);
+							}
+							$(document.getElementById(firstField)).children('div').addClass('empty');
+							$(document.getElementById(firstField)).children('div').removeClass('bigWhiteLadyPawn');
+							$(document.getElementById(secondField)).children('div').addClass('bigWhiteLadyPawn');
+							$(document.getElementById(secondField)).children('div').removeClass('empty');
+							if ($(document.getElementById(attack)).children('div').prop('class') == 'blackPawn'){
+								$(document.getElementById(attack)).children('div').removeClass('blackPawn');
+								$(document.getElementById(attack)).children('div').addClass('empty');
+								document.getElementById('PointsOfWhitePawns').innerHTML +='<div class="score"><div class="blackScore"></div></div>';
+							}
+							else{
+								$(document.getElementById(attack)).children('div').removeClass('blackLadyPawn');
+								$(document.getElementById(attack)).children('div').addClass('empty');
+								document.getElementById('PointsOfWhitePawns').innerHTML +='<div class="score"><div class="blackLadyScore"></div></div>';
+							}
+							return true;
+						}
+						if($(document.getElementById(firstField)).children('div').prop('class')=='bigBlackLadyPawn' && ($(document.getElementById(attack)).children('div').prop('class') == 'whitePawn' || $(document.getElementById(attack)).children('div').prop('class') == 'whiteLadyPawn')){
+							for(var x=column1+1; x<column2-1; x++){
+								y=y-1;
+								x=String.fromCharCode(x);
+								y=String.fromCharCode(y);
+								var id = x+y;
+								if($(document.getElementById(id)).children('div').prop('class')!= 'empty'){
+									document.getElementById('tips').innerHTML += tips10;
+									return false;
+								}
+								x=x.charCodeAt(0);
+								y=y.charCodeAt(0);
+							}
+							$(document.getElementById(firstField)).children('div').addClass('empty');
+							$(document.getElementById(firstField)).children('div').removeClass('bigBlackLadyPawn');
+							$(document.getElementById(secondField)).children('div').addClass('bigBlackLadyPawn');
+							$(document.getElementById(secondField)).children('div').removeClass('empty');
+							if ($(document.getElementById(attack)).children('div').prop('class') == 'whitePawn'){
+								$(document.getElementById(attack)).children('div').removeClass('whitePawn');
+								$(document.getElementById(attack)).children('div').addClass('empty');
+								document.getElementById('PointsOfBlackPawns').innerHTML +='<div class="score"><div class="whiteScore"></div></div>';
+							}
+							else{
+								$(document.getElementById(attack)).children('div').removeClass('whiteLadyPawn');
+								$(document.getElementById(attack)).children('div').addClass('empty');
+								document.getElementById('PointsOfBlackPawns').innerHTML +='<div class="score"><div class="whiteLadyScore"></div></div>';
+							}
+							return true;
+						}
+						else{
+							return false;
+						}
+					}
+				}
+
+				else if(column1>column2){
+					if(row1<row2){
+						var attackedRow=String.fromCharCode(row2-1);
+						var attackedColumn = String.fromCharCode(column2+1);
+						var attack = attackedColumn+attackedRow;
+						if($(document.getElementById(firstField)).children('div').prop('class')=='bigWhiteLadyPawn' && ($(document.getElementById(attack)).children('div').prop('class') == 'blackPawn' || $(document.getElementById(attack)).children('div').prop('class') == 'blackLadyPawn')){
+							for(var x=column1-1; x>column2+1; x--){
+								y=y+1;
+								x=String.fromCharCode(x);
+								y=String.fromCharCode(y);
+								var id = x+y;
+								if($(document.getElementById(id)).children('div').prop('class')!= 'empty'){
+									return false;
+								}
+								x=x.charCodeAt(0);
+								y=y.charCodeAt(0);
+							}
+							$(document.getElementById(firstField)).children('div').addClass('empty');
+							$(document.getElementById(firstField)).children('div').removeClass('bigWhiteLadyPawn');
+							$(document.getElementById(secondField)).children('div').addClass('bigWhiteLadyPawn');
+							$(document.getElementById(secondField)).children('div').removeClass('empty');
+							if ($(document.getElementById(attack)).children('div').prop('class') == 'blackPawn'){
+								$(document.getElementById(attack)).children('div').removeClass('blackPawn');
+								$(document.getElementById(attack)).children('div').addClass('empty');
+								document.getElementById('PointsOfWhitePawns').innerHTML +='<div class="score"><div class="blackScore"></div></div>';
+							}
+							else{
+								$(document.getElementById(attack)).children('div').removeClass('blackLadyPawn');
+								$(document.getElementById(attack)).children('div').addClass('empty');
+								document.getElementById('PointsOfWhitePawns').innerHTML +='<div class="score"><div class="blackLadyScore"></div></div>';
+							}
+							return true;
+						}
+						if($(document.getElementById(firstField)).children('div').prop('class')=='bigBlackLadyPawn' && ($(document.getElementById(attack)).children('div').prop('class') == 'whitePawn' || $(document.getElementById(attack)).children('div').prop('class') == 'whiteLadyPawn')){
+							for(var x=column1-1; x>column2+1; x--){
+								y=y+1;
+								x=String.fromCharCode(x);
+								y=String.fromCharCode(y);
+								var id = x+y;
+								if($(document.getElementById(id)).children('div').prop('class')!= 'empty'){
+									return false;
+								}
+								x=x.charCodeAt(0);
+								y=y.charCodeAt(0);
+							}
+							$(document.getElementById(firstField)).children('div').addClass('empty');
+							$(document.getElementById(firstField)).children('div').removeClass('bigBlackLadyPawn');
+							$(document.getElementById(secondField)).children('div').addClass('bigBlackLadyPawn');
+							$(document.getElementById(secondField)).children('div').removeClass('empty');if ($(document.getElementById(attack)).children('div').prop('class') == 'whitePawn'){
+								$(document.getElementById(attack)).children('div').removeClass('whitePawn');
+								$(document.getElementById(attack)).children('div').addClass('empty');
+								document.getElementById('PointsOfBlackPawns').innerHTML +='<div class="score"><div class="whiteScore"></div></div>';
+							}
+							else{
+								$(document.getElementById(attack)).children('div').removeClass('whiteLadyPawn');
+								$(document.getElementById(attack)).children('div').addClass('empty');
+								document.getElementById('PointsOfBlackPawns').innerHTML +='<div class="score"><div class="whiteLadyScore"></div></div>';
+							}
+							return true;
+						}
+					}
+					else{
+						var attackedRow=String.fromCharCode(row2+1);
+						var attackedColumn = String.fromCharCode(column2+1);
+						var attack = columnbicia+attackedRow;
+						if($(document.getElementById(firstField)).children('div').prop('class')=='bigWhiteLadyPawn' && ($(document.getElementById(attack)).children('div').prop('class') == 'blackPawn' || $(document.getElementById(attack)).children('div').prop('class') == 'blackLadyPawn')){
+							for(var x=column1-1; x>column2+1; x--){
+								y=y-1;
+								x=String.fromCharCode(x);
+								y=String.fromCharCode(y);
+								var id = x+y;
+								if($(document.getElementById(id)).children('div').prop('class')!= 'empty'){
+									return false;
+								}
+								x=x.charCodeAt(0);
+								y=y.charCodeAt(0);
+							}
+							$(document.getElementById(firstField)).children('div').addClass('empty');
+							$(document.getElementById(firstField)).children('div').removeClass('bigWhiteLadyPawn');
+							$(document.getElementById(secondField)).children('div').addClass('bigWhiteLadyPawn');
+							$(document.getElementById(secondField)).children('div').removeClass('empty');
+							if ($(document.getElementById(attack)).children('div').prop('class') == 'blackPawn'){
+								$(document.getElementById(attack)).children('div').removeClass('blackPawn');
+								$(document.getElementById(attack)).children('div').addClass('empty');
+								document.getElementById('PointsOfWhitePawns').innerHTML +='<div class="score"><div class="blackScore"></div></div>';
+							}
+							else{
+								$(document.getElementById(attack)).children('div').removeClass('blackLadyPawn');
+								$(document.getElementById(attack)).children('div').addClass('empty');
+								document.getElementById('PointsOfWhitePawns').innerHTML +='<div class="score"><div class="blackLadyScore"></div></div>';
+							}
+							return true;
+						}
+						if($(document.getElementById(firstField)).children('div').prop('class')=='bigBlackLadyPawn' && ($(document.getElementById(attack)).children('div').prop('class') == 'whitePawn' || $(document.getElementById(attack)).children('div').prop('class') == 'whiteLadyPawn')){
+							for(var x=column1-1; x>column2+1; x--){
+								y=y-1;
+								x=String.fromCharCode(x);
+								y=String.fromCharCode(y);
+								var id = x+y;
+								if($(document.getElementById(id)).children('div').prop('class')!= 'empty'){
+									return false;
+								}
+								x=x.charCodeAt(0);
+								y=y.charCodeAt(0);
+							}
+							$(document.getElementById(firstField)).children('div').addClass('empty');
+							$(document.getElementById(firstField)).children('div').removeClass('bigBlackLadyPawn');
+							$(document.getElementById(secondField)).children('div').addClass('bigBlackLadyPawn');
+							$(document.getElementById(secondField)).children('div').removeClass('empty');
+							if ($(document.getElementById(attack)).children('div').prop('class') == 'whitePawn'){
+								$(document.getElementById(attack)).children('div').removeClass('whitePawn');
+								$(document.getElementById(attack)).children('div').addClass('empty');
+								document.getElementById('PointsOfBlackPawns').innerHTML +='<div class="score"><div class="whiteScore"></div></div>';
+							}
+							else{
+								$(document.getElementById(attack)).children('div').removeClass('whiteLadyPawn');
+								$(document.getElementById(attack)).children('div').addClass('empty');
+								document.getElementById('PointsOfBlackPawns').innerHTML +='<div class="score"><div class="whiteLadyScore"></div></div>';
+							}
+							return true;
+						}
+					}
+				}
+			}
+		}
+    </script>
+  </body>
+</html>
