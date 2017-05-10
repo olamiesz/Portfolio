@@ -6,7 +6,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <style>
 	
-<!-- STRUKTURA	-->
+/*STRUKTURA	*/
 		body {
             background-image: url("images.jpg");
             background-size: cover;
@@ -34,8 +34,8 @@
             height: 800px;
             padding: 4%;
         }
-<!-- STRUKTURA PLANSZY -->
-        .board {
+/* STRUKTURA PLANSZY */
+        .board{
             position: absolute;
             width: 450px;
             background: url('back.jpg');
@@ -74,7 +74,7 @@
             float: left;
             filter: brightness(140%);
         }
-<!-- STRUKTURA MIEJSC NA ZBITE PIONKI -->
+/* STRUKTURA MIEJSC NA ZBITE PIONKI */
 		.BoxForPointsOfWhitePawns{
 			width:200px;
 			position:relative;
@@ -149,7 +149,7 @@
 		}
 		
 		
-<!-- PIONKI -->
+/* PIONKI */
         .whitePawn {
             width: 30px;
             height: 30px;
@@ -263,7 +263,7 @@
                                           rgba(255,255,255,0) 100%);
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
         }
-<!-- DAMKI -->
+/* DAMKI */
         .whiteLadyPawn {
             width: 30px;
             height: 30px;
@@ -430,7 +430,7 @@
         }
 		
 		
-<!-- ZBITE PIONKI -->		
+/* ZBITE PIONKI */		
 		.whiteScore{
 			width: 30px;
             height: 30px;
@@ -535,7 +535,7 @@
         }
 		
 		
-<!-- INNE -->
+/* INNE */
 		
         
         @keyframes fade-in{
@@ -782,46 +782,52 @@
 	</div>
 	</div>
     <script>
-           /*Naciśnięty pionek się przesuwa.
-
-           Klasa pionka zmienia się na damka, gdy dotrze do przeciwległej linii.*/
-        
-        var firstField = '0';
-        var secondField = '0';
-        var sequence;
-		var tips1 = 'Jeśli masz możliwość wykonaj drugie bicie albo przekaż kolejkę drugiemu graczowi.';
-		var tips2 = 'Na polu '; //.....
-		var tips3 = ' nie ma pionka. Wybierz pole, na którym jest pionek.';
-		var tips4 = 'Ten ruch należy do Twojego przeciwnika, złodziejaszku ruchów. Przekaż kolejkę drugiemu graczowi.';
-		var tips5 = 'Nie możesz ruszyć tego pionka.';
-		var tips6 = 'Nie możesz wykonać ruchu na to pole.';
-		var tips7 = 'Mógłbyś wykonać ten ruch, gdyby na polu ';//.....
-		var tips8 = ' stał pionek przeciwnika.';
-		var tips9 = 'Zasady nie dopuszczają takiego ruchu.';
-		var tips10= 'Nie możesz wykonać takiego ruchu.';
-        if(sequence==null){
-			document.getElementById('tips').innerHTML +='Białe pionki rozpoczynają rozgrywkę.';
-        }
-        $(document).ready(function(){
-            /*Ten element reaguje na naciśnięcie pola czarnego*/
-            
-            $('.whiteField').click(function(event){
-                if(firstField=='0'){
-					document.getElementById('tips').innerHTML = '';
-					document.getElementById('tips').innerHTML += tips2 + $(event.target).prop('id') + tips3;
-                }
-                else{
-					document.getElementById('tips').innerHTML = '';
-					document.getElementById('tips').innerHTML += tips6;
+		$(document).ready(function(){
+			var firstField = '0';
+			var secondField = '0';
+			var sequence;
+			var tips1 = 'Jeśli masz możliwość wykonaj drugie bicie albo przekaż kolejkę drugiemu graczowi.';
+			var tips2 = 'Na polu '; //.....
+			var tips3 = ' nie ma pionka. Wybierz pole, na którym jest pionek.';
+			var tips4 = 'Ten ruch należy do Twojego przeciwnika, złodziejaszku ruchów. Przekaż kolejkę drugiemu graczowi.';
+			var tips5 = 'Nie możesz ruszyć tego pionka.';
+			var tips6 = 'Nie możesz wykonać ruchu na to pole.';
+			var tips7 = 'Mógłbyś wykonać ten ruch, gdyby na polu ';//.....
+			var tips8 = ' stał pionek przeciwnika.';
+			var tips9 = 'Zasady nie dopuszczają takiego ruchu.';
+			var tips10= 'Nie możesz wykonać takiego ruchu.';
+			var tips11= 'Białe pola na planszy są wyłączone z gry.'
+			if(sequence==null){
+				document.getElementById('tips').innerHTML +='Białe pionki rozpoczynają rozgrywkę.';
+			}
+/*Ten element reaguje na naciśnięcie pola białego*/            
+			/* Jeśli nacisnęłam pole białe wykonują się następujące kroki:
+				1. kasuje się podpowiedź, że zaczynają pionki białe
+				2. wyświetla się podpowiedź, że pola białe są wyłączone z gry
+				3. jeśli białe pole było drugim wybranym polem odznacza się pionek lub damka, którą chciałam wykonać tam ruch.*/
+			$('.whiteField').click(function(event){
+				document.getElementById('tips').innerHTML = '';
+				document.getElementById('tips').innerHTML = tips11;
+                if(firstField!='0'){
                     if($(document.getElementById(firstField)).children('div').prop('class')=='bigWhitePawn'){
                         $(document.getElementById(firstField)).children('div').removeClass('bigWhitePawn');
                         $(document.getElementById(firstField)).children('div').addClass('whitePawn');
                         firstField='0';
                         return;
                     }
-                    if($(document.getElementById(firstField)).children('div').prop('class')=='bigblackPawn'){
+                    else if($(document.getElementById(firstField)).children('div').prop('class')=='bigblackPawn'){
                         $(document.getElementById(firstField)).children('div').removeClass('bigblackPawn');
                         $(document.getElementById(firstField)).children('div').addClass('blackPawn');
+                        firstField='0';
+                        return;
+                    }else if($(document.getElementById(firstField)).children('div').prop('class')=='bigBlackLadyPawn'){
+                        $(document.getElementById(firstField)).children('div').removeClass('bigBlackLadyPawn');
+                        $(document.getElementById(firstField)).children('div').addClass('blackLadyPawn');
+                        firstField='0';
+                        return;
+                    }else if($(document.getElementById(firstField)).children('div').prop('class')=='bigWhiteLadyPawn'){
+                        $(document.getElementById(firstField)).children('div').removeClass('bigWhiteLadyPawn');
+                        $(document.getElementById(firstField)).children('div').addClass('whiteLadyPawn');
                         firstField='0';
                         return;
                     }
