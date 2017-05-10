@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Znajdź inżyniera</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <style>
+        ::selection {
+            background: #ffb7b7;
+        }
+
+        body {
+            font: normal 15px Calibri, Calibri, sans-serif;
+            background-image: url("bg.png");
+            background-color: #EEEEEE;
+        }
+
+        .head {
+            width: 1000px;
+            height: 50px;
+            padding: 20px;
+            user-select: none;
+            cursor: default;
+        }
+
+        .head h1 {
+            text-align: center;
+            color: black;
+            line-height: 0px;
+            font-size: 50px;
+        }
+
+        .container {
+            width: 1000px;
+            height: 800px;
+            padding: 20px;
+        }
+
+        .lista {
+            width: 250px;
+            height: 780px;
+            background-color: rgba(255, 209, 102, 0.4);
+            float: left;
+            border-radius: 5px;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .szukajka {
+            width: 210px;
+            height: 40px;
+            margin: 20px;
+        }
+
+        .szukajka p {
+            margin: 0px;
+            text-align: center;
+        }
+
+        .scroll {
+            width: 210px;
+            height: 680px;
+            background-color: white;
+            margin: 20px;
+            box-shadow: inset 0px 0px 5px black,
+                              0px 0px 1px white;
+            padding: 0px;
+            overflow: hidden;
+            border-radius: 3px;
+        }
+
+        .parametry {
+            width: 730px;
+            height: 150px;
+            background-color: rgba(255, 209, 102, 0.4);
+            position: relative;
+            float: left;
+            margin-left: 20px;
+            border-radius: 5px;
+            border-top-right-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .aaa {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            font-size: 60px;
+            line-height: 0px;
+        }
+
+        #sala {
+            margin-top: 20px;
+            margin-left: 20px;
+            width: 335px;
+            height: 110px;
+            position: relative;
+            float: left;
+            text-shadow: 0px 0px 1px white;
+        }
+
+        #sala p {
+            text-align: center;
+        }
+
+        #pietro {
+            width: 335px;
+            height: 110px;
+            position: relative;
+            float: left;
+            margin-left: 20px;
+            margin-top: 20px;
+            text-shadow: 0px 0px 1px white;
+        }
+
+        #pietro p {
+            text-align: center;
+        }
+
+        .mapa {
+            width: 720px;
+            height: 600px;
+            background-color: rgba(255, 209, 102, 0.4);
+            position: relative;
+            float: left;
+            margin-left: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border-bottom-right-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .mapa p {
+            text-align: center;
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: #eaeaea;
+            border-left: 1px solid #ccc;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #aaa;
+        }
+
+        ol {
+            font-size: 14px;
+            width: 100%;
+            margin: 1px;
+            margin-right: -18px;
+            line-height: 2em;
+            padding-left: 1px;
+            padding-top: 1px;
+            padding-bottom: 1px;
+            overflow: scroll;
+            height: 693px;
+            /*margin-left: -35px;
+                    margin-top:7px;*/
+        }
+
+        ol li {
+            display: block;
+            text-decoration: none;
+            color: #665700;
+            float: left;
+            width: 198px;
+            background-color: #f2fcc4;
+            padding: 5px;
+            height: 2em;
+            border-bottom: 1px solid rgb(255, 209, 102);
+        }
+
+        ol li:hover {
+            background-color: #d6ddb5;
+        }
+
+        ol li:active {
+            background-color: #a7ad8c;
+        }
+        
+        li a {
+            text-decoration: none;
+            color: #665700;
+        }
+
+        #pin{
+            background: url('http://inside/private/its/rps/sites/krakow/administration/PublishingImages/pin.png');
+            background-size: cover;
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            top: 240px;
+            left: 150px;
+            transition: top 0.5s, left 0.5s;
+            z-index: 100;
+        }
+        
+        #info{
+            background: rgb(255, 221, 135);
+            border: 2px solid black;
+            box-shadow: 0px 5px 5px rgba(0,0,0,0.7);
+            border-radius: 5px;
+            position: absolute;
+            min-width: 160px;
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            transition: top 0.5s, left 0.5s;
+            user-select: none;
+            cursor: default;
+        }
+        #info:hover{
+            opacity: 0.4;
+        }
+        .invisible{
+            display: none;
+        }
+        #pliklista{
+			width: 210 px;
+			height: 50 px;
+            margin: 20px;
+            padding: 0px;
+            overflow: hidden;
+            border-radius: 3px;
+		}
+        input[type="file"]{
+            border-radius: 10px;
+            outline: none;
+            user-select: none;
+            margin-top: 5px;
+        }
+        
+        input[type="text"]{
+            color: black;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            padding-left: 5px;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            box-shadow: inset 0px 0px 5px black,
+                              0px 0px 1px white;
+        }
+        input[type="text"]:before{
+            color: lightgray;
+        }
+        .mapa{
+            padding: 5px;
+        }
+        #map{
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            background: none;
+        }
+
+        #photo{
+            border-radius: 5px;
+            border-top: 1px solid goldenrod;
+            border-bottom: 1px solid goldenrod;
+            margin: 5px;
+            position: absolute;
+            display: block;
+            max-width:230px;
+            max-height:95px;
+            width: auto;
+            height: auto;
+        }
+		.pytania {
+			position: relative;
+            background-color: rgba(255, 209, 102, 0.4);
+            float: left;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+            border-bottom-right-radius: 10px;
+			width:1000px;
+			height: 80px;
+		}
+		.pytania p{
+			text-align: center;
+            font-size: 20px;
+			margin: 0;
+		}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <div class="lista">
+			<div class="szukajka">
+				<input id="search" type="text" value="Szukaj"/>
+			</div>
+			<div class="scroll">
+				<ol id="list">
+					
+				</ol>
+			</div>
+		</div>
+		
+		<div class="parametry">
+			<div class="aaa">
+                <div id="sala">
+                    <p> Sala </p>
+                </div>
+                <div id="pietro">
+                    <p> Piętro </p>
+                </div>
+			</div>
+		</div>
+		<div class="mapa">
+            <div id="pin"></div>
+            <div id="info" class="invisible"></div>
+			<img src="http://inside/private/its/rps/sites/krakow/administration/PublishingImages/placeholder.png" id="map" />
+		</div>
+		<div class="pytania">
+			<p> Pytania i sugestie: <p>
+			<p><a href="mailto:olamiesz@gmail.com"> Aleksandra Mieszkowska </a></p>
+		</div>
+    </div>
+    </body>
+</html>
+<script>
+    var list;
+    var seats;
+    var text;
+	var person;
+	
+    function readFile(person_data) {
+        var file = person_data[0];
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            // The file's text will be printed here
+            text = event.target.result;
+            list = parseText(text);
+            list.sort(function(obj1, obj2){
+                if(obj1.ID < obj2.ID) return -1;
+                if(obj1.ID > obj2.ID) return 1;
+                return 0;
+            });
+            seats = parseSeats(seat_data);
+            populateList(list);
+            
+        };
+        reader.readAsText(file);
+    }
+    function wczytanie(text){
+		list = parseText(text);
+		list.sort(function(obj1, obj2){
+			if(obj1.ID < obj2.ID) return -1;
+			if(obj1.ID > obj2.ID) return 1;
+			return 0;
+		});
+		seats = parseSeats(seat_data);
+		populateList(list);
+	}
+    function parseText(text){
+        var lines = text.split("\n");
+        var data = new Array();
+        for(var i=1;i<lines.length;i++){
+            var values = lines[i].split(";");
+            var person = new Object();
+            if(values[0] == "pusty" || values[0] == ""){
+                continue;
+            }
+            person.ID = values[0];
+            person.Building = values[1];
+            person.Floor = values[2];
+            person.Seat = values[3];
+            data.push(person);
+        }
+        return data;
+    }
+    
+    function parseSeats(text){
+        var lines = text.split("\n");
+        var data = new Array();
+        for(var i=1;i<lines.length;i++){
+            var values = lines[i].split(";");
+            var seat = new Object();
+            
+            seat.Seat = values[0];
+            seat.Floor = values[1];
+            seat.Building = values[2];
+            seat.X = values[3];
+            seat.Y = values[4];
+            data.push(seat);
+        }
+        return data;
+    }
+    
+    function populateList(data){
+        document.getElementById("list").innerHTML = "";
+        for(var i=0;i<data.length;i++){
+            var id = data[i].ID.replace(/ /g,"_");
+            document.getElementById("list").innerHTML += '<li id='+id+'>'+data[i].ID+'</li>';
+        }
+    }
+    
+    function filterList(text){
+        var result;
+        if(text === ""){
+            result = list;
+            document.getElementById("map").src = "placeholder.png";
+            document.getElementById("pin").style.left = "150px";
+            document.getElementById("pin").style.top = "240px";
+            $("#info").addClass("invisible");
+        }
+        else{
+            result = list.filter(function(obj){
+                var test = true;
+                var searchParts = text.split(" ");
+                console.log(searchParts);
+                for(var i=0;i<searchParts.length;i++){
+                    if(test == true){
+                        if(obj.ID.toUpperCase().search(searchParts[i].toUpperCase()) > -1){
+                            test = true;
+                        }
+                        else test = false;
+                    }
+                }
+                return test;
+            });
+        }
+        populateList(result);
+    }
+    String.prototype.escapeDiacritics = function(){
+        return this.replace(/ą/g, 'a').replace(/Ą/g, 'A')
+            .replace(/ć/g, 'c').replace(/Ć/g, 'C')
+            .replace(/ę/g, 'e').replace(/Ę/g, 'E')
+            .replace(/ł/g, 'l').replace(/Ł/g, 'L')
+            .replace(/ń/g, 'n').replace(/Ń/g, 'N')
+            .replace(/ó/g, 'o').replace(/Ó/g, 'O')
+            .replace(/ś/g, 's').replace(/Ś/g, 'S')
+            .replace(/ż/g, 'z').replace(/Ż/g, 'Z')
+            .replace(/ź/g, 'z').replace(/Ź/g, 'Z');
+    }
+    $(document).ready(function() {
+        $("#list").on("click","li",function(event){
+            var id = event.target.id;
+            var result = list.filter(function( obj ) {
+                //if(obj.ID == id.replace(/_/g," ")){
+                //    document.getElementById("photo").src = "http://spapp06:4848/User%20Photos/Profile%20Pictures/"+obj.ID[obj.ID.indexOf(" //")+1].escapeDiacritics()+obj.ID.substring(0,5).trim().escapeDiacritics()+"_LThumb.jpg";
+                //}
+                return obj.ID == id.replace(/_/g," ");
+            });
+
+            var seat = seats.filter(function( obj ){
+                if(obj.Floor.trim() != result[0].Floor.trim()){ return false; }
+                if(obj.Building.trim() != result[0].Building.trim()){ return false; }
+                if(obj.Seat.trim() != result[0].Seat.trim()){ return false; }
+                return true;
+            });
+            document.getElementById("pin").style.left = (seat[0].X-7) + "px";
+            document.getElementById("pin").style.top = (seat[0].Y-20) + "px";
+            document.getElementById("info").style.left = (seat[0].X-80) + "px";
+            document.getElementById("info").style.top = (seat[0].Y-50) + "px";
+            $("#info").removeClass("invisible");
+            document.getElementById("info").innerHTML = result[0].ID;
+            document.getElementById("sala").innerHTML = "<p>"+result[0].Building+"</p>";
+            document.getElementById("pietro").innerHTML = "<p>"+result[0].Floor+"</p>";
+            document.getElementById("map").src = result[0].Building+"/"+result[0].Floor+"/map.png";
+        });
+        
+        $("#search").on("click", function(event){
+            if(event.target.value == "Szukaj") event.target.value="";
+        }); 
+        
+        $("#search").on("input", function(event){
+            filterList(event.target.value);
+        });
+         $.ajax({
+	        type: "GET",
+	        url: "Inzynier.csv", //zmień na Inż.csv czy jak on tam się nazywa
+	        dataType: "text",
+	        success: function(data) {wczytanie(data);} //zmień na funckcję która to sparsuje
+     	});
+    });
+	
+    var seat_data ="seat;floor;building;X;Y\n"+
+		"1;0;A;209;143\n"+
+		"2;0;A;476;149\n"+
+		"3;0;A;196;444\n"+
+		"4;0;A;475;446\n"+
+		"1;1;B;187;147\n"+
+		"2;1;B;137;287\n"+
+		"3;1;B;179;425\n"+
+		"4;1;B;479;437\n"+
+		"5;1;B;528;295\n"+
+		"6;1;B;484;150";
+
+</script>
+  

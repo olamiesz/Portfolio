@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Znajdź swojego inzyniera</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <style>
+            *{
+                margin: 0px;
+                padding: 0px;
+            }
+            #mapper{
+                width: 720px;
+                height: 600px;
+                display: block;
+            }
+            button{
+                width: 100px;
+                height: 30px;
+            }
+            input[type="text"]{
+                max-width: 130px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <img id="mapper" src=""/>
+        <input id="building" type="text"/>
+        <input id="floor" type="text"/>
+        <input id="map" type="file" onchange="previewFile()"/>
+        <output id="selectedMap"></output>
+        <button id="reset" >RESET</button>
+        <button id="generate" >GENERATE</button>
+        <hr>
+        <div id="current">1</div>
+        <hr>
+        <textarea id="result" rows="100" cols="150"></textarea>
+    </body>
+</html>
+<script>
+    var counter = 1;
+    var data;
+
+    $().ready(function(){
+        data = new Array(); 
+    });
+    
+    function previewFile() {
+        var preview = document.querySelector('img');
+        var file    = document.querySelector('input[type=file]').files[0];
+        var reader  = new FileReader();
+
+        reader.addEventListener("load", function () {
+            preview.src = reader.result;
+        }, false);
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+    $("#mapper").click(function(event){
+        var x = event.pageX - $('#mapper').offset().left;
+        var y = event.pageY - $('#mapper').offset().top;
+        var pointer = new Object();
+        pointer.seat = counter;
+        pointer.floor = document.getElementById("floor").value;
+        pointer.building = document.getElementById("building").value;
+        pointer.X = x;
+        pointer.Y = y;
+        data.push(pointer);
+        counter++;
+        document.getElementById("current").innerHTML = counter;
+    });
+    $("#reset").click(function(event){
+        data = new Array();
+        counter = 1;
+        document.getElementById("current").innerHTML = counter;
+        document.getElementById("result").value = "";
+    });
+    $("#generate").click(function(event){
+        var text = "";
+        for(var i=0;i<data.length;i++){
+            text+=data[i].seat+";"+data[i].floor+";"+data[i].building+";"+data[i].X+";"+data[i].Y+"\n";
+        }
+        document.getElementById("result").value = "seat;floor;building;X;Y\n";
+        document.getElementById("result").value += text;
+    });
+</script>
+  
