@@ -542,7 +542,7 @@
                     <div class="blackField" id="a1">
                         <div class="whitePawn"></div>        
                     </div>
-                    <div class="white" id="b1">
+                    <div class="whiteField" id="b1">
                     </div>
                     <div class="blackField" id="c1">
                         <div class="whitePawn"></div>        
@@ -550,7 +550,7 @@
                     <div class="whiteField" id="d1">
                     </div>
                     <div class="blackField" id="e1">
-                        <div class="whitePawn"></div>        
+                        <div class="blackLadyPawn"></div>        
                     </div>
                     <div class="whiteField" id="f1">
                     </div>
@@ -603,7 +603,7 @@
                     <div class="whiteField" id="f3">
                     </div>
                     <div class="blackField" id="g3">
-                        <div class="whitePawn"></div>        
+                        <div class="empty"></div>        
                     </div>
                     <div class="whiteField" id="h3">
                     </div>
@@ -758,7 +758,7 @@
         var firstField = '0';
         var secondField = '0';
         var sequence;
-		var tips1 = 'Jeśli masz możliwość wykonaj drugie attack albo przekaż kolejkę drugiemu graczowi.';
+		var tips1 = 'Jeśli masz możliwość wykonaj drugie bicie albo przekaż kolejkę drugiemu graczowi.';
 		var tips2 = 'Na polu '; //.....
 		var tips3 = ' nie ma pionka. Wybierz pole, na którym jest pionek.';
 		var tips4 = 'Ten ruch należy do Twojego przeciwnika, złodziejaszku ruchów. Przekaż kolejkę drugiemu graczowi.';
@@ -1437,8 +1437,7 @@
                     var classOfPawn = $(document.getElementById(firstField)).children('div').prop('class');
                     /*Nacisnęłam na obszar planszy drugiego wybranego pola. */
                     if(classEventTarget==$(document.getElementById(firstField)).prop('class')){
-                        /*Nacisnęłam na obszar planszy drugiego pola - pole jest w kolorze blackPawnm. */
-                        /*Jeżeli mój kolor pionków to biały. */
+                        /*Nacisnęłam na obszar planszy drugiego pola - pole jest w kolorze czarnym. */
                         secondField = $(event.target).prop('id');
 						/*Moje pionki są białe. */
                         if(classOfPawn=='bigWhitePawn'||classOfPawn=='bigWhiteLadyPawn'){
@@ -1477,7 +1476,8 @@
 									return;
 								}
                             }
-                            if(classOfPawn2=='whiteLadyPawn'){
+                            /*Nacisnęłam na obszar planszy mojej damki - to zmieniam pionek wybrany do ruchu. */
+							if(classOfPawn2=='whiteLadyPawn'){
                                 if(classOfPawn=='bigWhitePawn'){
 									$(document.getElementById(firstField)).children('div').removeClass('bigWhitePawn');
 									$(document.getElementById(firstField)).children('div').addClass('whitePawn');
@@ -2323,12 +2323,12 @@
 		}
 		function ladyAttacke(firstField, secondField){
 			var row1 = firstField.charAt(1).charCodeAt(0);
-			var kolumna1 = firstField.charAt(0).charCodeAt(0);
+			var column1 = firstField.charAt(0).charCodeAt(0);
 			var row2= secondField.charAt(1).charCodeAt(0);
-			var kolumna2 = secondField.charAt(0).charCodeAt(0);
+			var column2 = secondField.charAt(0).charCodeAt(0);
 			var y=row1;
 			var differenceOfRows = Math.abs(row1-row2);
-			var differenceOfColumns = Math.abs(column1-kolumna2);
+			var differenceOfColumns = Math.abs(column1-column2);
 			if(differenceOfRows==differenceOfColumns){
 				if(column1<column2){
 					if(row1<row2){
@@ -2399,7 +2399,7 @@
 					}
 					else{
 						var attackedRow=String.fromCharCode(row2+1);
-						var columnbicia = String.fromCharCode(column2-1);
+						var attackedColumn = String.fromCharCode(column2-1);
 						var attack = attackedColumn+attackedRow;
 						if($(document.getElementById(firstField)).children('div').prop('class')=='bigWhiteLadyPawn' && ($(document.getElementById(attack)).children('div').prop('class') == 'blackPawn' || $(document.getElementById(attack)).children('div').prop('class') == 'blackLadyPawn')){
 							for(var x=column1+1; x<column2-1; x++){
@@ -2529,7 +2529,7 @@
 					else{
 						var attackedRow=String.fromCharCode(row2+1);
 						var attackedColumn = String.fromCharCode(column2+1);
-						var attack = columnbicia+attackedRow;
+						var attack = attackedColumn+attackedRow;
 						if($(document.getElementById(firstField)).children('div').prop('class')=='bigWhiteLadyPawn' && ($(document.getElementById(attack)).children('div').prop('class') == 'blackPawn' || $(document.getElementById(attack)).children('div').prop('class') == 'blackLadyPawn')){
 							for(var x=column1-1; x>column2+1; x--){
 								y=y-1;
